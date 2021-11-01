@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>contents/WorkUI.qml</file>
+        <file>contents/Alarm.qml</file>
+        <file>imgs/mixer.png</file>
+        <file>imgs/tank.png</file>
+    </qresource>
+</RCC>
