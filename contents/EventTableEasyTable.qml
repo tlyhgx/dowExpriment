@@ -18,13 +18,21 @@ Item {
     property int  scrollBarWidth: 6
 
     //列宽
-    property variant columnWidthArr: [150,150,150]
+    property variant columnWidthArr: [180,200]
 
 
     EasyTableModel{
         id:table_model
         horHeader: ["时间","事件"]
         initData: [
+            {"current_time":"2021-11-01 08:32:31","content":"开始实验......"},
+            {"current_time":"2021-11-01 08:32:31","content":"1#温度过高"},
+            {"current_time":"2021-11-01 08:32:31","content":"气流过低"},
+            {"current_time":"2021-11-01 08:32:31","content":"实验结束！"},
+            {"current_time":"2021-11-01 08:32:31","content":"开始实验......"},
+            {"current_time":"2021-11-01 08:32:31","content":"1#温度过高"},
+            {"current_time":"2021-11-01 08:32:31","content":"气流过低"},
+            {"current_time":"2021-11-01 08:32:31","content":"实验结束！"},
             {"current_time":"2021-11-01 08:32:31","content":"开始实验......"},
             {"current_time":"2021-11-01 08:32:31","content":"1#温度过高"},
             {"current_time":"2021-11-01 08:32:31","content":"气流过低"},
@@ -88,7 +96,7 @@ Item {
             TextInput{
                 anchors.fill: parent
                 verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
+                horizontalAlignment: Text.AlignLeft
                 selectByMouse: true;
                 selectedTextColor:"black"
                 selectionColor: "white"
@@ -200,7 +208,7 @@ Item {
                 color: "#800000FF"
                 Text {
                     anchors.centerIn: parent
-                    text: table_model.headerData(index,Qt.Vertical)
+                    text: table_model.headerData(index+1,Qt.Vertical)
                 }
             }
         }

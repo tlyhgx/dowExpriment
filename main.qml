@@ -5,6 +5,7 @@ import QtGraphicalEffects 1.15
 import QtQuick.Layouts 1.12
 import "contents"
 
+
 Window {
     width: 1204
     height: 768
@@ -31,7 +32,7 @@ Window {
 
 
     Rectangle{
-        width: 420;
+        width: 410;
         height: 250;
         x:100;
         y:360;
@@ -40,6 +41,7 @@ Window {
         Column{
             Label{
                 text: "工作信息:"
+                font.pixelSize: 22
             }
             //        EventList{}
 
@@ -95,26 +97,68 @@ Window {
             anchors.leftMargin: 12
             width: parent.width
 
+            Loader{
+                id:winLoader
+            }
 
             HwwButton{
                 width: 100;
                 height: 30;
                 text: "实时曲线"
+                RealTimeCurveWindow{
+                    id:realTimeCurveWindow
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        realTimeCurveWindow.show()
+//                        winLoader.source="RealTimeCurveWindow.qml"
+                    }
+                }
             }
             HwwButton{
                 width: 100;
                 height: 30;
                 text: "历史数据"
+                HistroyDataWindow{
+                    id:historyDataWindow
+
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        historyDataWindow.show()
+                    }
+                }
             }
             HwwButton{
                 width: 100;
                 height: 30;
                 text: "参数设置"
+                SetParaWindow{
+                    id:setParaWindow
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                       setParaWindow.show()
+                    }
+                }
+
             }
             HwwButton{
                 width: 100;
                 height: 30;
-                text: "报警记录"
+                text: "过程记录"
+                ProcessRecordWindow{
+                    id:processRecordWindow
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        processRecordWindow.show()
+                    }
+                }
             }
 
 

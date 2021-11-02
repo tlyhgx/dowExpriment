@@ -10,5 +10,9 @@
         <file>contents/HwwButton.qml</file>
         <file>contents/Test.qml</file>
         <file>contents/EventTableEasyTable.qml</file>
+        <file>contents/RealTimeCurveWindow.qml</file>
+        <file>contents/HistroyDataWindow.qml</file>
+        <file>contents/SetParaWindow.qml</file>
+        <file>contents/ProcessRecordWindow.qml</file>
     </qresource>
 </RCC>
