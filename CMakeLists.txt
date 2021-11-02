@@ -33,6 +33,10 @@ set(PROJECT_SOURCES
         main.cpp
         qml.qrc
         todos.cpp
+        sortfilterproxymodel.cpp
+        sortfilterproxymodel.h
+        easytablemodel.h
+        easytablemodel.cpp
 
         ${TS_FILES}
 )

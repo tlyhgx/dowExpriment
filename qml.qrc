@@ -2,8 +2,13 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>contents/WorkUI.qml</file>
-        <file>contents/Alarm.qml</file>
         <file>imgs/mixer.png</file>
         <file>imgs/tank.png</file>
+        <file>contents/EventList.qml</file>
+        <file>contents/EventTableView.qml</file>
+        <file>contents/EventTableFromControl.qml</file>
+        <file>contents/HwwButton.qml</file>
+        <file>contents/Test.qml</file>
+        <file>contents/EventTableEasyTable.qml</file>
     </qresource>
 </RCC>
