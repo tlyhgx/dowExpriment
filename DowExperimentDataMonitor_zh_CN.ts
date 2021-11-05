@@ -49,7 +49,7 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="main.qml" line="13"/>
+        <location filename="main.qml" line="19"/>
         <source>陶氏实验数据监控系统v1.0</source>
         <translation type="unfinished"></translation>
     </message>

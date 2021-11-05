@@ -3,16 +3,33 @@
         <file>main.qml</file>
         <file>contents/WorkUI.qml</file>
         <file>imgs/mixer.png</file>
-        <file>imgs/tank.png</file>
         <file>contents/EventList.qml</file>
         <file>contents/EventTableView.qml</file>
         <file>contents/EventTableFromControl.qml</file>
         <file>contents/HwwButton.qml</file>
-        <file>contents/Test.qml</file>
         <file>contents/EventTableEasyTable.qml</file>
         <file>contents/RealTimeCurveWindow.qml</file>
         <file>contents/HistroyDataWindow.qml</file>
         <file>contents/SetParaWindow.qml</file>
         <file>contents/ProcessRecordWindow.qml</file>
+        <file>learn/canvas1.qml</file>
+        <file>learn/Canvas2.qml</file>
+        <file>learn/scale01.qml</file>
+        <file>learn/state1.qml</file>
+        <file>learn/AnimationEx1.qml</file>
+        <file>imgs/fengche.png</file>
+        <file>learn/AnimationEx2.qml</file>
+        <file>learn/Ball.qml</file>
+        <file>learn/TestBall.qml</file>
+        <file>learn/Ball1.qml</file>
+        <file>learn/Myanimator.qml</file>
+        <file>imgs/rudongbeng.png</file>
+        <file>imgs/jiejinkaigang.png</file>
+        <file>imgs/pingdishaobei.png</file>
+        <file>imgs/qitiliuliangji.png</file>
+        <file>imgs/wendubiansongqi.png</file>
+        <file>imgs/yalibiansongqi.png</file>
+        <file>imgs/yetiliuliangji.png</file>
+        <file>contents/HwwCanvas.qml</file>
     </qresource>
 </RCC>

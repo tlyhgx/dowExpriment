@@ -7,89 +7,135 @@ import "contents"
 
 
 Window {
-    width: 1204
-    height: 768
+    id:mainWin
+
+    property int  totalWidth: 1366
+    property int  totalHeight: 768
+    property int  firstLineHeight: 570
+    property int  grid21Width: 500
+    width: totalWidth
+    height: totalHeight
     visible: true
     title: qsTr("陶氏实验数据监控系统v1.0")
-    //    Rectangle{
-    //        width: parent.width;
-    //        height: parent.height;
-    //        gradient: Gradient{
-    //            GradientStop{position:0.0;color:"lightsteelblue"}
-    //            GradientStop{position:1.0;color:"cyan"}
-    //        }
-    //    }
-
-
 
     WorkUI{
-
-        x:300;
-        y:60;
+        id:row1
+        x:0;y:10
+        height: firstLineHeight
+        width: totalWidth
+        anchors.horizontalCenter: parent.horizontalCenter
     }
-
-
-
-
+    HwwCanvas{
+        x:0;y:0
+    width: totalWidth
+    height: totalHeight
+    }
     Rectangle{
-        width: 410;
-        height: 250;
-        x:100;
-        y:360;
-        border.color: "black";
-        border.width: 1
+        width: grid21Width
+        height: totalHeight-firstLineHeight
+        x:30;y:row1.height+20
+
+//        border.color: "black";
+//        border.width: 1
         Column{
             Label{
                 text: "工作信息:"
-                font.pixelSize: 22
+                font.pixelSize: 18
             }
-            //        EventList{}
-
-            //            EventTableFromControl{}
-            //            EventTableView{}
             EventTableEasyTable{}
-
         }
 
     }
+    Rectangle{   //启停等
+        x:grid21Width+300;y:row1.height+30
+        width: 160
+        Frame{
+            Column{
+                spacing: 5
 
-    GridLayout {
-        x:parent.width-300;
-        y:parent.height-300;
+                Rectangle{
+                    width: 250;height: 80
+                    GridLayout {
+                        anchors.margins: 6
+                        columnSpacing: 10
+                        rowSpacing: 5
+
+
+                        anchors.fill: parent
+                        rows: 3
+                        columns: 2
+                        Label{
+                            text: "工作状态:"
+                            font{
+                                pixelSize: 18
+                                bold: true
+                            }
+                        }
+                        Label{
+                            text: "停止"
+                            font{
+                                pixelSize: 18
+                                bold: true
+                            }
+                        }
+                        Label{
+                            text: "实验名称:"
+                            font{
+                                pixelSize: 18
+                                bold: true
+                            }
+                        }
+                        TextField {
+                            width:200
+                            placeholderText: "请输入实验名称!"
+                            font{
+                                pixelSize: 18
+                                bold: true
+                            }
+                        }
+
+                    }
+                }
+
+                Row{
+                    spacing: 100
+                    width: 300;height: 30
+                    leftPadding: 30
+
+
+                    Rectangle{
+                        anchors.leftMargin: 50
+                        width: 60;height: 30
+                        HwwButton{
+
+                            text: "启动"
+
+                        }
+                    }
+                    Rectangle{
+                        width: 60;height: 30
+                        HwwButton{
+
+                            text: "停止"
+                        }
+
+                    }
+                }
+            }
+        }
+
+
+
+    }
+
+
+    Rectangle{     //其它窗口按钮组
         width: 120
-        rows: 3
-        columns: 2
-        Label{
-            text: "工作状态:"
-        }
-        Label{
-            text: "停止"
-        }
-        Label{
-            text: "实验名称:"
-        }
-        TextField {
-            placeholderText: "实验名称"
-            //            width: 50;
-        }
-        HwwButton{
-            text: "启动"
+        height: totalHeight-firstLineHeight
+        x:totalWidth-width;y:row1.height+8
+        anchors.margins: 20
 
-        }
-        HwwButton{
-            text: "停止"
-        }
-
-
-    }
-
-    Rectangle{
-
-        width: 300;
-        height: 80;
-        x:parent.width-450;
-        y:parent.height-100;
-        Row{
+        Column{
             id: buttonRow
             spacing: 6
             anchors.verticalCenter: parent.verticalCenter
@@ -97,9 +143,7 @@ Window {
             anchors.leftMargin: 12
             width: parent.width
 
-            Loader{
-                id:winLoader
-            }
+
 
             HwwButton{
                 width: 100;
@@ -112,7 +156,7 @@ Window {
                     anchors.fill: parent
                     onClicked: {
                         realTimeCurveWindow.show()
-//                        winLoader.source="RealTimeCurveWindow.qml"
+                        // winLoader.source="RealTimeCurveWindow.qml"
                     }
                 }
             }
@@ -141,7 +185,7 @@ Window {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                       setParaWindow.show()
+                        setParaWindow.show()
                     }
                 }
 
@@ -161,11 +205,20 @@ Window {
                 }
             }
 
-
-
-
-
+            HwwButton{
+                width: 100;
+                height: 30;
+                text: "退 出"
+                ProcessRecordWindow{
+                    id:exit
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        Qt.exit(0);
+                    }
+                }
+            }
         }
     }
-
 }

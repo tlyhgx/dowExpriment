@@ -29,14 +29,7 @@ Item {
             {"current_time":"2021-11-01 08:32:31","content":"1#温度过高"},
             {"current_time":"2021-11-01 08:32:31","content":"气流过低"},
             {"current_time":"2021-11-01 08:32:31","content":"实验结束！"},
-            {"current_time":"2021-11-01 08:32:31","content":"开始实验......"},
-            {"current_time":"2021-11-01 08:32:31","content":"1#温度过高"},
-            {"current_time":"2021-11-01 08:32:31","content":"气流过低"},
-            {"current_time":"2021-11-01 08:32:31","content":"实验结束！"},
-            {"current_time":"2021-11-01 08:32:31","content":"开始实验......"},
-            {"current_time":"2021-11-01 08:32:31","content":"1#温度过高"},
-            {"current_time":"2021-11-01 08:32:31","content":"气流过低"},
-            {"current_time":"2021-11-01 08:32:31","content":"实验结束！"},
+
 
         ]
 
