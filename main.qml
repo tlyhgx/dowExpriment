@@ -35,6 +35,7 @@ Window {
         height: totalHeight-firstLineHeight
         x:30;y:row1.height+20
 
+
 //        border.color: "black";
 //        border.width: 1
         Column{
@@ -50,6 +51,7 @@ Window {
         x:grid21Width+300;y:row1.height+30
         width: 160
         Frame{
+
             Column{
                 spacing: 5
 

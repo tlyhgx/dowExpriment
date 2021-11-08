@@ -31,5 +31,6 @@
         <file>imgs/yalibiansongqi.png</file>
         <file>imgs/yetiliuliangji.png</file>
         <file>contents/HwwCanvas.qml</file>
+        <file>contents/InfoLabel.qml</file>
     </qresource>
 </RCC>
