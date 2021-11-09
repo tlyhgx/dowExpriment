@@ -47,10 +47,26 @@
     </message>
 </context>
 <context>
+    <name>WorkUI</name>
+    <message>
+        <location filename="contents/WorkUI.qml" line="115"/>
+        <source>加热</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>main</name>
     <message>
         <location filename="main.qml" line="19"/>
         <source>陶氏实验数据监控系统v1.0</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>workUI</name>
+    <message>
+        <location filename="contents/workUI.qml" line="115"/>
+        <source>加热</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

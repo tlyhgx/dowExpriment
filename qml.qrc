@@ -32,5 +32,6 @@
         <file>imgs/yetiliuliangji.png</file>
         <file>contents/HwwCanvas.qml</file>
         <file>contents/InfoLabel.qml</file>
+        <file>contents/PosDisplay.qml</file>
     </qresource>
 </RCC>

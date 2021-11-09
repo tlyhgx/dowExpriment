@@ -11,33 +11,32 @@ Window {
 
     property int  totalWidth: 1366
     property int  totalHeight: 768
-    property int  firstLineHeight: 570
+    property int  firstLineHeight: 580
     property int  grid21Width: 500
     width: totalWidth
     height: totalHeight
     visible: true
     title: qsTr("陶氏实验数据监控系统v1.0")
 
-    WorkUI{
+
+
+    WorkUI{   //元器件及指示
         id:row1
         x:0;y:10
         height: firstLineHeight
         width: totalWidth
         anchors.horizontalCenter: parent.horizontalCenter
     }
-    HwwCanvas{
+    HwwCanvas{  //
         x:0;y:0
     width: totalWidth
     height: totalHeight
+
     }
-    Rectangle{
+    Rectangle{  //工作信息
         width: grid21Width
         height: totalHeight-firstLineHeight
         x:30;y:row1.height+20
-
-
-//        border.color: "black";
-//        border.width: 1
         Column{
             Label{
                 text: "工作信息:"
@@ -223,4 +222,6 @@ Window {
             }
         }
     }
+
+
 }

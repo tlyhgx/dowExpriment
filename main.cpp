@@ -13,8 +13,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-//    qmlRegisterType<SortFilterProxyModel>("org.qtproject.example", 1, 0, "SortFilterProxyModel");
-        qmlRegisterType<EasyTableModel>("EasyModel", 1, 0, "EasyTableModel");
+
+    qmlRegisterType<EasyTableModel>("EasyModel", 1, 0, "EasyTableModel");
+//    qmlRegisterType<MainBackend>("MainBackendClass", 1, 0, "MainBackend");
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
