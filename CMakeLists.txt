@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.14)
+﻿cmake_minimum_required(VERSION 3.19)
 
 project(DowExperimentDataMonitor LANGUAGES CXX)
 
@@ -26,6 +26,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick LinguistTools REQUIRED)
+
+#add_subdirectory(../DowExperimentDataMonitorLib DowExperimentDataMonitorLib.out)
+#add_subdirectory(../DowExperimentDataMonitorLib/HwwMC/hwwControlLib hwwControlLib.out)
+
+
+
 
 set(TS_FILES DowExperimentDataMonitor_zh_CN.ts)
 
