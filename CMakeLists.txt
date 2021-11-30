@@ -25,15 +25,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #endif()
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick LinguistTools REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick LinguistTools REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick  LinguistTools REQUIRED)
+find_package(Qt5SerialPort)
+find_package(Qt5SerialBus)
 
-#add_subdirectory(../DowExperimentDataMonitorLib DowExperimentDataMonitorLib.out)
-#add_subdirectory(../DowExperimentDataMonitorLib/HwwMC/hwwControlLib hwwControlLib.out)
+add_subdirectory(lib)
+include_directories(lib)
+add_subdirectory(gtest)
 
 
 
 
-set(TS_FILES DowExperimentDataMonitor_zh_CN.ts)
+#set(TS_FILES DowExperimentDataMonitor_zh_CN.ts)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -44,7 +47,8 @@ set(PROJECT_SOURCES
         easytablemodel.h
         easytablemodel.cpp
 
-        ${TS_FILES}
+
+#        ${TS_FILES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -70,4 +74,7 @@ endif()
 target_compile_definitions(DowExperimentDataMonitor
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(DowExperimentDataMonitor
-  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick
+  Qt${QT_VERSION_MAJOR}::SerialPort Qt${QT_VERSION_MAJOR}::SerialBus)
+
+target_link_libraries(DowExperimentDataMonitor  PRIVATE lib)

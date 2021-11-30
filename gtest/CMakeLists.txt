@@ -1,11 +1,26 @@
-cmake_minimum_required(VERSION 3.5)
+﻿cmake_minimum_required(VERSION 3.19)
 
 project(cs1 LANGUAGES CXX)
 
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick LinguistTools REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick LinguistTools REQUIRED)
+
 add_definitions(-DGTEST_LANGUAGE_CXX11)
 
 find_package(Threads REQUIRED)
+find_package(Qt5SerialPort)
+find_package(Qt5SerialBus)
 
 if ($ENV{GOOGLETEST_DIR})
     set(GOOGLETEST_DIR $ENV{GOOGLETEST_DIR})
@@ -37,8 +52,27 @@ endif ()
 
 include_directories(${GTestIncludes})
 
-add_executable(cs1 main.cpp tst_cs1.h
-               ${GTestFiles})
+include_directories(../lib)
+
+
+#add_subdirectory(../lib lib.out)
+
+
+add_executable(cs1 main.cpp
+    tst_mainBackend.h
+
+    tst_cs1.h
+    about_modbus.qmodel
+    test_dowInit.h
+
+
+
+    ${GTestFiles}  )
 add_test(NAME cs1 COMMAND cs1)
-target_link_libraries(cs1 PRIVATE Threads::Threads)
+
+target_link_libraries(cs1 PRIVATE Threads::Threads  )
+target_link_libraries(cs1 PRIVATE  Qt${QT_VERSION_MAJOR}::Core 
+Qt${QT_VERSION_MAJOR}::SerialPort Qt${QT_VERSION_MAJOR}::SerialBus)
+target_link_libraries(cs1 PRIVATE lib)
+
 
