@@ -36,7 +36,7 @@ public:
     struct Settings {
 
 
-        QString portName="COM7";
+        QString portName="COM1";
         int parity = QSerialPort::NoParity;
         int baud = QSerialPort::Baud9600;
         int dataBits = QSerialPort::Data8;

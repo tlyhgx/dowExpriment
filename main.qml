@@ -141,7 +141,12 @@ Window {
 
 
     }
-
+    Timer{
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: mainBackend.askSignalVals()
+    }
     Connections{
         target: mainBackend
         function onSignalValChanged(signalVals){
