@@ -3,7 +3,7 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.15
 import QtQuick.Layouts 1.12
-//import MainBackendClass 1.0
+
 import "contents"
 
 
@@ -22,22 +22,31 @@ Window {
 
 
     WorkUI{   //元器件及指示
-        id:row1
+        id:workUI
         x:0;y:10
         height: firstLineHeight
         width: totalWidth
         anchors.horizontalCenter: parent.horizontalCenter
+
+
+
+
+
+
+
+
+
     }
     HwwCanvas{  //
         x:0;y:0
-    width: totalWidth
-    height: totalHeight
+        width: totalWidth
+        height: totalHeight
 
     }
     Rectangle{  //工作信息
         width: grid21Width
         height: totalHeight-firstLineHeight
-        x:30;y:row1.height+20
+        x:30;y:workUI.height+20
         Column{
             Label{
                 text: "工作信息:"
@@ -48,7 +57,7 @@ Window {
 
     }
     Rectangle{   //启停等
-        x:grid21Width+300;y:row1.height+30
+        x:grid21Width+300;y:workUI.height+30
         width: 160
         Frame{
 
@@ -112,9 +121,8 @@ Window {
                             id:start
                             text: "启动"
                             onClicked: {
-                              var signalVals=  mainBackend.askSignalVals()
-
-//                                start.text=signalVals[0]
+                                mainBackend.askSignalVals()
+                                console.log("点击打开！")
                             }
                         }
                     }
@@ -134,11 +142,28 @@ Window {
 
     }
 
+    Connections{
+        target: mainBackend
+        function onSignalValChanged(signalVals){
+
+            console.log("数据传递成功！")
+            workUI.no1TempVal=signalVals[0]
+            workUI.no2TempVal=signalVals[1]
+            workUI.no3TempVal=signalVals[2]
+            workUI.no4TempVal=signalVals[3]
+            workUI.no5TempVal=signalVals[4]
+            workUI.velocityOfFlowVal=signalVals[8]
+            workUI.velocityOfAirVal=signalVals[9]
+            workUI.airPressVal=signalVals[10]
+            workUI.rotationSpeedVal=signalVals[11]
+
+        }
+    }
 
     Rectangle{     //其它窗口按钮组
         width: 120
         height: totalHeight-firstLineHeight
-        x:totalWidth-width;y:row1.height+8
+        x:totalWidth-width;y:workUI.height+8
         anchors.margins: 20
 
         Column{
@@ -162,7 +187,7 @@ Window {
                     anchors.fill: parent
                     onClicked: {
                         realTimeCurveWindow.show()
-                        // winLoader.source="RealTimeCurveWindow.qml"
+
                     }
                 }
             }
@@ -228,8 +253,6 @@ Window {
         }
     }
 
-//    MainBackend{
-//        id:mainBackend
-//    }
+
 
 }

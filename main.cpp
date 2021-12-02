@@ -5,6 +5,7 @@
 #include <QQmlApplicationEngine>
 #include <sortfilterproxymodel.h>
 #include <QQmlContext>
+#include <mymodbus.h>
 
 
 
@@ -22,19 +23,21 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<EasyTableModel>("EasyModel", 1, 0, "EasyTableModel");
 
-
-
-//    qmlRegisterType<MainBackend>("MainBackendClass", 1, 0, "MainBackend");
-    MainBackend mainBackend;
-
     //设置初始值
     DowInit *dowInit=new DowInit ();
+
+//    qmlRegisterType<MainBackend>("MainBackendClass", 1, 0, "MainBackend");
+
+
+
     dowInit->modbusSetting.portName="COM1";
     //实例化modbus
-    My_Modbus *myModbus=new My_Modbus () ;
-    myModbus->m_settings.portName=dowInit->modbusSetting.portName;
-    mainBackend.setDowInit(dowInit);
-    mainBackend.setMyModbus(myModbus);
+    MyModbus *myModbus=new MyModbus () ;
+
+    MainBackend mainBackend(dowInit,myModbus);
+
+//    mainBackend.setDowInit(dowInit);
+//    mainBackend.setMyModbus(myModbus);
     engine.rootContext()->setContextProperty("mainBackend",&mainBackend);
 
 

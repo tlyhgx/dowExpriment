@@ -64,7 +64,7 @@ add_executable(cs1 main.cpp
     tst_cs1.h
     about_modbus.qmodel
     test_dowInit.h
-
+    dow.mdj
 
 
     ${GTestFiles}  )

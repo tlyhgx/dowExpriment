@@ -1,22 +1,30 @@
 ﻿#include "mainbackend.h"
 
-MainBackend::MainBackend(QObject *parent) : QObject(parent)
+
+
+MainBackend::MainBackend(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
 {
+    this->dowInit=dowInit;
+    myModbus=mymodbus;
+
+
+    connect(myModbus,&MyModbus::modbusReadReady,
+            this,&MainBackend::getSignalVals);
+}
+
+void  MainBackend::askSignalVals()
+{
+    myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
+                         dowInit->plcMemoryAddress.signal,dowInit->plcMemoryAddress.signalNum);
 
 }
 
-QVariantList  MainBackend::askSignalVals()
+QVariantList MainBackend::retSignalVals()
 {
-    QVariantList  signalVals;
-//    myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
-//                         dowInit->plcMemoryAddress.signal,dowInit->plcMemoryAddress.signalNum);
-
-    signalVals<<1.02;
     return signalVals;
-
 }
 
-void MainBackend::setMyModbus(My_Modbus *value)
+void MainBackend::setMyModbus(MyModbus *value)
 {
     myModbus = value;
 }
@@ -24,4 +32,16 @@ void MainBackend::setMyModbus(My_Modbus *value)
 void MainBackend::setDowInit(DowInit *value)
 {
     dowInit = value;
+}
+
+QVariantList MainBackend::getSignalVals(QModbusDataUnit dataUnit)
+{
+    signalVals.clear();
+    for(int i=0;i<dataUnit.valueCount();i++)
+    {
+        signalVals.append(dataUnit.values()[i]);
+    }
+
+    emit signalValChanged(signalVals);
+    return signalVals;
 }

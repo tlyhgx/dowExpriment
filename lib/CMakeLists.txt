@@ -20,10 +20,11 @@ add_library(lib
   lib.h
   mainbackend.cpp
   mainbackend.h
-  My_Modbus.h
-  My_Modbus.cpp
+
   DowInit.cpp
   DowInit.h
+  mymodbus.h
+  mymodbus.cpp
 )
 
 target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  )

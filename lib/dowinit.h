@@ -10,14 +10,14 @@ public:
     explicit DowInit(QObject *parent = nullptr);
 public:
     struct PlcMemoryAddress{
-        int signal=2060;   //信号地址,M地址，PLC集中在一起另外配置
-        int signalNum=8;   //信号个数
+        int signal=4097;   //信号地址,M地址，PLC集中在一起另外配置
+        int signalNum=20;   //信号个数
     };
 
      PlcMemoryAddress plcMemoryAddress;
 
      struct ModbusSetting{
-         QString portName="COM1";
+         QString portName="COM7";
      };
      ModbusSetting modbusSetting;
 
