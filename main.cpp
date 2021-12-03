@@ -6,8 +6,9 @@
 #include <sortfilterproxymodel.h>
 #include <QQmlContext>
 #include <mymodbus.h>
+#include <QtCore>
 
-
+#include "getplcval.h"
 
 
 
@@ -30,6 +31,9 @@ int main(int argc, char *argv[])
     MyModbus *myModbus=new MyModbus (*dowInit) ;
 
     MainBackend mainBackend(dowInit,myModbus);
+    GetPlcVal getPlcVal(dowInit,myModbus);
+
+
 
 
     engine.rootContext()->setContextProperty("mainBackend",&mainBackend);

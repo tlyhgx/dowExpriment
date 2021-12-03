@@ -24,10 +24,16 @@ void DowInit::addSensor()
     signalVals.append(tem5);
 }
 
+int DowInit::getSignalReadCycle() const
+{
+    return signalReadCycle;
+}
+
 DowInit::DowInit(QObject *parent) : QObject(parent)
 {
-
+    
     addSensor();
+    signalReadCycle=500;
 
 
 }

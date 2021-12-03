@@ -70,5 +70,10 @@ TEST_F(TESTDowInit,signalVals)
     ASSERT_EQ(dowInit->signalVals.size(),9);
 }
 
+//设置信号读取周期
+TEST_F(TESTDowInit,signalReadCycle)
+{
+    ASSERT_EQ(dowInit->getSignalReadCycle(),500) ;
+}
 
 #endif // TEST_DOWINIT_H

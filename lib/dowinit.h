@@ -39,10 +39,14 @@ public:
     void addSensor();
 
 
+    int getSignalReadCycle() const;
+
 signals:
 
 private:
     int signalValsNum;
+    //信号读取周期（ms）
+    int signalReadCycle;
 
 
 

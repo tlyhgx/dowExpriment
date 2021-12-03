@@ -67,7 +67,8 @@ add_executable(cs1 main.cpp
     test_sensor.cpp
     test_mainBackend.cpp
     test_realTimeCurve.cpp
-    test_realtimecurve.h
+
+    test_getplcval.cpp
 
 
     ${GTestFiles}  )
