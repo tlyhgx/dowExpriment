@@ -25,6 +25,9 @@ add_library(lib
   DowInit.h
   mymodbus.h
   mymodbus.cpp
+
+  Sensor.h
+  Sensor.cpp
 )
 
 target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  )

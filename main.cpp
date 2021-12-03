@@ -25,19 +25,13 @@ int main(int argc, char *argv[])
 
     //设置初始值
     DowInit *dowInit=new DowInit ();
-
-//    qmlRegisterType<MainBackend>("MainBackendClass", 1, 0, "MainBackend");
-
-
-
     dowInit->modbusSetting.portName="COM1";
     //实例化modbus
-    MyModbus *myModbus=new MyModbus () ;
+    MyModbus *myModbus=new MyModbus (*dowInit) ;
 
     MainBackend mainBackend(dowInit,myModbus);
 
-//    mainBackend.setDowInit(dowInit);
-//    mainBackend.setMyModbus(myModbus);
+
     engine.rootContext()->setContextProperty("mainBackend",&mainBackend);
 
 

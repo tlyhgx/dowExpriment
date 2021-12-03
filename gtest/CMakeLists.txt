@@ -66,6 +66,7 @@ add_executable(cs1 main.cpp
     test_dowInit.h
     test_myModbus.h
     dow.mdj
+    test_sensor.cpp
 
 
     ${GTestFiles}  )
