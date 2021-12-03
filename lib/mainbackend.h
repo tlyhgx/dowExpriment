@@ -16,11 +16,14 @@ public:
     Q_INVOKABLE void askSignalVals();
     Q_INVOKABLE QVariantList retSignalVals();
     void setMyModbus(MyModbus *myModbus);
-
     void setDowInit(DowInit *value);
 public slots:
     QVariantList getSignalVals(QModbusDataUnit dataUnit);
 signals:
+    ///通知界面，有数据变化
+    /// \brief signalValChanged
+    /// \param signalVals
+    ///
     void signalValChanged(QVariantList signalVals);
 
 private:

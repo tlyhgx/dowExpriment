@@ -15,7 +15,7 @@ MainBackend::MainBackend(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
 void  MainBackend::askSignalVals()
 {
     myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
-                         dowInit->plcMemoryAddress.signal,dowInit->plcMemoryAddress.signalNum);
+                         dowInit->plcMemoryAddress.signal,dowInit->getSignalValsNum());
 
 }
 
@@ -36,8 +36,9 @@ void MainBackend::setDowInit(DowInit *value)
 
 QVariantList MainBackend::getSignalVals(QModbusDataUnit dataUnit)
 {
+
     signalVals.clear();
-    for(int i=0;i<dataUnit.valueCount();i++)
+    for(uint i=0;i<dataUnit.valueCount();i++)
     {
         signalVals.append(dataUnit.values()[i]);
     }

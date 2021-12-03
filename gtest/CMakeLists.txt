@@ -59,14 +59,13 @@ include_directories(../lib)
 
 
 add_executable(cs1 main.cpp
-    tst_mainBackend.h
 
-    tst_cs1.h
 
-    test_dowInit.h
-    test_myModbus.h
+    test_dowInit.cpp
+    test_myModbus.cpp
     dow.mdj
     test_sensor.cpp
+    test_mainBackend.cpp
 
 
     ${GTestFiles}  )

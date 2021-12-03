@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSerialPort>
+#include "Sensor.h"
 
 class DowInit : public QObject
 {
@@ -12,7 +13,7 @@ public:
 public:
     struct PlcMemoryAddress{
         int signal=4097;   //信号地址,M地址，PLC集中在一起另外配置
-        int signalNum=20;   //信号个数
+//        int signalNum=20;   //信号个数
     };
 
      PlcMemoryAddress plcMemoryAddress;
@@ -29,8 +30,17 @@ public:
      };
      ModbusSetting modbusSetting;
 
+     //信号数组的成员数，从最大偏移值获取
+    int getSignalValsNum() ;
+
+    QVector<Sensor*> signalVals;
+    void addSensor();
 
 signals:
+
+private:
+    int signalValsNum;
+
 
 };
 

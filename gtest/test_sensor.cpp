@@ -18,7 +18,8 @@ protected:
 
 void Test_sensor::SetUp()
 {
-    temp1 = new TemperatureSensor();
+    temp1 = new Sensor("温度1",1,5);
+
 }
 
 void Test_sensor::TearDown()
@@ -42,9 +43,16 @@ TEST_F(Test_sensor,3)
     ASSERT_EQ(temp1->getName(),"温度1");
 }
 
-//TODO:偏移地址
+//偏移地址
 TEST_F(Test_sensor,4)
 {
     temp1->setOffsetAddress(3);
     ASSERT_EQ(temp1->getOffsetAddress(),3);
+}
+
+//构造函数，带名称，小数位，偏移
+TEST_F(Test_sensor,5)
+{
+    auto *sensor1=new Sensor ("传感器名称",3,5);
+
 }

@@ -10,7 +10,14 @@
 using namespace std;
 
 class Sensor {
-
+    ///构造传感器
+    /// \brief Sensor
+    /// \param name 名称
+    /// \param decimalDigit 小数位
+    /// \param offsetAddress 偏移量（对应基准地址）
+    ///
+public:
+    Sensor(string name="传感器名称1", int decimalDigit=0, int offsetAddress=0);
 //    int setUnTreatedVal;
 public:
     void setUnTreatedVal(int unTreatedVal);
@@ -30,20 +37,20 @@ private:
     string name;
     int offsetAddress;
 };
-class TemperatureSensor:public Sensor{
+//class TemperatureSensor:public Sensor{
 
-};
-class LiquidFlowSpeed:public Sensor{
+//};
+//class LiquidFlowSpeed:public Sensor{
 
-};
-class AirFlowSpeed:public Sensor{
+//};
+//class AirFlowSpeed:public Sensor{
 
-};
-class AirPressure:public Sensor{
+//};
+//class AirPressure:public Sensor{
 
-};
-class RotationalSpeed:public Sensor{
+//};
+//class RotationalSpeed:public Sensor{
 
-};
+//};
 
 #endif //HWWMC_SENSOR_H

@@ -6,6 +6,13 @@
 
 
 
+
+Sensor::Sensor(string name, int decimalDigit, int offsetAddress)
+    :decimalDigit(decimalDigit),name(name),offsetAddress(offsetAddress)
+{
+
+}
+
 /// 把modbus的整型值直接赋值
 /// \param unTreatedVal  未处理的值（后面要加小数位后才能使用，因为PLC只能发整型数）
 void Sensor::setUnTreatedVal(int unTreatedVal) {
