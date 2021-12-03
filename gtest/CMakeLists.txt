@@ -62,8 +62,9 @@ add_executable(cs1 main.cpp
     tst_mainBackend.h
 
     tst_cs1.h
-    about_modbus.qmodel
+
     test_dowInit.h
+    test_myModbus.h
     dow.mdj
 
 

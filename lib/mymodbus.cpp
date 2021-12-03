@@ -1,7 +1,7 @@
 ﻿#include "mymodbus.h"
 
 #include <QModbusRtuSerialMaster>
-//using namespace QModbusDevice;
+
 MyModbus::MyModbus()
 {
 
@@ -17,6 +17,32 @@ MyModbus::MyModbus()
     }
 
 
+
+    modbusConnect();
+
+}
+
+MyModbus::MyModbus(const DowInit &dowInit)
+{
+    //FIXME:如果已存在modbusDevice，则先删除
+    modbusDevice=new QModbusRtuSerialMaster;
+
+    if(modbusDevice)
+    {
+        qDebug("create Modbus master success!");
+    }
+    else
+    {
+        qDebug("create Modbus Master failse!");
+    }
+
+    m_settings.portName= dowInit.modbusSetting.portName;
+    m_settings.baud=dowInit.modbusSetting.baud;
+    m_settings.parity=dowInit.modbusSetting.parity;
+    m_settings.dataBits=dowInit.modbusSetting.dataBits;
+    m_settings.stopBits=dowInit.modbusSetting.stopBits;
+    m_settings.responseTime=dowInit.modbusSetting.responseTime;
+    m_settings.numberOfRetries=dowInit.modbusSetting.numberOfRetries;
 
     modbusConnect();
 

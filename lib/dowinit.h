@@ -2,6 +2,7 @@
 #define DOWINIT_H
 
 #include <QObject>
+#include <QSerialPort>
 
 class DowInit : public QObject
 {
@@ -18,6 +19,13 @@ public:
 
      struct ModbusSetting{
          QString portName="COM7";
+         int parity = QSerialPort::NoParity;
+         int baud = QSerialPort::Baud9600;
+         int dataBits = QSerialPort::Data8;
+         int stopBits = QSerialPort::OneStop;
+
+         int responseTime = 1000;
+         int numberOfRetries = 3;
      };
      ModbusSetting modbusSetting;
 

@@ -5,12 +5,14 @@
 #include <QObject>
 #include <QSerialPort>
 #include<QDebug>
+#include "dowinit.h"
 
 class MyModbus:public QObject
 {
     Q_OBJECT
 public:
     MyModbus();
+    MyModbus(const DowInit &dowInit);
     ~MyModbus();
     QModbusClient *modbusDevice=nullptr;
 
@@ -48,9 +50,10 @@ public:
     };
 
 
-private:
+public:
 
     Settings m_settings;
+    void setParFromInit(DowInit dowInit);
 };
 
 #endif // MYMODBUS_H
