@@ -57,10 +57,9 @@ TEST_F(TESTDowInit,3)
 }
 
 //获取信号数
-//TODO1:
 TEST_F(TESTDowInit,signalValsNum)
 {
-    ASSERT_EQ(dowInit->getSignalValsNum(),9);//不一定是9个，以最大偏移数为准
+    ASSERT_EQ(dowInit->getSignalValsNum(),9);
 
 }
 

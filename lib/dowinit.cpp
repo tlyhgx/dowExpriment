@@ -29,6 +29,7 @@ DowInit::DowInit(QObject *parent) : QObject(parent)
 
     addSensor();
 
+
 }
 
 int DowInit::getSignalValsNum()
@@ -37,3 +38,5 @@ int DowInit::getSignalValsNum()
 
     return signalVals.size();
 }
+
+

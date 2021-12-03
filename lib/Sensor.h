@@ -31,6 +31,8 @@ public:
     int getOffsetAddress() const;
     void setOffsetAddress(int value);
 
+    int getDecimalDigit() const;
+
 private:
     int unTreatedVal;
     int decimalDigit;

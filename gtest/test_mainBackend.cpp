@@ -71,7 +71,7 @@ TEST_F(TestBackend,3)
 
 //}
 
-//要有个返回给界面的函数
+//获取传递给界面的值
 TEST_F(TestBackend,5)
 {
     QVariantList signalVals;
@@ -83,15 +83,21 @@ TEST_F(TestBackend,5)
 
 //从PLC读取的信号量，分配给数组并输出
 //1.气体流量 2.气体压力 3.液体流量  4.转速  5~9.温度1  温度2。。。温度5
-//TODO1:
 TEST_F(TestBackend,6)
 {
-//    const QVector<quint16> retVal;
-//    for(int i=0;i<dowInit->signalNum;i++)
-//    {
+    QVector<quint16> retVal;
+    for(int i=0;i<dowInit->getSignalValsNum();i++)
+    {
+        retVal.append(i);
+    }
+    QModbusDataUnit dataUint(QModbusDataUnit::HoldingRegisters,
+                             dowInit->plcMemoryAddress.signal,retVal);
+    QVariantList signalVals=mainBackend->getSignalVals(dataUint);
+    ASSERT_EQ(signalVals[0],0);
+    ASSERT_EQ(signalVals[1],1);
 
-//    }
-//    QModbusDataUnit dataUint(QModbusDataUnit::HoldingRegisters,)
+    ASSERT_EQ(signalVals[5],0.5);
+
 }
 
 #endif // TST_MAINBACKEND_H

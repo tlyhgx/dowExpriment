@@ -66,6 +66,8 @@ add_executable(cs1 main.cpp
     dow.mdj
     test_sensor.cpp
     test_mainBackend.cpp
+    test_realTimeCurve.cpp
+    test_realtimecurve.h
 
 
     ${GTestFiles}  )

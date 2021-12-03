@@ -152,15 +152,16 @@ Window {
         function onSignalValChanged(signalVals){
 
             console.log("数据传递成功！")
-            workUI.no1TempVal=signalVals[0]
-            workUI.no2TempVal=signalVals[1]
-            workUI.no3TempVal=signalVals[2]
-            workUI.no4TempVal=signalVals[3]
-            workUI.no5TempVal=signalVals[4]
-            workUI.velocityOfFlowVal=signalVals[8]
-            workUI.velocityOfAirVal=signalVals[9]
-            workUI.airPressVal=signalVals[10]
-            workUI.rotationSpeedVal=signalVals[11]
+
+            workUI.velocityOfFlowVal=signalVals[0]
+            workUI.velocityOfAirVal=signalVals[1]
+            workUI.airPressVal=signalVals[2]
+            workUI.rotationSpeedVal=signalVals[3]
+            workUI.no1TempVal=signalVals[4].toFixed(1)
+            workUI.no2TempVal=signalVals[5].toFixed(1)
+            workUI.no3TempVal=signalVals[6].toFixed(1)
+            workUI.no4TempVal=signalVals[7].toFixed(1)
+            workUI.no5TempVal=signalVals[8].toFixed(1)
 
         }
     }

@@ -5,6 +5,8 @@
 #include <QSerialPort>
 #include "Sensor.h"
 
+
+
 class DowInit : public QObject
 {
     Q_OBJECT
@@ -36,10 +38,12 @@ public:
     QVector<Sensor*> signalVals;
     void addSensor();
 
+
 signals:
 
 private:
     int signalValsNum;
+
 
 
 };

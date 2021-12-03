@@ -28,6 +28,9 @@ add_library(lib
 
   Sensor.h
   Sensor.cpp
+
+  realtimecurvebackend.cpp
+  realtimecurvebackend.h
 )
 
 target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  )

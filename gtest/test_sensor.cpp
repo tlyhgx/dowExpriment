@@ -56,3 +56,10 @@ TEST_F(Test_sensor,5)
     auto *sensor1=new Sensor ("传感器名称",3,5);
 
 }
+
+//获取小数位数
+TEST_F(Test_sensor,decimalDigit)
+{
+    temp1->setDecimalDigit(1);
+    ASSERT_EQ(temp1->getDecimalDigit(),1);
+}

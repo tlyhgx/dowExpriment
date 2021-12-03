@@ -48,3 +48,8 @@ void Sensor::setOffsetAddress(int value)
 {
     offsetAddress = value;
 }
+
+int Sensor::getDecimalDigit() const
+{
+    return decimalDigit;
+}

@@ -1,5 +1,5 @@
 ﻿#include "mainbackend.h"
-
+#include <math.h>
 
 
 MainBackend::MainBackend(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
@@ -40,7 +40,10 @@ QVariantList MainBackend::getSignalVals(QModbusDataUnit dataUnit)
     signalVals.clear();
     for(uint i=0;i<dataUnit.valueCount();i++)
     {
-        signalVals.append(dataUnit.values()[i]);
+        int decimalDigit=dowInit->signalVals[i]->getDecimalDigit();
+        int val=dataUnit.values()[i];
+        float res=(float)val*pow(0.1,decimalDigit);
+        signalVals.append(res);
     }
 
     emit signalValChanged(signalVals);
