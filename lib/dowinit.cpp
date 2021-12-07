@@ -31,20 +31,36 @@ int DowInit::getSignalReadCycle() const
 
 int DowInit::getRealTimeCurve_x_count() const
 {
-    return realTimeCurve_x_count;
+    return realTimeCurve_time_s*1000/signalReadCycle;
+
 }
 
-void DowInit::setRealTimeCurve_x_count(int value)
+
+
+void DowInit::setSignalReadCycle(int value)
 {
-    realTimeCurve_x_count = value;
+    signalReadCycle = value;
+}
+
+int DowInit::getRealTimeCurve_time_s() const
+{
+    return realTimeCurve_time_s;
+}
+
+void DowInit::setRealTimeCurve_time_s(int value)
+{
+    realTimeCurve_time_s = value;
 }
 
 DowInit::DowInit(QObject *parent) : QObject(parent)
 {
     
     addSensor();
-    signalReadCycle=500;
-    realTimeCurve_x_count=3600;
+    //读取周期单位（ms)
+    signalReadCycle=1000;
+    //实时曲线显示时长（s)
+    realTimeCurve_time_s=600;
+
 
 
 }

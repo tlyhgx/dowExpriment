@@ -21,7 +21,6 @@ public:
 
     DowInit *dowInit=new DowInit;
     MyModbus *myModbus=new MyModbus;
-//    MainBackend xx(dowInit,myModbus);
     MainBackend *mainBackend;
 protected:
      void SetUp() {

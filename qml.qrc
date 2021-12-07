@@ -33,5 +33,7 @@
         <file>contents/HwwCanvas.qml</file>
         <file>contents/InfoLabel.qml</file>
         <file>contents/PosDisplay.qml</file>
+        <file>learn/qmlChart.qml</file>
+        <file>learn/qmlchart2.qml</file>
     </qresource>
 </RCC>

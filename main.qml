@@ -188,7 +188,6 @@ Window {
                     anchors.fill: parent
                     onClicked: {
                         realTimeCurveWindow.show()
-
                     }
                 }
             }

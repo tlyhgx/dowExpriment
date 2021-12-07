@@ -7,9 +7,13 @@
 class RealTimeCurveBackend : public QObject
 {
     Q_OBJECT
+    ///x轴的个数（时间坐标）
+    Q_PROPERTY(int x_count READ x_count  )
 public:
     explicit RealTimeCurveBackend(DowInit *dowInit,MyModbus *mymodbus,QObject *parent = nullptr);
 
+public:
+    int x_count();
 
 public slots:
     ///当PLC有数据发送时，获取数据，并做处理

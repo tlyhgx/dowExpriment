@@ -41,8 +41,13 @@ public:
 
     int getSignalReadCycle() const;
 
-    int getRealTimeCurve_x_count() const;
-    void setRealTimeCurve_x_count(int value);
+    int getRealTimeCurve_x_count() const ;
+
+
+    void setSignalReadCycle(int value);
+
+    int getRealTimeCurve_time_s() const;
+    void setRealTimeCurve_time_s(int value);
 
 signals:
 
@@ -53,6 +58,9 @@ private:
 
     //实时曲线的x轴个数
     int realTimeCurve_x_count;
+
+    //实时曲线的时长
+    int realTimeCurve_time_s;
 
 
 
