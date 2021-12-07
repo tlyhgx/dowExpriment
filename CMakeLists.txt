@@ -41,7 +41,7 @@ add_subdirectory(gtest)
 set(PROJECT_SOURCES
         main.cpp
         qml.qrc
-        todos.cpp
+
         sortfilterproxymodel.cpp
         sortfilterproxymodel.h
         easytablemodel.h

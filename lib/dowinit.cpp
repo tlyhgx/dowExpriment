@@ -29,11 +29,22 @@ int DowInit::getSignalReadCycle() const
     return signalReadCycle;
 }
 
+int DowInit::getRealTimeCurve_x_count() const
+{
+    return realTimeCurve_x_count;
+}
+
+void DowInit::setRealTimeCurve_x_count(int value)
+{
+    realTimeCurve_x_count = value;
+}
+
 DowInit::DowInit(QObject *parent) : QObject(parent)
 {
     
     addSensor();
     signalReadCycle=500;
+    realTimeCurve_x_count=3600;
 
 
 }

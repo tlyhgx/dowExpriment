@@ -76,4 +76,9 @@ TEST_F(TESTDowInit,signalReadCycle)
     ASSERT_EQ(dowInit->getSignalReadCycle(),500) ;
 }
 
+//设置实时曲线图的x轴个数
+TEST_F(TESTDowInit,x_count)
+{
+    ASSERT_EQ(dowInit->getRealTimeCurve_x_count(),3600);
+}
 #endif // TEST_DOWINIT_H
