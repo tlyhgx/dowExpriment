@@ -21,6 +21,7 @@ add_definitions(-DGTEST_LANGUAGE_CXX11)
 find_package(Threads REQUIRED)
 find_package(Qt5SerialPort)
 find_package(Qt5SerialBus)
+find_package(Qt5Sql)
 
 if ($ENV{GOOGLETEST_DIR})
     set(GOOGLETEST_DIR $ENV{GOOGLETEST_DIR})
@@ -70,6 +71,8 @@ add_executable(cs1 main.cpp
 
     test_getplcval.cpp
     todos.cpp
+    test_database.cpp
+
 
 
 
@@ -78,7 +81,7 @@ add_test(NAME cs1 COMMAND cs1)
 
 target_link_libraries(cs1 PRIVATE Threads::Threads  )
 target_link_libraries(cs1 PRIVATE  Qt${QT_VERSION_MAJOR}::Core 
-Qt${QT_VERSION_MAJOR}::SerialPort Qt${QT_VERSION_MAJOR}::SerialBus)
+Qt${QT_VERSION_MAJOR}::SerialPort Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::Sql)
 target_link_libraries(cs1 PRIVATE lib)
 
 

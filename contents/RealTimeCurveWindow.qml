@@ -49,6 +49,12 @@ Window {
                 max: 200
                 titleText: "Temperature [&deg;C]"
             }
+            ValueAxis{
+                id: valueTemAxisYRight
+                min: 0
+                max: 200
+                titleText: "Temperature [&deg;C]"
+            }
 
             DateTimeAxis {
                 id:x_axis
@@ -65,7 +71,7 @@ Window {
             SplineSeries {
                 id: temp2Series
                 axisX: x_axis
-                axisY: valueTemAxisY
+                axisYRight:  valueTemAxisYRight
                 name: "2# 温度"
             }
 

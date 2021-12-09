@@ -30,6 +30,7 @@ find_package(Qt5SerialPort)
 find_package(Qt5SerialBus)
 find_package(Qt5Charts)
 find_package(Qt5Qml)
+find_package(Qt5Sql)
 
 add_subdirectory(lib)
 include_directories(lib)
@@ -79,6 +80,6 @@ target_compile_definitions(DowExperimentDataMonitor
 target_link_libraries(DowExperimentDataMonitor
   PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick
   Qt${QT_VERSION_MAJOR}::SerialPort Qt${QT_VERSION_MAJOR}::SerialBus
-  Qt${QT_VERSION_MAJOR}::Charts Qt${QT_VERSION_MAJOR}::Qml)
+  Qt${QT_VERSION_MAJOR}::Charts Qt${QT_VERSION_MAJOR}::Qml Qt${QT_VERSION_MAJOR}::Sql)
 
 target_link_libraries(DowExperimentDataMonitor  PRIVATE lib)

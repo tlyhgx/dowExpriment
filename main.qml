@@ -119,10 +119,9 @@ Window {
                         width: 60;height: 30
                         HwwButton{
                             id:start
-                            text: "启动"
+                            text: "开始监控"
                             onClicked: {
-                                mainBackend.askSignalVals()
-                                console.log("点击打开！")
+                                //TODO:开始记录数据
                             }
                         }
                     }
@@ -130,7 +129,7 @@ Window {
                         width: 60;height: 30
                         HwwButton{
 
-                            text: "停止"
+                            text: "停止监控"
                         }
 
                     }
