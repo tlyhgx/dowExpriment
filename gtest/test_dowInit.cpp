@@ -72,7 +72,7 @@ TEST_F(TESTDowInit,signalVals)
 }
 
 
-//TODO1:操作数据库
+//操作数据库
 TEST_F(TESTDowInit,aboutdb){
     QSqlQuery query;
     bool res=query.exec("insert into alarm_para(id_alarm_para)"

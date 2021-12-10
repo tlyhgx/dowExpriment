@@ -1,5 +1,5 @@
 ﻿
-//TODO1:修改状态
+//TODO:修改状态
 
 
 //NOTE:所有设置都放到dowInit

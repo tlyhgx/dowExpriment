@@ -9,6 +9,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <dowinit.h>
+#include <oper.h>
 #include "mymodbus.h"
 
 
@@ -100,7 +101,7 @@ TEST_F(TestBackend,6)
     ASSERT_EQ(signalVals[5],0.5);
 
 }
-//TODO1:记录实验人员、实验名称
+//记录实验人员、实验名称
 TEST_F(TestBackend,7)
 {
     //模拟从界面设置数据
@@ -110,8 +111,11 @@ TEST_F(TestBackend,7)
     ASSERT_EQ(csName,operName);
     //模拟从数据库读取数据
     mainBackend->recordOperName_to_db(csName);
-    QString operName_database=mainBackend->getOperName_from_db();
-    ASSERT_EQ(csName,operName_database);
+    Oper oper;
+    int id=oper.findLastOper_id_by_name_from_db(csName);
+    ASSERT_TRUE(id>0);
+
+
 
     //模拟从界面设置数据
     csName="测试人员2";
@@ -120,22 +124,12 @@ TEST_F(TestBackend,7)
     ASSERT_EQ(csName,operName);
     //模拟从数据库读取数据
     mainBackend->recordOperName_to_db(csName);
-    operName_database=mainBackend->getOperName_from_db();
-    ASSERT_EQ(csName,operName_database);
+    oper.findLastOper_id_by_name_from_db(csName);
+        ASSERT_TRUE(id>0);
 
-//    QSqlDatabase db;
-//    if(!db.isOpen())
-//    {
+    //TODO1:用operName的类来处理读写数据库的工作
 
 
-//        db=QSqlDatabase::addDatabase("QSQLITE");
-//        db.setHostName("localhost");      //设置数据库主机名
-//        db.setDatabaseName("dow_experiment_data.db");  //设置数据库名称
-//        db.setUserName("cjkj");         //设置用户名
-//        db.setPassword("cjkj5215");     //设置密码
-//        db.open();
-//    }
-//    QSqlQuery query;
 
 
 }

@@ -24,7 +24,7 @@ public:
     {
         return m_operName;
     }
-    QString getOperName_from_db();
+
 public slots:
     QVariantList getSignalVals(QModbusDataUnit dataUnit);
 

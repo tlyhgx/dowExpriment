@@ -51,7 +51,7 @@ void Test_database::SetUp()
 
     query.exec("create table oper("
 "id_oper integer primary key,"
-"name char(30) default '实验人员',"
+"name char(30) unique default '实验人员',"
 "password char(30) default '123456' ,"
 "permission char(30) default '操作员',"
 "add_time timestamp default (datetime('now','localtime')))");
@@ -84,7 +84,7 @@ void Test_database::SetUp()
 
     query.exec("create table oper("
 "id_oper integer primary key,"
-"name char(30) default '实验人员',"
+"name char(30) unique  default '实验人员' ,"
 "password char(30) default '123456' ,"
 "permission char(30) default '操作员',"
 "add_time timestamp default (datetime('now','localtime')))");

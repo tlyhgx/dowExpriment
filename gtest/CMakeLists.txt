@@ -72,6 +72,11 @@ add_executable(cs1 main.cpp
     test_getplcval.cpp
     todos.cpp
     test_database.cpp
+    test_signal_vals.cpp
+
+    test_oper.cpp
+
+
 
 
 

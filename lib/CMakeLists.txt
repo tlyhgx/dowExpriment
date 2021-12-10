@@ -37,6 +37,12 @@ add_library(lib
 
   getplcval.cpp
   getplcval.h
+
+  signal_vals.cpp
+  signal_vals.h
+
+  oper.cpp
+  oper.h
 )
 
 target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  Qt${QT_VERSION_MAJOR}::Sql )
