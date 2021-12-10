@@ -1,5 +1,7 @@
 ﻿#include "dowinit.h"
 
+#include <QtSql/QSqlDatabase>
+
 void DowInit::addSensor()
 {
     //1.气体流量 2.气体压力 3.液体流量  4.转速  5~9.温度1  温度2。。。温度5
@@ -60,6 +62,18 @@ DowInit::DowInit(QObject *parent) : QObject(parent)
     signalReadCycle=1000;
     //实时曲线显示时长（s)
     realTimeCurve_time_s=600;
+
+    if(!db.isOpen())
+    {
+
+
+        db=QSqlDatabase::addDatabase("QSQLITE");
+        db.setHostName("localhost");      //设置数据库主机名
+        db.setDatabaseName("dow_experiment_data.db");  //设置数据库名称
+        db.setUserName("cjkj");         //设置用户名
+        db.setPassword("cjkj5215");     //设置密码
+        db.open();
+    }
 
 
 

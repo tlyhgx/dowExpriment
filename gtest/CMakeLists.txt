@@ -56,7 +56,7 @@ include_directories(${GTestIncludes})
 include_directories(../lib)
 
 
-#add_subdirectory(../lib lib.out)
+
 
 
 add_executable(cs1 main.cpp

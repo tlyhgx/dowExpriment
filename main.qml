@@ -57,7 +57,7 @@ Window {
 
     }
     Rectangle{   //启停等
-        x:grid21Width+300;y:workUI.height+30
+        x:grid21Width+300;y:workUI.height+8
         width: 160
         Frame{
 
@@ -65,7 +65,7 @@ Window {
                 spacing: 5
 
                 Rectangle{
-                    width: 250;height: 80
+                    width: 250;height: 120
                     GridLayout {
                         anchors.margins: 6
                         columnSpacing: 10
@@ -83,7 +83,7 @@ Window {
                             }
                         }
                         Label{
-                            text: "停止"
+                            text: "未记录!"  //TODO:还有个状态： 记录中...
                             font{
                                 pixelSize: 18
                                 bold: true
@@ -104,6 +104,21 @@ Window {
                                 bold: true
                             }
                         }
+                        Label{
+                            text: "实验人员:"
+                            font{
+                                pixelSize: 18
+                                bold: true
+                            }
+                        }
+                        TextField {
+                            width:200
+                            placeholderText: "请输入实验人员名字！"
+                            font{
+                                pixelSize: 18
+                                bold: true
+                            }
+                        }
 
                     }
                 }
@@ -119,9 +134,10 @@ Window {
                         width: 60;height: 30
                         HwwButton{
                             id:start
-                            text: "开始监控"
+                            text: "开始记录"
                             onClicked: {
-                                //TODO:开始记录数据
+                                //TODO1:开始记录数据--
+
                             }
                         }
                     }
@@ -129,7 +145,7 @@ Window {
                         width: 60;height: 30
                         HwwButton{
 
-                            text: "停止监控"
+                            text: "停止记录"
                         }
 
                     }

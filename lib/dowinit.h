@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSerialPort>
+#include <QSqlDatabase>
 #include "Sensor.h"
 
 
@@ -13,6 +14,7 @@ class DowInit : public QObject
 public:
     explicit DowInit(QObject *parent = nullptr);
 public:
+    QSqlDatabase db;
     struct PlcMemoryAddress{
         int signal=4097;   //信号地址,M地址，PLC集中在一起另外配置
 //        int signalNum=20;   //信号个数
@@ -49,9 +51,12 @@ public:
     int getRealTimeCurve_time_s() const;
     void setRealTimeCurve_time_s(int value);
 
+
+
 signals:
 
 private:
+
     int signalValsNum;
     //信号读取周期（ms）
     int signalReadCycle;

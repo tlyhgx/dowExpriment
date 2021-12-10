@@ -5,6 +5,7 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
+#include <QSqlQuery>
 using namespace testing;
 #include "dowinit.h"
 
@@ -70,6 +71,14 @@ TEST_F(TESTDowInit,signalVals)
     ASSERT_EQ(dowInit->signalVals.size(),9);
 }
 
+
+//TODO1:操作数据库
+TEST_F(TESTDowInit,aboutdb){
+    QSqlQuery query;
+    bool res=query.exec("insert into alarm_para(id_alarm_para)"
+                              " VALUES('2')");
+    ASSERT_EQ(res,true);
+}
 ////设置信号读取周期
 //TEST_F(TESTDowInit,signalReadCycle)
 //{

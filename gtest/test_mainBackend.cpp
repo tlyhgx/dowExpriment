@@ -6,6 +6,8 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
+#include <QSqlDatabase>
+#include <QSqlQuery>
 #include <dowinit.h>
 #include "mymodbus.h"
 
@@ -98,6 +100,46 @@ TEST_F(TestBackend,6)
     ASSERT_EQ(signalVals[5],0.5);
 
 }
+//TODO1:记录实验人员、实验名称
+TEST_F(TestBackend,7)
+{
+    //模拟从界面设置数据
+    QString csName="测试人员1";
+    mainBackend->setOperName(csName);
+    QString operName=mainBackend->operName();
+    ASSERT_EQ(csName,operName);
+    //模拟从数据库读取数据
+    mainBackend->recordOperName_to_db(csName);
+    QString operName_database=mainBackend->getOperName_from_db();
+    ASSERT_EQ(csName,operName_database);
 
+    //模拟从界面设置数据
+    csName="测试人员2";
+    mainBackend->setOperName(csName);
+    operName=mainBackend->operName();
+    ASSERT_EQ(csName,operName);
+    //模拟从数据库读取数据
+    mainBackend->recordOperName_to_db(csName);
+    operName_database=mainBackend->getOperName_from_db();
+    ASSERT_EQ(csName,operName_database);
+
+//    QSqlDatabase db;
+//    if(!db.isOpen())
+//    {
+
+
+//        db=QSqlDatabase::addDatabase("QSQLITE");
+//        db.setHostName("localhost");      //设置数据库主机名
+//        db.setDatabaseName("dow_experiment_data.db");  //设置数据库名称
+//        db.setUserName("cjkj");         //设置用户名
+//        db.setPassword("cjkj5215");     //设置密码
+//        db.open();
+//    }
+//    QSqlQuery query;
+
+
+}
+
+//TODO1:读取时长
 #endif // TST_MAINBACKEND_H
 

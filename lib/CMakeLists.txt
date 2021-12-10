@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.14)
+﻿cmake_minimum_required(VERSION 3.19)
 
 project(lib LANGUAGES CXX)
 
@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
 
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core SerialBus SerialPort REQUIRED)
-
+find_package(Qt5Sql)
 
 add_library(lib
   lib.cpp
@@ -39,7 +39,6 @@ add_library(lib
   getplcval.h
 )
 
-target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  )
-#target_link_libraries(lib PRIVATE
-#        Qt5::SerialPort Qt5::SerialBus   )
+target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  Qt${QT_VERSION_MAJOR}::Sql )
+
 
