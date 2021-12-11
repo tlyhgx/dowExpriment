@@ -23,7 +23,6 @@ bool Oper::addOneOper_to_db(QString name, QString password, QString permission)
 {
     QSqlQuery query;
 
-
     bool res=query.exec(QString("insert into oper(name, password,permission)"
                           "VALUES ('%1', '%2','%3')").arg(name).arg(password).arg(permission));
     return res;
@@ -31,11 +30,16 @@ bool Oper::addOneOper_to_db(QString name, QString password, QString permission)
 
 int Oper::findLastOper_id_by_name_from_db(QString name)
 {
-    QSqlQuery q(QString("select id_oper from oper where name='%1' ").arg(name));
+    QSqlQuery q(QString("select id_oper from oper where name=='%1' ").arg(name));
     QSqlRecord rec=q.record();
     int idCol=rec.indexOf("id_oper");
-    q.next();
-    return q.value(idCol).toInt();
+    if(q.next()){
+       return q.value(idCol).toInt();
+    }
+    else{
+        return -1;
+    }
+
 }
 
 QString Oper::find_name_by_id_from_db(int id)

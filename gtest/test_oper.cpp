@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <oper.h>
 #include <QDebug>
+#pragma execution_character_set("utf-8")
 
 using namespace testing;
 

@@ -43,6 +43,12 @@ add_library(lib
 
   oper.cpp
   oper.h
+
+  experiment.cpp
+  experiment.h
+
+  dowdatabase.cpp
+  dowdatabase.h
 )
 
 target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  Qt${QT_VERSION_MAJOR}::Sql )

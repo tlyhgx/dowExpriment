@@ -7,6 +7,8 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QVariantList>
+#include <dowdatabase.h>
+#pragma execution_character_set("utf-8")
 using namespace testing;
 
 class Test_database:public ::testing::Test{
@@ -32,110 +34,42 @@ void Test_database::TestBody()
 
 void Test_database::SetUp()
 {
-    if(!db.isOpen())
-    {
-
-
-        db=QSqlDatabase::addDatabase("QSQLITE");
-        db.setHostName("localhost");      //设置数据库主机名
-        db.setDatabaseName("dow_experiment_data.db");  //设置数据库名称
-        db.setUserName("cjkj");         //设置用户名
-        db.setPassword("cjkj5215");     //设置密码
-        db.open();
-    }
-
-    QSqlQuery query;
-
-
-
-
-    query.exec("create table oper("
-"id_oper integer primary key,"
-"name char(30) unique default '实验人员',"
-"password char(30) default '123456' ,"
-"permission char(30) default '操作员',"
-"add_time timestamp default (datetime('now','localtime')))");
-    query.exec("create table experiment("
-"id_experiment integer primary key,"
-"name char(50) default '实验xxxx',"
-"identifier char(50) default 'identifier_abc',"
-"remarks char(100) default '备注',"
-"create_time timestamp default (datetime('now','localtime')),"
-"id_oper integer,"
-"FOREIGN KEY(id_oper) REFERENCES oper(id_oper))");
-    bool res_create_table=query.exec("create table signal_vals "
-                    "(id_signal_val integer  primary key ,"
-                    "value real not null,"
-                    "name char(30),"
-"create_time timestamp default (datetime('now','localtime')),"
-                    "id_experiment integer,"
-                    "FOREIGN KEY(id_experiment) REFERENCES experiment(id_experiment))");
-
-    query.exec("create table alarm_para(id_alarm_para integer primary key,"
-"record_cycle_s integer default '5')");
-
-    if (res_create_table==false){
-        query.exec("drop table oper");
-        query.exec("drop table experiment");
-        query.exec("drop table signal_vals");
-        query.exec("drop table alarm_para");
-
-    }
-
-    query.exec("create table oper("
-"id_oper integer primary key,"
-"name char(30) unique  default '实验人员' ,"
-"password char(30) default '123456' ,"
-"permission char(30) default '操作员',"
-"add_time timestamp default (datetime('now','localtime')))");
-    query.exec("create table experiment("
-"id_experiment integer primary key,"
-"name char(50) default '实验xxxx',"
-"identifier char(50) default 'identifier_abc',"
-"remarks char(100) default '备注',"
-"create_time timestamp default (datetime('now','localtime')),"
-"id_oper integer,"
-"FOREIGN KEY(id_oper) REFERENCES oper(id_oper))");
-    query.exec("create table signal_vals "
-                    "(id_signal_val integer  primary key ,"
-                    "value real not null,"
-                    "name char(30),"
-"create_time timestamp default (datetime('now','localtime')),"
-                    "id_experiment integer,"
-                    "FOREIGN KEY(id_experiment) REFERENCES experiment(id_experiment))");
-
-    query.exec("create table alarm_para(id_alarm_para integer primary key,"
-"record_cycle_s integer default '5')");
+    DowDataBase::openDB();
+    DowDataBase::createTable();
 
 
 }
 
 void Test_database::TearDown()
 {
-    if(db.isOpen()){
-        db.close();
-    }
+//    DowDataBase::closeDB();
 
 }
 //打开数据库
 TEST_F(Test_database,openDatabase)
 {
-    ASSERT_EQ(db.open(),true);
+
+    ASSERT_EQ(DowDataBase::openDB(),true);
 }
 
+//创建表单
+TEST_F(Test_database,createTable)
+{
+    ASSERT_EQ(DowDataBase::createTable(),true);
+}
 //插入数据到oper
 TEST_F(Test_database,insertData){
-        ASSERT_EQ(db.open(),true);
-        QSqlQuery query;
-        query.exec("insert into oper(name, password)"
+
+    QSqlQuery query;
+    query.exec("insert into oper(name, password)"
                               "VALUES ('huang光旭', 'cjkj5215')");
-        query.exec("insert into experiment(name,identifier,remarks,id_oper)"
+    query.exec("insert into experiment(name,identifier,remarks,id_oper)"
                               " VALUES ('高分子合成','no_xoe233','这个实验ssoelxx','1')");
-        query.exec("insert into signal_vals(value,name,id_experiment)"
+    query.exec("insert into signal_vals(value,name,id_experiment)"
                               " VALUES('23.5','temp','1')");
-        query.exec("insert into signal_vals(value,name,id_experiment)"
+    query.exec("insert into signal_vals(value,name,id_experiment)"
                               " VALUES('122','temp2','1')");
-        query.exec("insert into alarm_para(id_alarm_para)"
+    query.exec("insert into alarm_para(id_alarm_para)"
                               " VALUES('1')");
 
 

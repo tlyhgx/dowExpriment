@@ -11,6 +11,8 @@
 #include <dowinit.h>
 #include <oper.h>
 #include "mymodbus.h"
+#include <experiment.h>
+#include <dowdatabase.h>
 
 
 
@@ -18,7 +20,7 @@
 
 using namespace testing;
 using namespace std;
-
+#pragma execution_character_set("utf-8")
 class TestBackend : public ::testing::Test{
 public:
 
@@ -26,9 +28,10 @@ public:
     MyModbus *myModbus=new MyModbus;
     MainBackend *mainBackend;
 protected:
-     void SetUp() {
+    void SetUp() {
 
-    mainBackend=new MainBackend(dowInit,myModbus);
+        mainBackend=new MainBackend(dowInit,myModbus);
+
     }
     void TearDown() {
         delete mainBackend;
@@ -57,21 +60,7 @@ TEST_F(TestBackend,3)
 
 
 
-//要有个slot接收signalVals(),connect signals
-//TEST_F(TestBackend,4)
-//{
-//    mainBackend->askSignalVals();
 
-//    QVariantList signalVals;
-//    QModbusDataUnit dataUnit;
-//        _sleep(1000);
-//    signalVals=mainBackend->getSignalVals(dataUnit);
-
-
-//    //返回值数量=dowInit中的nums
-//    EXPECT_EQ(signalVals.size(),dowInit->plcMemoryAddress.signalNum);
-
-//}
 
 //获取传递给界面的值
 TEST_F(TestBackend,5)
@@ -101,19 +90,21 @@ TEST_F(TestBackend,6)
     ASSERT_EQ(signalVals[5],0.5);
 
 }
-//记录实验人员、实验名称
+//记录实验人员
 TEST_F(TestBackend,7)
 {
+    DowDataBase::openDB();
+    DowDataBase::createTable();
     //模拟从界面设置数据
     QString csName="测试人员1";
     mainBackend->setOperName(csName);
     QString operName=mainBackend->operName();
     ASSERT_EQ(csName,operName);
     //模拟从数据库读取数据
-    mainBackend->recordOperName_to_db(csName);
+
     Oper oper;
     int id=oper.findLastOper_id_by_name_from_db(csName);
-    ASSERT_TRUE(id>0);
+    ASSERT_EQ(id,1);
 
 
 
@@ -123,17 +114,75 @@ TEST_F(TestBackend,7)
     operName=mainBackend->operName();
     ASSERT_EQ(csName,operName);
     //模拟从数据库读取数据
-    mainBackend->recordOperName_to_db(csName);
-    oper.findLastOper_id_by_name_from_db(csName);
-        ASSERT_TRUE(id>0);
 
-    //TODO1:用operName的类来处理读写数据库的工作
-
+    int id_oper=oper.findLastOper_id_by_name_from_db(csName);
+    ASSERT_EQ(id_oper,2);
 
 
 
 }
+//记录实验名称
+TEST_F(TestBackend,8)
+{
+    DowDataBase::openDB();
+    DowDataBase::createTable();
+    QString csName;
+    Oper oper;
+    csName="测试人员2";
+    mainBackend->setOperName(csName);
 
+
+
+    //记录实验名称
+    //*从界面写入实验名称
+    //*写入数据库
+    //*从数据库读取比对
+
+    QString csExprimentName="实验1";
+    mainBackend->setExprimentName(csExprimentName);
+    QString exprimentName=mainBackend->exprimentName();
+    ASSERT_EQ(csExprimentName,exprimentName);
+
+    Experiment expriment;
+    int expriment_id=expriment.findLastExpriment_id_by_name_from_db(csExprimentName);
+    ASSERT_EQ(expriment_id,1);
+
+    csExprimentName="实验2";
+    mainBackend->setExprimentName(csExprimentName);
+    exprimentName=mainBackend->exprimentName();
+    ASSERT_EQ(csExprimentName,exprimentName);
+
+    expriment_id=expriment.findLastExpriment_id_by_name_from_db(csExprimentName);
+    ASSERT_EQ(expriment_id,2);
+
+    csExprimentName="实验3";
+    mainBackend->setExprimentName(csExprimentName);
+    exprimentName=mainBackend->exprimentName();
+    ASSERT_EQ(csExprimentName,exprimentName);
+
+    expriment_id=expriment.findLastExpriment_id_by_name_from_db(csExprimentName);
+    ASSERT_EQ(expriment_id,3);
+
+
+}
+
+//TODO1:1 记录实时数据
+TEST_F(TestBackend,9){
+    //创建操作员--创建实验名称--添加实验数据--比对数据
+    DowDataBase::openDB();
+    DowDataBase::createTable();
+    QString csName;
+    Oper oper;
+    csName="测试人员2";
+    mainBackend->setOperName(csName);
+
+    QString csExprimentName="实验1";
+    mainBackend->setExprimentName(csExprimentName);
+
+    float tem1=12.5f;
+//    signalVals.add(tem1);  //TODO1:  在数据库添加信号值
+
+}
 //TODO1:读取时长
 #endif // TST_MAINBACKEND_H
 
