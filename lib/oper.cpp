@@ -30,7 +30,7 @@ bool Oper::addOneOper_to_db(QString name, QString password, QString permission)
 
 int Oper::findLastOper_id_by_name_from_db(QString name)
 {
-    QSqlQuery q(QString("select id_oper from oper where name=='%1' ").arg(name));
+    QSqlQuery q(QString("select id_oper from oper where name='%1' ").arg(name));
     QSqlRecord rec=q.record();
     int idCol=rec.indexOf("id_oper");
     if(q.next()){
