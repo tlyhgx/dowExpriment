@@ -61,7 +61,7 @@ bool DowDataBase::createTable()
         query.exec("drop table oper");
         query.exec("drop table experiment");
         query.exec("drop table signal_vals");
-        query.exec("drop table alarm_para");
+        query.exec("drop table sys_para");
     }
 
         query.exec("create table oper("
@@ -86,7 +86,7 @@ bool DowDataBase::createTable()
                         "id_experiment integer,"
                         "FOREIGN KEY(id_experiment) REFERENCES experiment(id_experiment))");
 
-        query.exec("create table alarm_para(id_alarm_para integer primary key,"
+        query.exec("create table sys_para(id_sys_para integer primary key,"
     "record_cycle_s integer default '5')");
 
 

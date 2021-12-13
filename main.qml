@@ -83,11 +83,15 @@ Window {
                             }
                         }
                         Label{
-                            text: "未记录!"  //TODO:还有个状态： 记录中...
+                            id:workState
+                            text: "不在记录状态！"
+                            //TODO:变化时，最好有颜色变化
                             font{
                                 pixelSize: 18
                                 bold: true
+
                             }
+
                         }
                         Label{
                             text: "实验名称:"
@@ -140,8 +144,10 @@ Window {
                             onClicked: {
                                 //TODO1:
                                 //记录操作员--记录实验名称--记录数据
+                                workState.text="记录中..."
                                 mainBackend.operName=operName_input.text
                                 mainBackend.exprimentName=experiment_input.text
+
                             console.log(operName_input.text)
                             }
                         }
@@ -151,6 +157,10 @@ Window {
                         HwwButton{
 
                             text: "停止记录"
+                            onClicked: {
+                                workState.text="不在记录状态！"
+                            }
+
                         }
 
                     }

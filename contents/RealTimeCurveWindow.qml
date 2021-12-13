@@ -120,7 +120,7 @@ Window {
                 id: valueAirFlowAxisY
                 min: 0.1
                 max: 5
-                titleText: "流量 l/min"
+                titleText: "流量 slpm"
             }
             ValueAxis{
                 id: valueAirPressAxisY
@@ -196,10 +196,7 @@ Window {
         }
     }
 
-    Text {
-        id: name
-        text: qsTr("text")
-    }
+
 
     function toMsecsSinceEpoch(date){
         var msecs=date.getTime();

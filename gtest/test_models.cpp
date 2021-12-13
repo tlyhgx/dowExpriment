@@ -1,15 +1,19 @@
 ﻿#ifndef TEST_SIGNAL_VALS_H
 #define TEST_SIGNAL_VALS_H
+
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 #include <QSqlQuery>
+#include <QSqlRecord>
 #include <dowdatabase.h>
 #include <signal_vals.h>
 #include <experiment.h>
 #include <oper.h>
+#include <syspara.h>
+#include <QVariant>
 using namespace testing;
 
-//TODO:数据库读写
+
 TEST(Test_signal_vals,1){
     //添加数据到signal_vals,从signal_vals通过id读取,比对数据
     DowDataBase::openDB();
@@ -35,5 +39,41 @@ TEST(Test_signal_vals,1){
 
 }
 
+
+//参数表
+TEST(Test_sysPara,1){
+    DowDataBase::openDB();
+    DowDataBase::createTable();
+    //创建初始化数据库信息  假如数据库，参数表单为空，则创建添加一条初始数据
+
+
+    //只能有一条记录
+
+    SysPara sysPara;
+    QSqlQuery query;
+    query.exec("select * from sys_para");
+    int count=0;
+    while (query.next()) {
+        ++count;
+    }
+    ASSERT_EQ(count,1);
+    //记录周期默认值是5
+    query.exec("select record_cycle_s from sys_para");
+    query.next();
+    int recordCycle_s=sysPara.getRecordRecycle_s_from_db();
+    ASSERT_EQ(recordCycle_s,5);
+
+    //更新参数到数据库--从数据库读取--比对
+    int recordcycle_s=30;
+    sysPara.setRecordCycle_s_to_db(recordcycle_s);
+    int ret=sysPara.getRecordRecycle_s_from_db();
+    ASSERT_EQ(ret,30);
+
+
+
+
+
+
+}
 
 #endif // TEST_SIGNAL_VALS_H

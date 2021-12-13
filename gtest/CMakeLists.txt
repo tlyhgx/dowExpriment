@@ -61,22 +61,26 @@ include_directories(../lib)
 
 add_executable(cs1 main.cpp
 
-
     test_dowInit.cpp
-    test_myModbus.cpp
+
     dow.mdj
     test_sensor.cpp
-    test_mainBackend.cpp
+
     test_realTimeCurve.cpp
 
     test_getplcval.cpp
     todos.cpp
-    test_database.cpp
-    test_signal_vals.cpp
+
+    test_models.cpp
 
     test_oper.cpp
+    test_setParaBackend.cpp
 
 
+    # 以下临时注释，后期记得取消
+    #    test_mainBackend.cpp
+    #    test_myModbus.cpp
+    #    test_database.cpp
 
 
 

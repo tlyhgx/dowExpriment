@@ -49,6 +49,12 @@ add_library(lib
 
   dowdatabase.cpp
   dowdatabase.h
+
+  setparabackend.cpp
+  setparabackend.h
+
+  syspara.cpp
+  syspara.h
 )
 
 target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  Qt${QT_VERSION_MAJOR}::Sql )
