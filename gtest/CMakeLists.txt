@@ -60,7 +60,7 @@ include_directories(../lib)
 
 
 add_executable(cs1 main.cpp
-
+    # 以下临时注释，后期记得取消
     test_dowInit.cpp
 
     dow.mdj
@@ -77,8 +77,8 @@ add_executable(cs1 main.cpp
     test_setParaBackend.cpp
 
 
-    # 以下临时注释，后期记得取消
-    #    test_mainBackend.cpp
+
+        test_mainBackend.cpp
     #    test_myModbus.cpp
     #    test_database.cpp
 

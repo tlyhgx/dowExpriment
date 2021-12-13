@@ -1,7 +1,7 @@
 #include "dowdatabase.h"
 
 #include <QSqlQuery>
-
+#pragma execution_character_set("utf-8")
 DowDataBase::DowDataBase(QObject *parent) : QObject(parent)
 {
 

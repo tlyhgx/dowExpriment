@@ -1,6 +1,6 @@
 ﻿#include "realtimecurvebackend.h"
 
-
+#pragma execution_character_set("utf-8")
 
 RealTimeCurveBackend::RealTimeCurveBackend(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
 {

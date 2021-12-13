@@ -3,7 +3,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QVariant>
-
+#pragma execution_character_set("utf-8")
 Signal_vals::Signal_vals(QObject *parent) : QObject(parent)
 {
 

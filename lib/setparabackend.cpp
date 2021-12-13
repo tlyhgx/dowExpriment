@@ -1,6 +1,6 @@
 #include "setparabackend.h"
 
-
+#pragma execution_character_set("utf-8")
 SetParaBackend::SetParaBackend(QObject *parent) : QObject(parent)
 {
     connect(this,&SetParaBackend::recordCycle_sChanged,this,&SetParaBackend::recordRecycle_to_db);

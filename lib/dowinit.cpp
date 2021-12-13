@@ -1,7 +1,8 @@
 ﻿#include "dowinit.h"
+#include "syspara.h"
 
 #include <QtSql/QSqlDatabase>
-
+#pragma execution_character_set("utf-8")
 void DowInit::addSensor()
 {
     //1.气体流量 2.气体压力 3.液体流量  4.转速  5~9.温度1  温度2。。。温度5
@@ -35,6 +36,12 @@ int DowInit::getRealTimeCurve_x_count() const
 {
     return realTimeCurve_time_s*1000/signalReadCycle;
 
+}
+
+int DowInit::getRecordCycle_s()
+{
+    SysPara syspara;
+    return syspara.getRecordRecycle_s_from_db();
 }
 
 

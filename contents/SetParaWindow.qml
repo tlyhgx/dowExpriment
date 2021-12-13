@@ -6,9 +6,6 @@ Window {
     height: 450
     width: 750
 
-
-    //TODO1:记录周期，默认5s
-
     Column{
 
         spacing: 2

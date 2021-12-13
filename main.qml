@@ -148,6 +148,8 @@ Window {
                                 mainBackend.operName=operName_input.text
                                 mainBackend.exprimentName=experiment_input.text
 
+                                //设置mainBackend属性willRec为true
+                                mainBackend.willRec=true
                             console.log(operName_input.text)
                             }
                         }
@@ -159,6 +161,8 @@ Window {
                             text: "停止记录"
                             onClicked: {
                                 workState.text="不在记录状态！"
+                                //TODO1:11设置mainBackend属性willRec为false
+                                mainBackend.willRec=false
                             }
 
                         }

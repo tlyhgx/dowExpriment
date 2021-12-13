@@ -44,7 +44,7 @@ public:
     int getSignalReadCycle() const;
 
     int getRealTimeCurve_x_count() const ;
-
+    int getRecordCycle_s();
 
     void setSignalReadCycle(int value);
 

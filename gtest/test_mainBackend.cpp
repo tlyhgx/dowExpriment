@@ -166,7 +166,17 @@ TEST_F(TestBackend,8)
     DowDataBase::closeDB();
 }
 
+//TODO1:把signalVals 按指定的周期写入数据库
+TEST_F(TestBackend,9){
 
-//TODO1:读取时长
+    //有willRec决定是否记录数据
+    //设置willRec为true；数据库数据会增加
+    mainBackend->setWillRec(true);
+
+
+
+}
+
+
 #endif // TST_MAINBACKEND_H
 

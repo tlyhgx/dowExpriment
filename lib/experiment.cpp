@@ -3,6 +3,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QVariant>
+#pragma execution_character_set("utf-8")
 
 Experiment::Experiment(QObject *parent) : QObject(parent)
 {
