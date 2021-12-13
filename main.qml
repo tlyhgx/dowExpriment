@@ -142,13 +142,13 @@ Window {
                             id:start
                             text: "开始记录"
                             onClicked: {
-                                //TODO1:
-                                //记录操作员--记录实验名称--记录数据
+
+                                //记录操作员--记录实验名称
                                 workState.text="记录中..."
                                 mainBackend.operName=operName_input.text
                                 mainBackend.exprimentName=experiment_input.text
 
-                                //设置mainBackend属性willRec为true
+                                //设置mainBackend属性willRec为true,是否记录的判断条件
                                 mainBackend.willRec=true
                             console.log(operName_input.text)
                             }
@@ -161,7 +161,7 @@ Window {
                             text: "停止记录"
                             onClicked: {
                                 workState.text="不在记录状态！"
-                                //TODO1:11设置mainBackend属性willRec为false
+                                //设置mainBackend属性willRec为false
                                 mainBackend.willRec=false
                             }
 

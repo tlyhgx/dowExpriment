@@ -11,6 +11,9 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(app_WINRC Appicon.rc)
+set_property(SOURCE Appicon.rc APPEND PROPERTY
+    OBJECT_DEPENDS ${PROJECT_SOURCE_DIR}/cjkj.ico)
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check https://doc.qt.io/qt/deployment-android.html for more information.
 # They need to be set before the find_package(...) calls below.
@@ -68,7 +71,7 @@ else()
         )
     else()
         add_executable(DowExperimentDataMonitor
-          ${PROJECT_SOURCES}
+          ${PROJECT_SOURCES}  ${app_WINRC}
         )
     endif()
 
