@@ -29,9 +29,9 @@ TEST(Test_signal_vals,1){
     signal_vals.add_val_to_db(press1,"气体压力",1);
     vector<float> get_from_db=signal_vals.get_val_by_experimentId_from_db(1);
     ASSERT_EQ(get_from_db[0],tem1);
-    ASSERT_EQ(get_from_db[1],press1); //TODO1:
+    ASSERT_EQ(get_from_db[1],press1);
 
-
+    DowDataBase::closeDB();
 
 }
 

@@ -10,7 +10,7 @@ class DowDataBase : public QObject
 public:
     explicit DowDataBase(QObject *parent = nullptr);
     static bool openDB();
-//    static void closeDB();
+    static void closeDB();
     static bool createTable();
 signals:
 

@@ -3,24 +3,18 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <QSqlRecord>
-
+#include <dowdatabase.h>
+#pragma execution_character_set("utf-8")
 Oper::Oper(QObject *parent) : QObject(parent)
 {
-    if(!db.isOpen())
-    {
 
+    DowDataBase::openDB();
 
-        db=QSqlDatabase::addDatabase("QSQLITE");
-        db.setHostName("localhost");      //设置数据库主机名
-        db.setDatabaseName("dow_experiment_data.db");  //设置数据库名称
-        db.setUserName("cjkj");         //设置用户名
-        db.setPassword("cjkj5215");     //设置密码
-        db.open();
-    }
 }
 
 bool Oper::addOneOper_to_db(QString name, QString password, QString permission)
 {
+    DowDataBase::openDB();
     QSqlQuery query;
 
     bool res=query.exec(QString("insert into oper(name, password,permission)"
@@ -32,9 +26,9 @@ int Oper::findLastOper_id_by_name_from_db(QString name)
 {
     QSqlQuery q(QString("select id_oper from oper where name='%1' ").arg(name));
     QSqlRecord rec=q.record();
-    int idCol=rec.indexOf("id_oper");
+
     if(q.next()){
-       return q.value(idCol).toInt();
+       return q.value(0).toInt();
     }
     else{
         return -1;

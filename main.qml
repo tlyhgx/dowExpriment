@@ -98,6 +98,7 @@ Window {
                         }
                         TextField {
                             width:200
+                            id:experiment_input;
                             placeholderText: "请输入实验名称!"
                             font{
                                 pixelSize: 18
@@ -112,6 +113,7 @@ Window {
                             }
                         }
                         TextField {
+                            id:operName_input
                             width:200
                             placeholderText: "请输入实验人员名字！"
                             font{
@@ -136,8 +138,11 @@ Window {
                             id:start
                             text: "开始记录"
                             onClicked: {
-                                //TODO1:开始记录数据--
-
+                                //TODO1:
+                                //记录操作员--记录实验名称--记录数据
+                                mainBackend.operName=operName_input.text
+                                mainBackend.exprimentName=experiment_input.text
+                            console.log(operName_input.text)
                             }
                         }
                     }

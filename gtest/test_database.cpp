@@ -42,7 +42,7 @@ void Test_database::SetUp()
 
 void Test_database::TearDown()
 {
-//    DowDataBase::closeDB();
+    DowDataBase::closeDB();
 
 }
 //打开数据库

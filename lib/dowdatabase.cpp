@@ -10,9 +10,10 @@ DowDataBase::DowDataBase(QObject *parent) : QObject(parent)
 bool DowDataBase::openDB()
 {
     QSqlDatabase db;
-
-    if(!db.isOpen())
-    {
+    if(QSqlDatabase::contains("qt_sql_default_connection")){
+        db=QSqlDatabase::database("qt_sql_default_connection");
+        db.open();
+    }else{
         db=QSqlDatabase::addDatabase("QSQLITE");
         db.setHostName("localhost");      //设置数据库主机名
         db.setDatabaseName("dow_experiment_data.db");  //设置数据库名称
@@ -20,11 +21,31 @@ bool DowDataBase::openDB()
         db.setPassword("cjkj5215");     //设置密码
         db.open();
     }
+//    if(!db.isOpen())
+//    {
+//        db=QSqlDatabase::addDatabase("QSQLITE");
+//        db.setHostName("localhost");      //设置数据库主机名
+//        db.setDatabaseName("dow_experiment_data.db");  //设置数据库名称
+//        db.setUserName("cjkj");         //设置用户名
+//        db.setPassword("cjkj5215");     //设置密码
+//        db.open();
+//    }
     if(!db.isOpen()){
+
         return false;
     }else{
         return true;
     }
+
+}
+
+void DowDataBase::closeDB()
+{
+
+    QString name;
+    name=QSqlDatabase::database().connectionName();
+    QSqlDatabase::removeDatabase(name);
+
 
 }
 

@@ -8,6 +8,7 @@
 #include <mymodbus.h>
 #include <QtCore>
 #include <realtimecurvebackend.h>
+#include <dowdatabase.h>
 
 #include "getplcval.h"
 #include <QtWidgets/QApplication>
@@ -32,6 +33,8 @@ int main(int argc, char *argv[])
     //实例化modbus
     MyModbus *myModbus=new MyModbus (*dowInit) ;
 
+    DowDataBase::openDB();
+//    DowDataBase::createTable();   //NOTE:打开后，会删除所有表格，并重新创建
     MainBackend mainBackend(dowInit,myModbus);
     RealTimeCurveBackend realTimeCurveBackend(dowInit,myModbus);
     GetPlcVal getPlcVal(dowInit,myModbus);
@@ -39,6 +42,8 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("mainBackend",&mainBackend);
     engine.rootContext()->setContextProperty("realTimeCurveBackend",&realTimeCurveBackend);
+
+
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

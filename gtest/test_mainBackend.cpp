@@ -117,7 +117,7 @@ TEST_F(TestBackend,7)
 
     int id_oper=oper.findLastOper_id_by_name_from_db(csName);
     ASSERT_EQ(id_oper,2);
-
+    DowDataBase::closeDB();
 
 
 }
@@ -163,26 +163,10 @@ TEST_F(TestBackend,8)
     expriment_id=expriment.findLastExpriment_id_by_name_from_db(csExprimentName);
     ASSERT_EQ(expriment_id,3);
 
-
+    DowDataBase::closeDB();
 }
 
-//TODO1:1 记录实时数据
-TEST_F(TestBackend,9){
-    //创建操作员--创建实验名称--添加实验数据--比对数据
-    DowDataBase::openDB();
-    DowDataBase::createTable();
-    QString csName;
-    Oper oper;
-    csName="测试人员2";
-    mainBackend->setOperName(csName);
 
-    QString csExprimentName="实验1";
-    mainBackend->setExprimentName(csExprimentName);
-
-    float tem1=12.5f;
-//    signalVals.add(tem1);  //TODO1:  在数据库添加信号值
-
-}
 //TODO1:读取时长
 #endif // TST_MAINBACKEND_H
 
