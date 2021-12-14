@@ -18,8 +18,17 @@ Window {
     height: totalHeight
     visible: true
     title: qsTr("陶氏实验数据监控系统v1.0")
+//    visibility: Window.FullScreen
+    ListView{
+        width:200;height: 250
+        required infoListModel;
+        delegate: Text{
+            required property string infoTime
+            required property string infoContent
+            text: infoTime+":  "+infoContent
+        }
 
-
+    }
 
     WorkUI{   //元器件及指示
         id:workUI

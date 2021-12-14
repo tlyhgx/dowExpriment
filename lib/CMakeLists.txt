@@ -55,6 +55,9 @@ add_library(lib
 
   syspara.cpp
   syspara.h
+
+  infolist.cpp
+  infolist.h
 )
 
 target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  Qt${QT_VERSION_MAJOR}::Sql )

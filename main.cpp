@@ -10,6 +10,7 @@
 #include <realtimecurvebackend.h>
 #include <dowdatabase.h>
 #include <setparabackend.h>
+#include <infolist.h>
 
 #include "getplcval.h"
 #include <QtWidgets/QApplication>
@@ -35,16 +36,18 @@ int main(int argc, char *argv[])
     MyModbus *myModbus=new MyModbus (*dowInit) ;
 
     DowDataBase::openDB();
-//    DowDataBase::createTable();   //NOTE:打开后，会删除所有表格，并重新创建
+//    DowDataBase::createTable();   //NOTE:打开后，会删除所有表格，并重新创建 //TODO1:
     MainBackend mainBackend(dowInit,myModbus);
     RealTimeCurveBackend realTimeCurveBackend(dowInit,myModbus);
     SetParaBackend setParaBackend;
     GetPlcVal getPlcVal(dowInit,myModbus);
+//    InfoListModel infoListModel;
 //TODO:初始化的参数，部分要从数据库读取
 
     engine.rootContext()->setContextProperty("mainBackend",&mainBackend);
     engine.rootContext()->setContextProperty("realTimeCurveBackend",&realTimeCurveBackend);
     engine.rootContext()->setContextProperty("setParaBackend",&setParaBackend);
+//    engine.rootContext()->setContextProperty("infoListModel",&infoListModel);
 
 
 

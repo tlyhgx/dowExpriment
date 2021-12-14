@@ -1,21 +1,30 @@
 ﻿import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtCharts 2.15
+import QtQuick.Controls 2.12
 
 
 
 
 Window {
-    //TODO:增加一个退出按钮
+
     property int  totalWidth: 1366
     property int  totalHeight: 768
     //后面循环时使用，定位
     property int  locate: 0
     property var timeArray: []
-
+//    visibility: Window.FullScreen
     width: totalWidth
     height: totalHeight
     title: qsTr("实时曲线")
+    HwwButton{
+        x:parent.width-100
+        y:20
+        text: "退出"
+        onClicked: {
+            realTimeCurveWindow.close()
+        }
+    }
 
     Rectangle{
         width: totalWidth

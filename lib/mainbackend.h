@@ -15,6 +15,7 @@ class MainBackend : public QObject
     Q_PROPERTY(QString operName READ operName WRITE setOperName NOTIFY operNameChanged)
     Q_PROPERTY(QString exprimentName READ exprimentName WRITE setExprimentName NOTIFY exprimentNameChanged)
     Q_PROPERTY(bool willRec READ willRec WRITE setWillRec NOTIFY willRecChanged)
+//    Q_PROPERTY(InfoListModel infoListModel READ infoListModel WRITE setInfoListModel NOTIFY infoListModelChanged)
 public:
     explicit MainBackend(QObject *parent = nullptr);
     MainBackend(DowInit *dowInit,MyModbus *mymodbus,QObject *parent = nullptr);

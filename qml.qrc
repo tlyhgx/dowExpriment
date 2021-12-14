@@ -35,5 +35,6 @@
         <file>contents/PosDisplay.qml</file>
         <file>learn/qmlChart.qml</file>
         <file>learn/qmlchart2.qml</file>
+        <file>contents/infoList.qml</file>
     </qresource>
 </RCC>

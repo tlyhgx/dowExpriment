@@ -66,9 +66,9 @@ add_executable(cs1 main.cpp
     dow.mdj
     test_sensor.cpp
 
-    test_realTimeCurve.cpp
+#    test_realTimeCurve.cpp
 
-    test_getplcval.cpp
+#    test_getplcval.cpp
     todos.cpp
 
     test_models.cpp
@@ -76,7 +76,8 @@ add_executable(cs1 main.cpp
     test_oper.cpp
     test_setParaBackend.cpp
 
-    test_listView_ex.cpp
+
+    test_infoListModel.cpp
 
 
 #        test_mainBackend.cpp
