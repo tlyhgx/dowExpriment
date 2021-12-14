@@ -16,8 +16,8 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core SerialBus SerialPort REQUIRED
 find_package(Qt5Sql)
 
 add_library(lib
-  lib.cpp
-  lib.h
+#  dowinfolist.cpp
+#  dowinfolist.h
   mainbackend.cpp
   mainbackend.h
 

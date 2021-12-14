@@ -8,6 +8,7 @@
 #include <QSqlQuery>
 using namespace testing;
 #include "dowinit.h"
+#pragma execution_character_set("utf-8")
 
 class TESTDowInit:public ::testing::Test{
 public: DowInit *dowInit;

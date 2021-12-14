@@ -76,9 +76,10 @@ add_executable(cs1 main.cpp
     test_oper.cpp
     test_setParaBackend.cpp
 
+    test_listView_ex.cpp
 
 
-        test_mainBackend.cpp
+#        test_mainBackend.cpp
     #    test_myModbus.cpp
     #    test_database.cpp
 

@@ -16,7 +16,7 @@ MainBackend::MainBackend(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
     connect(this,&MainBackend::operNameChanged,this,&MainBackend::recordOperName_to_db);
     connect(this,&MainBackend::exprimentNameChanged,this,&MainBackend::recordExprimentName_to_db);
 
-    id_experiment=experiment.findLastExpriment_id_by_name_from_db(m_exprimentName);
+
     timer=new QTimer;
     connect(timer,&QTimer::timeout,this,&MainBackend::recVal_to_db);
     timer->start(dowInit->getRecordCycle_s()*1000);
@@ -68,7 +68,7 @@ void MainBackend::recVal_to_db()
 
 
     if(m_willRec){
-//        timer->start(dowInit->getRecordCycle_s());
+
         for(int i=0;i<signalVals.size();i++)
         {
             signal_vals.add_val_to_db(signalVals[i].toFloat(),QString::fromStdString(dowInit->signalVals[i]->getName()),id_experiment);

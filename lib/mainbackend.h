@@ -67,7 +67,7 @@ public slots:
     {
         if (m_willRec == willRec)
             return;
-
+        id_experiment=experiment.findLastExpriment_id_by_name_from_db(m_exprimentName);
         m_willRec = willRec;
         emit willRecChanged(m_willRec);
     }
