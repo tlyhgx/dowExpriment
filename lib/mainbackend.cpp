@@ -1,6 +1,7 @@
 ﻿#include "mainbackend.h"
 #include "oper.h"
 #include "experiment.h"
+#include <QDateTime>
 #include <QTimer>
 #include <math.h>
 #include "signal_vals.h"
@@ -15,7 +16,7 @@ MainBackend::MainBackend(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
             this,&MainBackend::getSignalVals);
     connect(this,&MainBackend::operNameChanged,this,&MainBackend::recordOperName_to_db);
     connect(this,&MainBackend::exprimentNameChanged,this,&MainBackend::recordExprimentName_to_db);
-
+    connect(this,&MainBackend::makeInfo,this,&MainBackend::addInfoList);
 
     timer=new QTimer;
     connect(timer,&QTimer::timeout,this,&MainBackend::recVal_to_db);
@@ -43,6 +44,20 @@ void MainBackend::setMyModbus(MyModbus *value)
 void MainBackend::setDowInit(DowInit *value)
 {
     dowInit = value;
+}
+
+void MainBackend::setInfoListModel(InfoListModel &infoListModel)
+{
+    m_infoListModel=&infoListModel;
+}
+
+void MainBackend::addInfoList(QString info)
+{
+
+    QString curDateTime=QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+    InfoList infoList(curDateTime,info);
+
+    m_infoListModel->addInfoList(infoList);
 }
 
 
@@ -73,8 +88,6 @@ void MainBackend::recVal_to_db()
         {
             signal_vals.add_val_to_db(signalVals[i].toFloat(),QString::fromStdString(dowInit->signalVals[i]->getName()),id_experiment);
         }
-    }else{
-//        timer->stop();
     }
 
 

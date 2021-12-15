@@ -13,6 +13,7 @@
 #include "mymodbus.h"
 #include <experiment.h>
 #include <dowdatabase.h>
+#include <infolist.h>
 
 
 
@@ -166,7 +167,7 @@ TEST_F(TestBackend,8)
     DowDataBase::closeDB();
 }
 
-//TODO1:把signalVals 按指定的周期写入数据库
+//把signalVals 按指定的周期写入数据库
 TEST_F(TestBackend,9){
 
     //有willRec决定是否记录数据
@@ -177,6 +178,14 @@ TEST_F(TestBackend,9){
 
 }
 
+
+//把InfoListModel 信息显示模块  注入 mainBackend
+TEST_F(TestBackend,10){
+    InfoListModel infoListModel;
+    mainBackend->setInfoListModel(infoListModel);
+}
+
+//
 
 #endif // TST_MAINBACKEND_H
 

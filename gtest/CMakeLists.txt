@@ -80,7 +80,7 @@ add_executable(cs1 main.cpp
     test_infoListModel.cpp
 
 
-#        test_mainBackend.cpp
+        test_mainBackend.cpp
     #    test_myModbus.cpp
     #    test_database.cpp
 

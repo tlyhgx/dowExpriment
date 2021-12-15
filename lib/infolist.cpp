@@ -30,7 +30,9 @@ InfoListModel::InfoListModel(QObject *parent)
 void InfoListModel::addInfoList(const InfoList &infoList)
 {
     beginInsertRows(QModelIndex(),rowCount(),rowCount());
+//    m_infoList.prepend(infoList);//FIXME:这里正反向添加数据，和界面显示有关
     m_infoList<<infoList;
+    m_infoList.reserve(m_infoList.size());
     endInsertRows();
 }
 

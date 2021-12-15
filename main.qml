@@ -19,16 +19,7 @@ Window {
     visible: true
     title: qsTr("陶氏实验数据监控系统v1.0")
 //    visibility: Window.FullScreen
-    ListView{
-        width:200;height: 250
-        required infoListModel;
-        delegate: Text{
-            required property string infoTime
-            required property string infoContent
-            text: infoTime+":  "+infoContent
-        }
 
-    }
 
     WorkUI{   //元器件及指示
         id:workUI
@@ -36,15 +27,6 @@ Window {
         height: firstLineHeight
         width: totalWidth
         anchors.horizontalCenter: parent.horizontalCenter
-
-
-
-
-
-
-
-
-
     }
     HwwCanvas{  //
         x:0;y:0
@@ -52,19 +34,63 @@ Window {
         height: totalHeight
 
     }
-    Rectangle{  //工作信息
-        width: grid21Width
-        height: totalHeight-firstLineHeight
-        x:30;y:workUI.height+20
-        Column{
-            Label{
-                text: "工作信息:"
-                font.pixelSize: 18
-            }
-            EventTableEasyTable{}
-        }
 
+    ListView{
+        id:infoListView
+        z:1
+        width:grid21Width;height: totalHeight-firstLineHeight-10
+        x:30;y:workUI.height+20
+        model: infoListModel;
+        //TODO:后添加的要显示在最上面
+//        verticalLayoutDirection:ItemView.BottomToTop
+        header:Rectangle{
+            width: infoListView.width
+            height: 20
+
+            Label{
+                text: "事件信息："
+                font.pixelSize: 18
+                color: "darkblue"
+            }
+        }
+        ScrollBar.vertical: ScrollBar{
+            id:hbar
+
+            hoverEnabled: true
+
+            width: 20
+            active: true
+            anchors.right: parent.left
+
+            background: Item{
+                Rectangle{
+                    anchors.centerIn: parent
+                    height: parent.height
+                    width: parent.width*0.2
+                    color: 'grey'
+                    radius: width/2
+                }
+            }
+        }
+        delegate: Text{
+            required property string infoTime
+            required property string infoContent
+            text: infoTime+":  "+infoContent
+        }
     }
+//    Rectangle{  //工作信息
+//        width: grid21Width
+//        height: totalHeight-firstLineHeight
+//        x:30;y:workUI.height+20
+//        Column{
+//            Label{
+//                text: "工作信息:"
+//                font.pixelSize: 18
+//            }
+//            EventTableEasyTable{}
+//        }
+
+//    }
     Rectangle{   //启停等
         x:grid21Width+300;y:workUI.height+8
         width: 160

@@ -7,6 +7,7 @@
 #include "dowinit.h"
 #include "signal_vals.h"
 #include "experiment.h"
+#include "infolist.h"
 #pragma execution_character_set("utf-8")
 using namespace std;
 class MainBackend : public QObject
@@ -25,6 +26,8 @@ public:
     Q_INVOKABLE QVariantList retSignalVals();
     void setMyModbus(MyModbus *myModbus);
     void setDowInit(DowInit *value);
+    void setInfoListModel(InfoListModel& infoListModel);
+
 
     QString operName() const
     {
@@ -38,11 +41,14 @@ public:
 
     bool willRec() const
     {
+
         return m_willRec;
     }
 
 public slots:
     QVariantList getSignalVals(QModbusDataUnit dataUnit);
+    void addInfoList(QString info);
+//    void recInfo_to_db(QString info);
     void recVal_to_db();
     void recordOperName_to_db(QString operName);
     void recordExprimentName_to_db(QString csExprimentName);
@@ -71,6 +77,12 @@ public slots:
         id_experiment=experiment.findLastExpriment_id_by_name_from_db(m_exprimentName);
         m_willRec = willRec;
         emit willRecChanged(m_willRec);
+        if(m_willRec==true){
+            emit makeInfo("开始记录！");
+        }else{
+            emit makeInfo("停止记录！");
+        }
+
     }
 
 signals:
@@ -86,6 +98,7 @@ signals:
 
     void willRecChanged(bool willRec);
 
+    void makeInfo(QString info);
 private:
     MyModbus* myModbus;
     DowInit* dowInit;
@@ -97,6 +110,7 @@ private:
     Signal_vals signal_vals;
     Experiment experiment;
     int id_experiment;
+    InfoListModel* m_infoListModel;
 };
 
 #endif // MAINBACKEND_H

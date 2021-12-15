@@ -43,11 +43,16 @@ int main(int argc, char *argv[])
     GetPlcVal getPlcVal(dowInit,myModbus);
 //    InfoListModel infoListModel;
 //TODO:初始化的参数，部分要从数据库读取
-
+//TODO:实时信息后期要添加到数据库
     engine.rootContext()->setContextProperty("mainBackend",&mainBackend);
     engine.rootContext()->setContextProperty("realTimeCurveBackend",&realTimeCurveBackend);
     engine.rootContext()->setContextProperty("setParaBackend",&setParaBackend);
-//    engine.rootContext()->setContextProperty("infoListModel",&infoListModel);
+
+    InfoListModel infoListModel;
+    mainBackend.setInfoListModel(infoListModel);
+
+
+    engine.rootContext()->setContextProperty("infoListModel",&infoListModel);
 
 
 

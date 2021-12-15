@@ -88,6 +88,9 @@ bool DowDataBase::createTable()
 
         query.exec("create table sys_para(id_sys_para integer primary key,"
     "record_cycle_s integer default '5')");
+        query.exec("create table process_info(id_process_info integer primary key,"
+    "info_content char(30),info_time,timestamp default (datetime('now','localtime')),"
+" id_experiment integer)");
 
 
     res=query.exec(sql);
