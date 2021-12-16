@@ -22,7 +22,7 @@ MainBackend::MainBackend(DowInit *dowInit, GetPlcVal *getPlcVal, QObject *parent
 
     timer=new QTimer;
     connect(timer,&QTimer::timeout,this,&MainBackend::recVal_to_db);
-    timer->start(dowInit->getRecordCycle_s()*1000);
+    timer->start(dowInit->getRecordCycle_ms()*1000);
 
 }
 

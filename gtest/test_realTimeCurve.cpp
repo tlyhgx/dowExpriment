@@ -95,9 +95,9 @@ TEST_F(Test_realTimeCurve,emit_val_to_view){
 TEST_F(Test_realTimeCurve,x_num)
 {
     dowInit->setRealTimeCurve_time_s(100);
-    dowInit->setSignalReadCycle(1000);
+    dowInit->setRecordCycle_ms(1000);
     int time_s=dowInit->getRealTimeCurve_time_s();
-    int readCycle=dowInit->getSignalReadCycle();
+    int readCycle=dowInit->getRecordCycle_ms();
     ASSERT_EQ(time_s*1000/readCycle,dowInit->getRealTimeCurve_x_count());
 }
 
@@ -105,9 +105,9 @@ TEST_F(Test_realTimeCurve,x_num)
 TEST_F(Test_realTimeCurve,read_x_count)
 {
     dowInit->setRealTimeCurve_time_s(100);
-    dowInit->setSignalReadCycle(1000);
+    dowInit->setRecordCycle_ms(1000);
     int time_s=dowInit->getRealTimeCurve_time_s();
-    int readCycle=dowInit->getSignalReadCycle();
+    int readCycle=dowInit->getRecordCycle_ms();
     ASSERT_EQ(time_s*1000/readCycle,backend->x_count());
 }
 #endif // TEST_REALTIMECURVE_H

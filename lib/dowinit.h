@@ -53,12 +53,12 @@ public:
     void addSensor();
 
 
-    int getSignalReadCycle() const;
+//    int getSignalReadCycle() const;
 
     int getRealTimeCurve_x_count() const ;
-    int getRecordCycle_s();
+//    int getRecordCycle_s();
 
-    void setSignalReadCycle(int value);
+//    void setSignalReadCycle(int value);
 
     int getRealTimeCurve_time_s() const;
     void setRealTimeCurve_time_s(int value);
@@ -73,13 +73,18 @@ public:
     int getFlashRealTimeCurve_s() const;
     void setFlashRealTimeCurve_s(int value);
 
+
+
+    int getRecordCycle_ms() const;
+    void setRecordCycle_ms(int value);
+
 signals:
 
 private:
 
     int signalValsNum;
     //信号读取周期（ms）
-    int signalReadCycle;
+    int recordCycle_ms;
 
     //实时曲线的x轴个数
     int realTimeCurve_x_count;

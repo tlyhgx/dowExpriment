@@ -28,10 +28,7 @@ void DowInit::addSensor()
     tempSignalVals.append(tem5);
 }
 
-int DowInit::getSignalReadCycle() const
-{
-    return signalReadCycle;
-}
+
 
 int DowInit::getRealTimeCurve_x_count() const
 {
@@ -39,7 +36,7 @@ int DowInit::getRealTimeCurve_x_count() const
 
 }
 
-int DowInit::getRecordCycle_s()
+int DowInit::getRecordCycle_ms() const
 {
     SysPara syspara;
     return syspara.getRecordRecycle_s_from_db();
@@ -47,10 +44,7 @@ int DowInit::getRecordCycle_s()
 
 
 
-void DowInit::setSignalReadCycle(int value)
-{
-    signalReadCycle = value;
-}
+
 
 int DowInit::getRealTimeCurve_time_s() const
 {
@@ -80,12 +74,26 @@ void DowInit::setFlashRealTimeCurve_s(int value)
     flashRealTimeCurve_s = value;
 }
 
+
+
+void DowInit::setRecordCycle_ms(int value)
+{
+    SysPara syspara;
+    syspara.setRecordCycle_s_to_db(value);
+
+    recordCycle_ms = value;
+}
+
+
+
+
+
 DowInit::DowInit(QObject *parent) : QObject(parent)
 {
     modbusSetting.portName="COM1";
     addSensor();
     //读取周期单位（ms)
-    signalReadCycle=1000;
+    recordCycle_ms=1000;
     //实时曲线显示时长（s)
     realTimeCurve_time_s=getRealTimeCurve_time_s();
     //实时曲线刷新时间(s)

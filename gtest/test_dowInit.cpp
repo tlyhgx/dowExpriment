@@ -107,11 +107,12 @@ TEST_F(TESTDowInit,realTimeCurve_time){
     dowInit->setRealTimeCurve_time_s(650);
     ASSERT_EQ(dowInit->getRealTimeCurve_time_s(),650);
 }
-////设置信号读取周期
-//TEST_F(TESTDowInit,signalReadCycle)
-//{
-//    ASSERT_EQ(dowInit->getSignalReadCycle(),500) ;
-//}
+//设置信号读取周期
+TEST_F(TESTDowInit,signalReadCycle)
+
+{   dowInit->setRecordCycle_ms(600);
+    ASSERT_EQ(dowInit->getRecordCycle_ms(),600) ;
+}
 
 
 #endif // TEST_DOWINIT_H
