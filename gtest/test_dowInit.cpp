@@ -88,6 +88,11 @@ TEST_F(TESTDowInit,aboutdb){
     //                              " VALUES('2')");
     //    ASSERT_EQ(res,true);
 }
+//设置实时曲线刷新周期
+TEST_F(TESTDowInit,flash){
+    dowInit->setFlashRealTimeCurve_s(3);
+    ASSERT_EQ(dowInit->getFlashRealTimeCurve_s(),3);
+}
 ////设置信号读取周期
 //TEST_F(TESTDowInit,signalReadCycle)
 //{

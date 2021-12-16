@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    qmlRegisterType<EasyTableModel>("EasyModel", 1, 0, "EasyTableModel");
+//    qmlRegisterType<EasyTableModel>("EasyModel", 1, 0, "EasyTableModel");
 
     //设置初始值
     DowInit *dowInit=new DowInit ();
@@ -36,12 +36,13 @@ int main(int argc, char *argv[])
     MyModbus *myModbus=new MyModbus (*dowInit) ;
     GetPlcVal *getPlcVal=new GetPlcVal(dowInit,myModbus);
     DowDataBase::openDB();
-//    DowDataBase::createTable();   //NOTE:打开后，会删除所有表格，并重新创建 //TODO1:
+//    DowDataBase::createTable();   //NOTE:打开后，会删除所有表格，并重新创建
+    //TODO1: 每次脱离test，都要操作一次，能否处理一下
     MainBackend mainBackend(dowInit,getPlcVal);
-    RealTimeCurveBackend realTimeCurveBackend(dowInit,myModbus);
+    RealTimeCurveBackend realTimeCurveBackend(dowInit,getPlcVal);
     SetParaBackend setParaBackend;
 
-//    InfoListModel infoListModel;
+
 //TODO:初始化的参数，部分要从数据库读取
 //TODO:实时信息后期要添加到数据库
     engine.rootContext()->setContextProperty("mainBackend",&mainBackend);

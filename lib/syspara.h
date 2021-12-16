@@ -10,6 +10,8 @@ public:
     explicit SysPara(QObject *parent = nullptr);
     int getRecordRecycle_s_from_db();
     void setRecordCycle_s_to_db(int recordCycle_s);
+    int getRealTimeCureve_flashcycle_s_from_db();
+    void setRealTimeCureve_flashcycle_s_to_db(int realTimeCureve_flashcycle_s);
 signals:
 
 };

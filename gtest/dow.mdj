@@ -19879,7 +19879,7 @@
 									"font": "Arial;13;1",
 									"left": 584,
 									"top": 413,
-									"width": 200.5234375,
+									"width": 250.1494140625,
 									"height": 13,
 									"text": "sys_para"
 								},
@@ -19905,7 +19905,7 @@
 											"font": "Arial;13;0",
 											"left": 589,
 											"top": 436,
-											"width": 190.5234375,
+											"width": 240.1494140625,
 											"height": 13
 										},
 										{
@@ -19920,7 +19920,7 @@
 											"font": "Arial;13;0",
 											"left": 589,
 											"top": 451,
-											"width": 190.5234375,
+											"width": 240.1494140625,
 											"height": 13
 										},
 										{
@@ -19935,7 +19935,7 @@
 											"font": "Arial;13;0",
 											"left": 589,
 											"top": 466,
-											"width": 190.5234375,
+											"width": 240.1494140625,
 											"height": 13
 										},
 										{
@@ -19950,22 +19950,37 @@
 											"font": "Arial;13;0",
 											"left": 589,
 											"top": 481,
-											"width": 190.5234375,
+											"width": 240.1494140625,
+											"height": 13
+										},
+										{
+											"_type": "ERDColumnView",
+											"_id": "AAAAAAF9woYtDprrgFY=",
+											"_parent": {
+												"$ref": "AAAAAAF9nTNPkRMIz8M="
+											},
+											"model": {
+												"$ref": "AAAAAAF9woYs5proagM="
+											},
+											"font": "Arial;13;0",
+											"left": 589,
+											"top": 496,
+											"width": 240.1494140625,
 											"height": 13
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 584,
 									"top": 431,
-									"width": 200.5234375,
-									"height": 68
+									"width": 250.1494140625,
+									"height": 83
 								}
 							],
 							"font": "Arial;13;0",
 							"left": 584,
 							"top": 408,
-							"width": 200.5234375,
-							"height": 91,
+							"width": 250.1494140625,
+							"height": 106,
 							"nameLabel": {
 								"$ref": "AAAAAAF9nTNPkRMHuNQ="
 							},
@@ -20000,7 +20015,7 @@
 								"$ref": "AAAAAAF9nTNPkRMG8ko="
 							},
 							"lineStyle": 1,
-							"points": "726:407;769:362"
+							"points": "744:407;775:362"
 						},
 						{
 							"_type": "UMLNoteView",
@@ -20700,6 +20715,16 @@
 								"$ref": "AAAAAAF9nTNPkBMEdIY="
 							},
 							"name": "record_cycle_s",
+							"type": "INTEGER",
+							"length": 0
+						},
+						{
+							"_type": "ERDColumn",
+							"_id": "AAAAAAF9woYs5proagM=",
+							"_parent": {
+								"$ref": "AAAAAAF9nTNPkBMEdIY="
+							},
+							"name": "realTimeCurve_cycle_s",
 							"type": "INTEGER",
 							"length": 0
 						}

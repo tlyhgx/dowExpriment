@@ -18,7 +18,7 @@ Window {
     height: totalHeight
     visible: true
     title: qsTr("陶氏实验数据监控系统v1.0")
-//    visibility: Window.FullScreen
+    //    visibility: Window.FullScreen
 
 
     WorkUI{   //元器件及指示
@@ -42,7 +42,7 @@ Window {
         x:30;y:workUI.height+20
         model: infoListModel;
         //TODO:后添加的要显示在最上面
-//        verticalLayoutDirection:ItemView.BottomToTop
+        //        verticalLayoutDirection:ItemView.BottomToTop
         header:Rectangle{
             width: infoListView.width
             height: 20
@@ -78,19 +78,19 @@ Window {
             text: infoTime+":  "+infoContent
         }
     }
-//    Rectangle{  //工作信息
-//        width: grid21Width
-//        height: totalHeight-firstLineHeight
-//        x:30;y:workUI.height+20
-//        Column{
-//            Label{
-//                text: "工作信息:"
-//                font.pixelSize: 18
-//            }
-//            EventTableEasyTable{}
-//        }
+    //    Rectangle{  //工作信息
+    //        width: grid21Width
+    //        height: totalHeight-firstLineHeight
+    //        x:30;y:workUI.height+20
+    //        Column{
+    //            Label{
+    //                text: "工作信息:"
+    //                font.pixelSize: 18
+    //            }
+    //            EventTableEasyTable{}
+    //        }
 
-//    }
+    //    }
     Rectangle{   //启停等
         x:grid21Width+300;y:workUI.height+8
         width: 160
@@ -185,7 +185,7 @@ Window {
 
                                 //设置mainBackend属性willRec为true,是否记录的判断条件
                                 mainBackend.willRec=true
-                            console.log(operName_input.text)
+                                console.log(operName_input.text)
                             }
                         }
                     }
@@ -213,20 +213,22 @@ Window {
 
     Connections{
         target: mainBackend
-        function onSignalValChanged(signalVals){
+        function onOtherSignalValChanged(signalVals){
 
             console.log("数据传递成功！")
 
-            workUI.velocityOfFlowVal=signalVals[0]
-            workUI.velocityOfAirVal=signalVals[1]
-            workUI.airPressVal=signalVals[2]
+            workUI.velocityOfFlowVal=signalVals[0].toFixed(1)
+            workUI.velocityOfAirVal=signalVals[1].toFixed(1)
+            workUI.airPressVal=signalVals[2].toFixed(1)
             workUI.rotationSpeedVal=signalVals[3]
-            workUI.no1TempVal=signalVals[4].toFixed(1)
-            workUI.no2TempVal=signalVals[5].toFixed(1)
-            workUI.no3TempVal=signalVals[6].toFixed(1)
-            workUI.no4TempVal=signalVals[7].toFixed(1)
-            workUI.no5TempVal=signalVals[8].toFixed(1)
 
+        }
+        function onTempSignalValChanged(tempSignalVals){
+            workUI.no1TempVal=tempSignalVals[0].toFixed(1)
+            workUI.no2TempVal=tempSignalVals[1].toFixed(1)
+            workUI.no3TempVal=tempSignalVals[2].toFixed(1)
+            workUI.no4TempVal=tempSignalVals[3].toFixed(1)
+            workUI.no5TempVal=tempSignalVals[4].toFixed(1)
         }
     }
 

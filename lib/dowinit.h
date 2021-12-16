@@ -65,6 +65,14 @@ public:
 
 
 
+
+    ///刷新实时曲线周期
+    /// \brief getFlashRealTimeCurve_s
+    /// \return
+    ///
+    int getFlashRealTimeCurve_s() const;
+    void setFlashRealTimeCurve_s(int value);
+
 signals:
 
 private:
@@ -79,6 +87,8 @@ private:
     //实时曲线的时长
     int realTimeCurve_time_s;
 
+    //实时曲线刷新周期
+    int flashRealTimeCurve_s;
 
 
 };

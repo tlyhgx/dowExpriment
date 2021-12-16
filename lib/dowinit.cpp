@@ -35,7 +35,7 @@ int DowInit::getSignalReadCycle() const
 
 int DowInit::getRealTimeCurve_x_count() const
 {
-    return realTimeCurve_time_s*1000/signalReadCycle;
+    return realTimeCurve_time_s*1000/signalReadCycle;  //TODO1:12   此处要改成与显示周期相关
 
 }
 
@@ -62,6 +62,19 @@ void DowInit::setRealTimeCurve_time_s(int value)
     realTimeCurve_time_s = value;
 }
 
+int DowInit::getFlashRealTimeCurve_s() const
+{
+    SysPara syspara;
+    return syspara.getRealTimeCureve_flashcycle_s_from_db();
+}
+
+void DowInit::setFlashRealTimeCurve_s(int value)
+{
+    SysPara syspara;
+    syspara.setRealTimeCureve_flashcycle_s_to_db(value);
+//    flashRealTimeCurve_s = value;
+}
+
 DowInit::DowInit(QObject *parent) : QObject(parent)
 {
     modbusSetting.portName="COM1";
@@ -70,6 +83,8 @@ DowInit::DowInit(QObject *parent) : QObject(parent)
     signalReadCycle=1000;
     //实时曲线显示时长（s)
     realTimeCurve_time_s=600;
+
+
 
     if(!db.isOpen())
     {

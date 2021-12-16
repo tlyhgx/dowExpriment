@@ -63,11 +63,23 @@ TEST(Test_sysPara,1){
     int recordCycle_s=sysPara.getRecordRecycle_s_from_db();
     ASSERT_EQ(recordCycle_s,5);
 
-    //更新参数到数据库--从数据库读取--比对
+    //记录周期 更新参数到数据库--从数据库读取--比对
     int recordcycle_s=30;
     sysPara.setRecordCycle_s_to_db(recordcycle_s);
     int ret=sysPara.getRecordRecycle_s_from_db();
     ASSERT_EQ(ret,30);
+
+    //实时曲线显示周期 默认值是1
+    query.exec("select realTimeCurve_flashcycle_s from sys_para");
+    query.next();
+    int realTimeCurve_flashcycle_s=sysPara.getRealTimeCureve_flashcycle_s_from_db();
+    ASSERT_EQ(realTimeCurve_flashcycle_s,1);
+
+    //记录周期 更新参数到数据库--从数据库读取--比对
+    realTimeCurve_flashcycle_s=2;
+    sysPara.setRealTimeCureve_flashcycle_s_to_db(realTimeCurve_flashcycle_s);
+    ret=sysPara.getRealTimeCureve_flashcycle_s_from_db();
+    ASSERT_EQ(ret,2);
 
 
 

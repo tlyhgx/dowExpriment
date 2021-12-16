@@ -30,3 +30,17 @@ void SysPara::setRecordCycle_s_to_db(int recordCycle_s)
     QSqlQuery query;
     query.exec(QString("update sys_para set record_cycle_s ='%1' ").arg(recordCycle_s));
 }
+
+int SysPara::getRealTimeCureve_flashcycle_s_from_db()
+{
+    QSqlQuery query;
+    query.exec("select realTimeCurve_flashcycle_s from sys_para");
+    query.next();
+    return query.value(0).toInt();
+}
+
+void SysPara::setRealTimeCureve_flashcycle_s_to_db(int realTimeCurve_flashcycle_s)
+{
+    QSqlQuery query;
+    query.exec(QString("update sys_para set realTimeCurve_flashcycle_s ='%1' ").arg(realTimeCurve_flashcycle_s));
+}

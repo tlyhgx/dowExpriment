@@ -16,6 +16,7 @@ public:
     RealTimeCurveBackend *backend;
     DowInit *dowInit=new DowInit;
     MyModbus *myModbus=new MyModbus;
+    GetPlcVal *getPlcVal=new GetPlcVal(dowInit,myModbus);
     QVector<quint16> retVal;
     QVector<float> retVal_addDicemal;
     int signalValsNum=dowInit->getSignalValsNum();
@@ -50,10 +51,7 @@ void Test_realTimeCurve::getSignalVal()
 
 void Test_realTimeCurve::SetUp()
 {
-    backend=new RealTimeCurveBackend(dowInit,myModbus);
-
-
-
+    backend=new RealTimeCurveBackend(dowInit,getPlcVal);
 
 }
 
@@ -62,21 +60,12 @@ void Test_realTimeCurve::TearDown()
 }
 
 
-
-
-//获取实时温度值，第一组；收到modbusReadReady，存储到signalVals
-//要输出的是  温度1 温度2。。。。温度1  温度2。。。 温度1 温度2 。。。
-TEST_F(Test_realTimeCurve,signalVals){
-
-    getSignalVal();
-    QModbusDataUnit dataUint(QModbusDataUnit::HoldingRegisters,
-                             dowInit->plcMemoryAddress.other_signal,retVal);
-    QVariantList signalVals=backend->getSignalVals(dataUint);
-    ASSERT_EQ(signalVals[0],retVal_addDicemal[0]);
-    ASSERT_EQ(signalVals[1],retVal_addDicemal[1]);
-
-//    ASSERT_EQ(signalVals.size(),x_count*);
+//周期赋值，并显示到界面
+TEST_F(Test_realTimeCurve,emit_val_to_view){
+    backend->emit_val_to_view();
 }
+
+
 
 
 
