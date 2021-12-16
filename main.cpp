@@ -31,16 +31,16 @@ int main(int argc, char *argv[])
 
     //设置初始值
     DowInit *dowInit=new DowInit ();
-    dowInit->modbusSetting.portName="COM1";
+
     //实例化modbus
     MyModbus *myModbus=new MyModbus (*dowInit) ;
-
+    GetPlcVal *getPlcVal=new GetPlcVal(dowInit,myModbus);
     DowDataBase::openDB();
 //    DowDataBase::createTable();   //NOTE:打开后，会删除所有表格，并重新创建 //TODO1:
-    MainBackend mainBackend(dowInit,myModbus);
+    MainBackend mainBackend(dowInit,getPlcVal);
     RealTimeCurveBackend realTimeCurveBackend(dowInit,myModbus);
     SetParaBackend setParaBackend;
-    GetPlcVal getPlcVal(dowInit,myModbus);
+
 //    InfoListModel infoListModel;
 //TODO:初始化的参数，部分要从数据库读取
 //TODO:实时信息后期要添加到数据库

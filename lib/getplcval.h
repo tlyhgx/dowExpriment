@@ -11,12 +11,26 @@ class GetPlcVal : public QObject
     Q_OBJECT
 public:
     explicit GetPlcVal(DowInit *dowInit,MyModbus *mymodbus,QObject *parent = nullptr);
+
+
+//    void getTempSignalVals(QModbusDataUnit dataUnit);
+    static float parseInt2Float(int x_high,int x_low);
+    QVariantList getSignalVals() const;
+    QVariantList getTempSignalVals() const;
+
 public slots:
-   void askSignalVals();
+    void recieveReply(QModbusDataUnit dataUnit);
+    void askOtherSignalVals();
+    void askTempSignalVals();
 signals:
+   void otherSignalValChanged(QVariantList signalVals);
+   void tempSignalValChanged(QVariantList tempSignalVals);
 private:
-   DowInit *dowInit;
-   MyModbus *myModbus;
+
+   DowInit* dowInit;
+   MyModbus* myModbus;
+   QVariantList m_signalVals;
+   QVariantList m_tempSignalVals;
 };
 
 #endif // GETPLCVAL_H

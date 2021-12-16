@@ -85,5 +85,6 @@ TEST_F(TestMyModbus, cs7)
 }
 
 
+
 #endif // TEST_MYMODBUS_H
 

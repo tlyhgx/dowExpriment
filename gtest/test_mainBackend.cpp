@@ -27,11 +27,12 @@ public:
 
     DowInit *dowInit=new DowInit;
     MyModbus *myModbus=new MyModbus;
+    GetPlcVal *getPlcVal=new GetPlcVal(dowInit,myModbus);
     MainBackend *mainBackend;
 protected:
     void SetUp() {
 
-        mainBackend=new MainBackend(dowInit,myModbus);
+        mainBackend=new MainBackend(dowInit,getPlcVal);
 
     }
     void TearDown() {
@@ -44,53 +45,17 @@ protected:
 
 
 
-
-
-//调用modbus的读取功能，有私有变量modbus,关联
-TEST_F(TestBackend,2)
-{
-    MyModbus *myModbus=new MyModbus() ;
-    mainBackend->setMyModbus(myModbus);
-}
-//调用dowInit的初始数据，关联
-TEST_F(TestBackend,3)
-{
-    DowInit *dowInit=new DowInit ();
-    mainBackend->setDowInit(dowInit);
-}
-
-
-
-
-
 //获取传递给界面的值
-TEST_F(TestBackend,5)
-{
-    QVariantList signalVals;
+//TEST_F(TestBackend,5)
+//{
+//    QVariantList signalVals;
 
-    signalVals=mainBackend->retSignalVals();
+//    signalVals=mainBackend->retSignalVals();
 
-}
+//}
 
 
-//从PLC读取的信号量，分配给数组并输出
-//1.气体流量 2.气体压力 3.液体流量  4.转速  5~9.温度1  温度2。。。温度5
-TEST_F(TestBackend,6)
-{
-    QVector<quint16> retVal;
-    for(int i=0;i<dowInit->getSignalValsNum();i++)
-    {
-        retVal.append(i);
-    }
-    QModbusDataUnit dataUint(QModbusDataUnit::HoldingRegisters,
-                             dowInit->plcMemoryAddress.signal,retVal);
-    QVariantList signalVals=mainBackend->getSignalVals(dataUint);
-    ASSERT_EQ(signalVals[0],0);
-    ASSERT_EQ(signalVals[1],1);
 
-    ASSERT_EQ(signalVals[5],0.5);
-
-}
 //记录实验人员
 TEST_F(TestBackend,7)
 {
@@ -172,7 +137,7 @@ TEST_F(TestBackend,9){
 
     //有willRec决定是否记录数据
     //设置willRec为true；数据库数据会增加
-    mainBackend->setWillRec(true);
+//    mainBackend->setWillRec(true);
 
 
 

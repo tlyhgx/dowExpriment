@@ -47,12 +47,12 @@ QVariantList RealTimeCurveBackend::getSignalVals(QModbusDataUnit dataUnit)
     signalVals.clear();
     for(uint i=0;i<dataUnit.valueCount();i++)
     {
-        int decimalDigit=dowInit->signalVals[i]->getDecimalDigit();
+        int decimalDigit=dowInit->signalVals[i]->getDecimalDigit();  //TODO1:此处signalVals也要处理
         int val=dataUnit.values()[i];
         float res=(float)val*pow(0.1,decimalDigit);
         signalVals.append(res);
     }
-
+    //TODO1:MainBackend 把Modbus移除，这个类也要处理
 
     emit signalValChanged(signalVals);
     return signalVals;

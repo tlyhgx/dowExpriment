@@ -31,6 +31,7 @@ private:
 
     void modbusMessage(void);
     void modbusMessage(QString mess);
+
 signals:
     void modbusReadReady(QModbusDataUnit dataUnit);
 public:
@@ -48,6 +49,7 @@ public:
         int numberOfRetries = 3;
 
     };
+
 
 
 public:

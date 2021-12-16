@@ -1,6 +1,7 @@
 ﻿#include "mymodbus.h"
 
 #include <QModbusRtuSerialMaster>
+#include <QtMath>
 
 MyModbus::MyModbus()
 {
@@ -305,3 +306,8 @@ void MyModbus::modbusMessage(QString mess)
 {
     qDebug() << mess;
 }
+
+
+
+
+

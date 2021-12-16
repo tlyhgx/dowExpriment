@@ -70,11 +70,11 @@ TEST_F(Test_realTimeCurve,signalVals){
 
     getSignalVal();
     QModbusDataUnit dataUint(QModbusDataUnit::HoldingRegisters,
-                             dowInit->plcMemoryAddress.signal,retVal);
+                             dowInit->plcMemoryAddress.other_signal,retVal);
     QVariantList signalVals=backend->getSignalVals(dataUint);
     ASSERT_EQ(signalVals[0],retVal_addDicemal[0]);
     ASSERT_EQ(signalVals[1],retVal_addDicemal[1]);
-    ASSERT_EQ(signalVals[5],retVal_addDicemal[5]);
+
 //    ASSERT_EQ(signalVals.size(),x_count*);
 }
 

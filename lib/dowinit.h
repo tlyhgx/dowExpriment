@@ -16,7 +16,9 @@ public:
 public:
     QSqlDatabase db;
     struct PlcMemoryAddress{
-        int signal=4097;   //信号地址,M地址，PLC集中在一起另外配置
+        int base_address=4097;
+        int other_signal=base_address+0;   //信号地址,M地址，PLC集中在一起另外配置
+        int temp_signal=base_address+60;
 //        int signalNum=20;   //信号个数
     };
 
@@ -37,7 +39,17 @@ public:
      //信号数组的成员数，从最大偏移值获取
     int getSignalValsNum() ;
 
+    //温度信号组的成员数，从最大偏移值获取
+    int getTempSignalValsNum();
+
+    /** 除温度外的其它信号
+     * @brief signalVals
+     */
     QVector<Sensor*> signalVals;
+    /**温度信号组
+     * @brief tempSignalVals
+     */
+    QVector<Sensor*> tempSignalVals;
     void addSensor();
 
 

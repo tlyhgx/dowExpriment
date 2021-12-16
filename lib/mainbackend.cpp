@@ -4,16 +4,18 @@
 #include <QDateTime>
 #include <QTimer>
 #include <math.h>
+#include "getplcval.h"
 #include "signal_vals.h"
 #pragma execution_character_set("utf-8")
-MainBackend::MainBackend(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
+
+MainBackend::MainBackend(DowInit *dowInit, GetPlcVal *getPlcVal, QObject *parent)
 {
     this->dowInit=dowInit;
-    myModbus=mymodbus;
+    this->getPlcVal=getPlcVal;
 
 
-    connect(myModbus,&MyModbus::modbusReadReady,
-            this,&MainBackend::getSignalVals);
+    connect(getPlcVal,&GetPlcVal::otherSignalValChanged,this,&MainBackend::sendOtherSignalVals_to_view);
+    connect(getPlcVal,&GetPlcVal::tempSignalValChanged,this,&MainBackend::sendTempSignalVals_to_view);
     connect(this,&MainBackend::operNameChanged,this,&MainBackend::recordOperName_to_db);
     connect(this,&MainBackend::exprimentNameChanged,this,&MainBackend::recordExprimentName_to_db);
     connect(this,&MainBackend::makeInfo,this,&MainBackend::addInfoList);
@@ -26,29 +28,32 @@ MainBackend::MainBackend(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
 
 void  MainBackend::askSignalVals()
 {
-    myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
-                         dowInit->plcMemoryAddress.signal,dowInit->getSignalValsNum());
 
+    getPlcVal->askOtherSignalVals();
 }
 
-QVariantList MainBackend::retSignalVals()
-{
-    return signalVals;
-}
+//QVariantList MainBackend::retSignalVals()
+//{
+//    return signalVals;
+//}
 
-void MainBackend::setMyModbus(MyModbus *value)
-{
-    myModbus = value;
-}
 
-void MainBackend::setDowInit(DowInit *value)
-{
-    dowInit = value;
-}
+
+
 
 void MainBackend::setInfoListModel(InfoListModel &infoListModel)
 {
     m_infoListModel=&infoListModel;
+}
+
+void MainBackend::sendOtherSignalVals_to_view(QVariantList otherSignalVals)
+{
+    emit otherSignalValChanged(otherSignalVals);
+}
+
+void MainBackend::sendTempSignalVals_to_view(QVariantList tempSignalVals)
+{
+    emit tempSignalValChanged(tempSignalVals);
 }
 
 void MainBackend::addInfoList(QString info)
@@ -62,21 +67,21 @@ void MainBackend::addInfoList(QString info)
 
 
 
-QVariantList MainBackend::getSignalVals(QModbusDataUnit dataUnit)
-{
+//QVariantList MainBackend::getSignalVals(QModbusDataUnit dataUnit)
+//{
 
-    signalVals.clear();
-    for(uint i=0;i<dataUnit.valueCount();i++)
-    {
-        int decimalDigit=dowInit->signalVals[i]->getDecimalDigit();
-        int val=dataUnit.values()[i];
-        float res=(float)val*pow(0.1,decimalDigit);
-        signalVals.append(res);
-    }
+//    signalVals.clear();
+//    for(uint i=0;i<dataUnit.valueCount();i++)
+//    {
+//        int decimalDigit=dowInit->signalVals[i]->getDecimalDigit();
+//        int val=dataUnit.values()[i];
+//        float res=(float)val*pow(0.1,decimalDigit);
+//        signalVals.append(res);
+//    }
 
-    emit signalValChanged(signalVals);
-    return signalVals;
-}
+//    emit signalValChanged(signalVals);
+//    return signalVals;
+//}
 
 void MainBackend::recVal_to_db()
 {

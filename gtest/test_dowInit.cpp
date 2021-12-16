@@ -42,9 +42,9 @@ void TESTDowInit::TestBody()
 TEST_F(TESTDowInit,1)
 {
 
-//    ASSERT_EQ(dowInit->plcMemoryAddress.signal,4097);
-    dowInit->plcMemoryAddress.signal=1028;
-   ASSERT_EQ(dowInit->plcMemoryAddress.signal,1028);
+    //    ASSERT_EQ(dowInit->plcMemoryAddress.signal,4097);
+    dowInit->plcMemoryAddress.other_signal=1028;
+    ASSERT_EQ(dowInit->plcMemoryAddress.other_signal,1028);
 
 
 }
@@ -58,27 +58,35 @@ TEST_F(TESTDowInit,3)
 
 }
 
-//获取信号数
+//获取其它信号数
 TEST_F(TESTDowInit,signalValsNum)
 {
-    ASSERT_EQ(dowInit->getSignalValsNum(),9);
+    ASSERT_EQ(dowInit->getSignalValsNum(),4);
 
 }
 
-//添加信号组
+//获取温度信号数
+TEST_F(TESTDowInit,tempSignalValsNum){
+    ASSERT_EQ(dowInit->getTempSignalValsNum(),5);
+}
+//添加其它信号组
 TEST_F(TESTDowInit,signalVals)
 {
-      ASSERT_EQ(dowInit->signalVals[0]->getName(),"气体流量");
-    ASSERT_EQ(dowInit->signalVals.size(),9);
+    ASSERT_EQ(dowInit->signalVals[0]->getName(),"气体流量");
+    ASSERT_EQ(dowInit->signalVals.size(),4);
 }
-
-
+//添加温度信号组
+TEST_F(TESTDowInit,tempSignalVals)
+{
+    ASSERT_EQ(dowInit->tempSignalVals[0]->getName(),"1#温度");
+    ASSERT_EQ(dowInit->tempSignalVals.size(),5);
+}
 //操作数据库
 TEST_F(TESTDowInit,aboutdb){
-//    QSqlQuery query;
-//    bool res=query.exec("insert into alarm_para(id_alarm_para)"
-//                              " VALUES('2')");
-//    ASSERT_EQ(res,true);
+    //    QSqlQuery query;
+    //    bool res=query.exec("insert into alarm_para(id_alarm_para)"
+    //                              " VALUES('2')");
+    //    ASSERT_EQ(res,true);
 }
 ////设置信号读取周期
 //TEST_F(TESTDowInit,signalReadCycle)

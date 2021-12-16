@@ -7,24 +7,25 @@ void DowInit::addSensor()
 {
     //1.气体流量 2.气体压力 3.液体流量  4.转速  5~9.温度1  温度2。。。温度5
     Sensor *airFlow=new Sensor ("气体流量",0,0);
-    Sensor *ariPress=new Sensor ("气体压力",0,1);
-    Sensor *liquidFlow=new Sensor ("液体流量",0,2);
-    Sensor *rotateSpeed=new Sensor ("搅拌转速",0,3);
+    Sensor *ariPress=new Sensor ("气体压力",0,2);
+    Sensor *liquidFlow=new Sensor ("液体流量",0,4);
+    Sensor *rotateSpeed=new Sensor ("搅拌转速",0,6);
 
-    Sensor *tem1=new Sensor("1#温度",1,4);
-    Sensor *tem2=new Sensor ("2#温度",1,5);
-    Sensor *tem3=new Sensor ("3#温度",1,6);
-    Sensor *tem4=new Sensor ("4#温度",1,7);
-    Sensor *tem5=new Sensor ("5#温度",1,8);
+    Sensor *tem1=new Sensor("1#温度",1,0);
+    Sensor *tem2=new Sensor ("2#温度",1,1);
+    Sensor *tem3=new Sensor ("3#温度",1,2);
+    Sensor *tem4=new Sensor ("4#温度",1,3);
+    Sensor *tem5=new Sensor ("5#温度",1,4);
     signalVals.append(airFlow);
     signalVals.append(ariPress);
     signalVals.append(liquidFlow);
     signalVals.append(rotateSpeed);
-    signalVals.append(tem1);
-    signalVals.append(tem2);
-    signalVals.append(tem3);
-    signalVals.append(tem4);
-    signalVals.append(tem5);
+
+    tempSignalVals.append(tem1);
+    tempSignalVals.append(tem2);
+    tempSignalVals.append(tem3);
+    tempSignalVals.append(tem4);
+    tempSignalVals.append(tem5);
 }
 
 int DowInit::getSignalReadCycle() const
@@ -63,7 +64,7 @@ void DowInit::setRealTimeCurve_time_s(int value)
 
 DowInit::DowInit(QObject *parent) : QObject(parent)
 {
-    
+    modbusSetting.portName="COM1";
     addSensor();
     //读取周期单位（ms)
     signalReadCycle=1000;
@@ -92,5 +93,12 @@ int DowInit::getSignalValsNum()
 
     return signalVals.size();
 }
+
+int DowInit::getTempSignalValsNum()
+{
+    return tempSignalVals.size();
+}
+
+
 
 

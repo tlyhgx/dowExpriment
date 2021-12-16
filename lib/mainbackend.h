@@ -3,11 +3,12 @@
 
 #include <QObject>
 #include <QVariant>
-#include "mymodbus.h"
+//#include "mymodbus.h"
 #include "dowinit.h"
 #include "signal_vals.h"
 #include "experiment.h"
 #include "infolist.h"
+#include "getplcval.h"
 #pragma execution_character_set("utf-8")
 using namespace std;
 class MainBackend : public QObject
@@ -19,13 +20,12 @@ class MainBackend : public QObject
 //    Q_PROPERTY(InfoListModel infoListModel READ infoListModel WRITE setInfoListModel NOTIFY infoListModelChanged)
 public:
     explicit MainBackend(QObject *parent = nullptr);
-    MainBackend(DowInit *dowInit,MyModbus *mymodbus,QObject *parent = nullptr);
+    MainBackend(DowInit *dowInit,GetPlcVal *getPlcVal,QObject *parent = nullptr);
 
 public:
     Q_INVOKABLE void askSignalVals();
-    Q_INVOKABLE QVariantList retSignalVals();
-    void setMyModbus(MyModbus *myModbus);
-    void setDowInit(DowInit *value);
+//    Q_INVOKABLE QVariantList retSignalVals();
+
     void setInfoListModel(InfoListModel& infoListModel);
 
 
@@ -46,7 +46,9 @@ public:
     }
 
 public slots:
-    QVariantList getSignalVals(QModbusDataUnit dataUnit);
+    void sendOtherSignalVals_to_view(QVariantList otherSignalVals);
+    void sendTempSignalVals_to_view(QVariantList tempSignalVals);
+//    QVariantList getSignalVals(QModbusDataUnit dataUnit);
     void addInfoList(QString info);
 //    void recInfo_to_db(QString info);
     void recVal_to_db();
@@ -86,11 +88,9 @@ public slots:
     }
 
 signals:
-    ///通知界面，有数据变化
-    /// \brief signalValChanged
-    /// \param signalVals
-    ///
-    void signalValChanged(QVariantList signalVals);
+
+    void tempSignalValChanged(QVariantList tempSignalVals);
+    void otherSignalValChanged(QVariantList otherSignalVals);
 
     void operNameChanged(QString operName);
 
@@ -100,7 +100,7 @@ signals:
 
     void makeInfo(QString info);
 private:
-    MyModbus* myModbus;
+    GetPlcVal *getPlcVal;
     DowInit* dowInit;
     QTimer *timer;
     QVariantList signalVals;
