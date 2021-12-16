@@ -44,3 +44,17 @@ void SysPara::setRealTimeCureve_flashcycle_s_to_db(int realTimeCurve_flashcycle_
     QSqlQuery query;
     query.exec(QString("update sys_para set realTimeCurve_flashcycle_s ='%1' ").arg(realTimeCurve_flashcycle_s));
 }
+
+int SysPara::getRealTimeCurve_time_s_from_db()
+{
+    QSqlQuery query;
+    query.exec("select realTimeCurve_time_s from sys_para");
+    query.next();
+    return query.value(0).toInt();
+}
+
+void SysPara::setRealTimeCurve_time_s_to_db(int realTimeCurve_time_s)
+{
+    QSqlQuery query;
+    query.exec(QString("update sys_para set realTimeCurve_time_s ='%1' ").arg(realTimeCurve_time_s));
+}

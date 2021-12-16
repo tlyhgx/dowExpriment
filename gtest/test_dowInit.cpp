@@ -93,6 +93,20 @@ TEST_F(TESTDowInit,flash){
     dowInit->setFlashRealTimeCurve_s(3);
     ASSERT_EQ(dowInit->getFlashRealTimeCurve_s(),3);
 }
+//实时曲线的个数
+TEST_F(TESTDowInit,curve_x_count){
+    dowInit->setRealTimeCurve_time_s(600);
+    dowInit->setFlashRealTimeCurve_s(2);
+    ASSERT_EQ(dowInit->getRealTimeCurve_x_count(),300);
+    dowInit->setRealTimeCurve_time_s(430);
+    dowInit->setFlashRealTimeCurve_s(1);
+    ASSERT_EQ(dowInit->getRealTimeCurve_x_count(),430);
+}
+//实时曲线的时长
+TEST_F(TESTDowInit,realTimeCurve_time){
+    dowInit->setRealTimeCurve_time_s(650);
+    ASSERT_EQ(dowInit->getRealTimeCurve_time_s(),650);
+}
 ////设置信号读取周期
 //TEST_F(TESTDowInit,signalReadCycle)
 //{

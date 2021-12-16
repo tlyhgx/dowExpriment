@@ -75,14 +75,24 @@ TEST(Test_sysPara,1){
     int realTimeCurve_flashcycle_s=sysPara.getRealTimeCureve_flashcycle_s_from_db();
     ASSERT_EQ(realTimeCurve_flashcycle_s,1);
 
-    //记录周期 更新参数到数据库--从数据库读取--比对
+    //刷新周期 更新参数到数据库--从数据库读取--比对
     realTimeCurve_flashcycle_s=2;
     sysPara.setRealTimeCureve_flashcycle_s_to_db(realTimeCurve_flashcycle_s);
     ret=sysPara.getRealTimeCureve_flashcycle_s_from_db();
     ASSERT_EQ(ret,2);
 
+    //实时曲线显示时长 默认值是900s
+    query.exec("select realTimeCurve_time_s from sys_para");
+    query.next();
+    int realTimeCurve_time_s=sysPara.getRealTimeCurve_time_s_from_db();
+    ASSERT_EQ(realTimeCurve_time_s,900);
 
 
+    //显示时长 更新参数到数据库--从数据库读取--比对
+    realTimeCurve_time_s=800;
+    sysPara.setRealTimeCurve_time_s_to_db(realTimeCurve_time_s);
+    ret=sysPara.getRealTimeCurve_time_s_from_db();
+    ASSERT_EQ(ret,800);
 
 
 

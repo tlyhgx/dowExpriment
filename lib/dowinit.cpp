@@ -35,7 +35,7 @@ int DowInit::getSignalReadCycle() const
 
 int DowInit::getRealTimeCurve_x_count() const
 {
-    return realTimeCurve_time_s*1000/signalReadCycle;  //TODO1:12   此处要改成与显示周期相关
+    return realTimeCurve_time_s/flashRealTimeCurve_s;
 
 }
 
@@ -54,11 +54,16 @@ void DowInit::setSignalReadCycle(int value)
 
 int DowInit::getRealTimeCurve_time_s() const
 {
-    return realTimeCurve_time_s;
+    SysPara syspara;
+    return syspara.getRealTimeCurve_time_s_from_db();
+
 }
 
 void DowInit::setRealTimeCurve_time_s(int value)
 {
+    SysPara syspara;
+    syspara.setRealTimeCurve_time_s_to_db(value);
+
     realTimeCurve_time_s = value;
 }
 
@@ -72,7 +77,7 @@ void DowInit::setFlashRealTimeCurve_s(int value)
 {
     SysPara syspara;
     syspara.setRealTimeCureve_flashcycle_s_to_db(value);
-//    flashRealTimeCurve_s = value;
+    flashRealTimeCurve_s = value;
 }
 
 DowInit::DowInit(QObject *parent) : QObject(parent)
@@ -82,7 +87,9 @@ DowInit::DowInit(QObject *parent) : QObject(parent)
     //读取周期单位（ms)
     signalReadCycle=1000;
     //实时曲线显示时长（s)
-    realTimeCurve_time_s=600;
+    realTimeCurve_time_s=getRealTimeCurve_time_s();
+    //实时曲线刷新时间(s)
+    flashRealTimeCurve_s=getFlashRealTimeCurve_s();
 
 
 
