@@ -14,7 +14,7 @@ GetPlcVal::GetPlcVal(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
     QTimer *timer500=new QTimer;
     connect(timer500,&QTimer::timeout,this,&GetPlcVal::askOtherSignalVals);
     connect(timer500,&QTimer::timeout,this,&GetPlcVal::askTempSignalVals);
-    timer500->start(dowInit->getRecordCycle_ms());
+    timer500->start(dowInit->getAskPlc_cycle_ms());
 }
 
 void GetPlcVal::recieveReply(QModbusDataUnit dataUnit)

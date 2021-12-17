@@ -58,3 +58,17 @@ void SysPara::setRealTimeCurve_time_s_to_db(int realTimeCurve_time_s)
     QSqlQuery query;
     query.exec(QString("update sys_para set realTimeCurve_time_s ='%1' ").arg(realTimeCurve_time_s));
 }
+
+int SysPara::getAskPlc_cycle_ms_from_db()
+{
+    QSqlQuery query;
+    query.exec("select askPlc_cycle_ms from sys_para");
+    query.next();
+    return query.value(0).toInt();
+}
+
+void SysPara::setAskPlc_cycle_ms_to_db(int askPlc_cycle_ms)
+{
+    QSqlQuery query;
+    query.exec(QString("update sys_para set askPlc_cycle_ms ='%1' ").arg(askPlc_cycle_ms));
+}

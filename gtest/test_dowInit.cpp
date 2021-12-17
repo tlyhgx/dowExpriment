@@ -110,8 +110,15 @@ TEST_F(TESTDowInit,realTimeCurve_time){
 //设置信号读取周期
 TEST_F(TESTDowInit,signalReadCycle)
 
-{   dowInit->setRecordCycle_ms(600);
-    ASSERT_EQ(dowInit->getRecordCycle_ms(),600) ;
+{   dowInit->setAskPlc_cycle_ms(600);
+    ASSERT_EQ(dowInit->getAskPlc_cycle_ms(),600) ;
+}
+
+//设置信号记录周期
+TEST_F(TESTDowInit,record_cycle_s)
+
+{   dowInit->setRecord_cycle_s(6);
+    ASSERT_EQ(dowInit->getRecord_cycle_s(),6) ;
 }
 
 

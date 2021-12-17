@@ -37,7 +37,7 @@ find_package(Qt5Sql)
 
 add_subdirectory(lib)
 include_directories(lib)
-add_subdirectory(gtest)
+#add_subdirectory(gtest)
 
 
 

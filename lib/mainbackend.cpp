@@ -22,7 +22,7 @@ MainBackend::MainBackend(DowInit *dowInit, GetPlcVal *getPlcVal, QObject *parent
 
     timer=new QTimer;
     connect(timer,&QTimer::timeout,this,&MainBackend::recVal_to_db);
-    timer->start(dowInit->getRecordCycle_ms()*1000);
+    timer->start(dowInit->getRecord_cycle_s());
 
 }
 
@@ -32,10 +32,7 @@ void  MainBackend::askSignalVals()
     getPlcVal->askOtherSignalVals();
 }
 
-//QVariantList MainBackend::retSignalVals()
-//{
-//    return signalVals;
-//}
+
 
 
 
@@ -67,21 +64,7 @@ void MainBackend::addInfoList(QString info)
 
 
 
-//QVariantList MainBackend::getSignalVals(QModbusDataUnit dataUnit)
-//{
 
-//    signalVals.clear();
-//    for(uint i=0;i<dataUnit.valueCount();i++)
-//    {
-//        int decimalDigit=dowInit->signalVals[i]->getDecimalDigit();
-//        int val=dataUnit.values()[i];
-//        float res=(float)val*pow(0.1,decimalDigit);
-//        signalVals.append(res);
-//    }
-
-//    emit signalValChanged(signalVals);
-//    return signalVals;
-//}
 
 void MainBackend::recVal_to_db()
 {

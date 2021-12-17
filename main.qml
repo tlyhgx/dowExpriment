@@ -220,7 +220,7 @@ Window {
             workUI.velocityOfFlowVal=signalVals[0].toFixed(1)
             workUI.velocityOfAirVal=signalVals[1].toFixed(1)
             workUI.airPressVal=signalVals[2].toFixed(1)
-            workUI.rotationSpeedVal=signalVals[3]
+            workUI.rotationSpeedVal=signalVals[3].toFixed(1)
 
         }
         function onTempSignalValChanged(tempSignalVals){

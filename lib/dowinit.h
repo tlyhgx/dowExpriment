@@ -75,8 +75,13 @@ public:
 
 
 
-    int getRecordCycle_ms() const;
-    void setRecordCycle_ms(int value);
+
+
+    int getAskPlc_cycle_ms() const;
+    void setAskPlc_cycle_ms(int value);
+
+    int getRecord_cycle_s() const;
+    void setRecord_cycle_s(int value);
 
 signals:
 
@@ -84,8 +89,8 @@ private:
 
     int signalValsNum;
     //信号读取周期（ms）
-    int recordCycle_ms;
 
+    int record_cycle_s;
     //实时曲线的x轴个数
     int realTimeCurve_x_count;
 
@@ -94,6 +99,9 @@ private:
 
     //实时曲线刷新周期
     int flashRealTimeCurve_s;
+
+    //实时采样周期（ms）
+    int askPlc_cycle_ms;
 
 
 };

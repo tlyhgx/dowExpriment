@@ -11,9 +11,6 @@ class GetPlcVal : public QObject
     Q_OBJECT
 public:
     explicit GetPlcVal(DowInit *dowInit,MyModbus *mymodbus,QObject *parent = nullptr);
-
-
-//    void getTempSignalVals(QModbusDataUnit dataUnit);
     static float parseInt2Float(int x_high,int x_low);
     QVariantList getSignalVals() const;
     QVariantList getTempSignalVals() const;

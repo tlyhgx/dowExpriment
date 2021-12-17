@@ -94,6 +94,18 @@ TEST(Test_sysPara,1){
     ret=sysPara.getRealTimeCurve_time_s_from_db();
     ASSERT_EQ(ret,800);
 
+    //实时采样周期 默认值是500ms
+    query.exec("select askPlc_cycle_ms from sys_para");
+    query.next();
+    int askPlc_cycle_ms=sysPara.getAskPlc_cycle_ms_from_db();
+    ASSERT_EQ(askPlc_cycle_ms,500);
+
+    //采样周期 更新参数到数据库--从数据库读取--比对
+    askPlc_cycle_ms=800;
+    sysPara.setAskPlc_cycle_ms_to_db(askPlc_cycle_ms);
+    ret=sysPara.getAskPlc_cycle_ms_from_db();
+    ASSERT_EQ(ret,800);
+
 
 
 }
