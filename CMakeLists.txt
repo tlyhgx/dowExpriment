@@ -37,7 +37,7 @@ find_package(Qt5Sql)
 
 add_subdirectory(lib)
 include_directories(lib)
-#add_subdirectory(gtest)
+add_subdirectory(gtest)
 
 
 
@@ -48,13 +48,10 @@ set(PROJECT_SOURCES
         main.cpp
         qml.qrc
 
-        sortfilterproxymodel.cpp
-        sortfilterproxymodel.h
-        easytablemodel.h
-        easytablemodel.cpp
+
         todos.cpp
 
-
+        dow.mdj
 
 #        ${TS_FILES}
 )

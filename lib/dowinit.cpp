@@ -69,6 +69,11 @@ void DowInit::setFlashRealTimeCurve_s(int value)
     flashRealTimeCurve_s = value;
 }
 
+QList<Para_with_plc> DowInit::getPara_with_plc()
+{
+    return paras;
+}
+
 
 
 
@@ -104,10 +109,21 @@ void DowInit::setRecord_cycle_s(int value)
 
 
 
-DowInit::DowInit(QObject *parent) : QObject(parent)
+void DowInit::addPara_with_plc()
 {
-    modbusSetting.portName="COM1";
-    addSensor();
+    Para_with_plc temp1_alarm_high("1#温度高位报警",TreatmentMethod::x10,110);
+    Para_with_plc temp2_alarm_high("2#温度高位报警",TreatmentMethod::x10,110);
+    Para_with_plc temp1_increase_alarm("1#温度快速升温",TreatmentMethod::none,5);
+    Para_with_plc temp_fallback("温度回差",TreatmentMethod::none,5);
+    Para_with_plc air_flow_alarm_low("气体流量",TreatmentMethod::to_float,5);
+    Para_with_plc liquid_flow_alarm_low("液体流量",TreatmentMethod::to_float,5);
+    Para_with_plc rotate_speed_alarm_low("转速",TreatmentMethod::to_float,10);
+    Para_with_plc air_press_alarm_high("气体压力",TreatmentMethod::to_float,10);
+    paras<<temp1_alarm_high<<temp2_alarm_high<<temp1_increase_alarm<<temp_fallback<<air_flow_alarm_low<<liquid_flow_alarm_low<<rotate_speed_alarm_low<<air_press_alarm_high;
+}
+
+void DowInit::getPara()
+{
     //读取周期单位（ms)
     askPlc_cycle_ms=getAskPlc_cycle_ms();
     //记录周期s
@@ -116,8 +132,16 @@ DowInit::DowInit(QObject *parent) : QObject(parent)
     realTimeCurve_time_s=getRealTimeCurve_time_s();
     //实时曲线刷新时间(s)
     flashRealTimeCurve_s=getFlashRealTimeCurve_s();
+}
 
+DowInit::DowInit(QObject *parent) : QObject(parent)
+{
+    modbusSetting.portName="COM1";
+    addSensor();
 
+    getPara();
+
+    addPara_with_plc();
 
     if(!db.isOpen())
     {

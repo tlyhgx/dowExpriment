@@ -39,20 +39,6 @@ private:
     string name;
     int offsetAddress;
 };
-//class TemperatureSensor:public Sensor{
 
-//};
-//class LiquidFlowSpeed:public Sensor{
-
-//};
-//class AirFlowSpeed:public Sensor{
-
-//};
-//class AirPressure:public Sensor{
-
-//};
-//class RotationalSpeed:public Sensor{
-
-//};
 
 #endif //HWWMC_SENSOR_H

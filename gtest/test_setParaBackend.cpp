@@ -10,6 +10,7 @@
 class Test_setParaBackend:public ::testing::Test{
 public:
     SetParaBackend setParaBackend;
+    SysPara sysPara;
 
     // Test interface
 protected:
@@ -50,9 +51,16 @@ TEST_F(Test_setParaBackend,2){
     ret=sysPara.getRecordRecycle_s_from_db();
     ASSERT_EQ(ret,recordCycle_s);
 }
+////参数设置界面要从PLC读取参数———温度1高位报警
+//TEST_F(Test_setParaBackend,readFromPlc)
+//{
+//    int tem1_alam_para_with_plc=120;
+//    sysPara.setTem1_alam_para_with_plc(tem1_alam_para_with_plc);
+//    int ret=sysPara.getTem1_alam_para_with_plc();
+//    ASSERT_EQ(tem1_alam_para_with_plc,ret/10);
+//}
 
-
-//TODO:数据记录周期，假如为空，或大于3000s,默认改为5S
+//TODO:数据记录周期，假如小于1s，或大于3000s,默认改为5S
 
 
 #endif

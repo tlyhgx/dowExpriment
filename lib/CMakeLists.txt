@@ -58,6 +58,9 @@ add_library(lib
 
   infolist.cpp
   infolist.h
+
+  para_with_plc.cpp
+  para_with_plc.h
 )
 
 target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  Qt${QT_VERSION_MAJOR}::Sql )

@@ -6,6 +6,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 #include <QSqlQuery>
+#include <para_with_plc.h>
 using namespace testing;
 #include "dowinit.h"
 #pragma execution_character_set("utf-8")
@@ -120,6 +121,12 @@ TEST_F(TESTDowInit,record_cycle_s)
 {   dowInit->setRecord_cycle_s(6);
     ASSERT_EQ(dowInit->getRecord_cycle_s(),6) ;
 }
+//添加plc内参数组
+TEST_F(TESTDowInit,para_with_plc)
+{
 
+    QList<Para_with_plc>paras=dowInit->getPara_with_plc();
+    ASSERT_EQ(paras.size(),8);
 
+}
 #endif // TEST_DOWINIT_H

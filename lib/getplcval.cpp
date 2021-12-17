@@ -47,6 +47,35 @@ void GetPlcVal::recieveReply(QModbusDataUnit dataUnit)
         emit tempSignalValChanged(tempSignalVals);
         m_tempSignalVals=tempSignalVals;
     }
+    else if(dataUnit.startAddress()==dowInit->plcMemoryAddress.para_to_plc){
+        QVariantList paraVals;
+        int x_high,x_low;
+        float res_parse;
+        for(uint i=0;i<(dataUnit.valueCount());i++)
+        {
+
+            if(i>=0 && i<=3){
+                if(i%2==0){
+                    paraVals<<dataUnit.values()[i]*0.1;
+                }
+            }else if(i>3 && i<8){
+                if(i%2==0){
+                    paraVals<<dataUnit.values()[i];
+                }
+            }else if(i>=8 &&i<=15)
+            {
+                if(i%2==0){
+                    x_high=dataUnit.values()[i+1];
+                    x_low=dataUnit.values()[i];
+                    res_parse=parseInt2Float(x_high,x_low);
+                    paraVals<<res_parse;
+                }
+            }
+
+        }
+        emit paraValsChanged(paraVals);
+        m_paraVals=paraVals;
+    }
 
 }
 
@@ -73,6 +102,28 @@ QVariantList GetPlcVal::getTempSignalVals() const
 {
     return m_tempSignalVals;
 }
+
+void GetPlcVal::setPara_to_plc(int startAddress, QList<Para_with_plc> paras)
+{
+    QVector<quint16>data;
+    for(int i=0;i<paras.size();i++)
+    {
+        data<<paras[i].getResVal_DWORD()[0]<<paras[i].getResVal_DWORD()[1];
+    }
+    myModbus->modbusWrite_twoBytes(1,QModbusDataUnit::HoldingRegisters,startAddress,
+                                   paras.size(),data);
+}
+
+
+
+void GetPlcVal::askPara_from_plc(int startAddress, QList<Para_with_plc> paras)
+{
+    myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
+                         dowInit->plcMemoryAddress.para_to_plc,paras.size()*2);
+
+}
+
+
 
 /**ModbusRTU格式的2个32位整数转浮点数，高位为x1,低位为x2
   * @brief MyModbus::parseInt2Float
@@ -111,5 +162,33 @@ float GetPlcVal:: parseInt2Float(int x1, int x2) {
     value = (float)qPow(-1, f) * (float)qPow(2, exponent - 127) * (weishu + 1);
 
     return value;
+
+}
+///把浮点数转换为2个word
+/// \brief GetPlcVal::parseFloat2Int
+/// \param input_float
+/// \return
+///https://blog.csdn.net/qq_45086135/article/details/120099693
+vector<int16_t> GetPlcVal::parseFloat2Int(float input_float)
+{
+
+    vector<int16_t> res_dword;
+    /*拆分 */
+    int16_t *pa1=(int16_t *)(&input_float);
+    int16_t *pa2=pa1+1;
+
+    //    //定义一个同类型对象，用来接收组合后的结果
+    //    float b=0.0;
+    //    int16_t *pb1=(int16_t *)(&b);
+    //    int16_t *pb2=pb1+1;
+
+    //    //组合
+    //    *pb1=*pa1;
+    //    *pb2=*pa2;
+
+
+    res_dword.push_back(*pa1);
+    res_dword.push_back(*pa2);
+    return res_dword;
 
 }

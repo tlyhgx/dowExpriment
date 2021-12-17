@@ -1,6 +1,7 @@
 ﻿#ifndef DOWINIT_H
 #define DOWINIT_H
 
+#include <Para_with_plc.h>
 #include <QObject>
 #include <QSerialPort>
 #include <QSqlDatabase>
@@ -75,6 +76,8 @@ public:
     int getFlashRealTimeCurve_s() const;
     void setFlashRealTimeCurve_s(int value);
 
+    QList<Para_with_plc> getPara_with_plc();
+
 
 
 
@@ -105,7 +108,11 @@ private:
     //实时采样周期（ms）
     int askPlc_cycle_ms;
 
+    QList<Para_with_plc> paras;
 
+    void addPara_with_plc();
+
+    void getPara();
 };
 
 #endif // DOWINIT_H

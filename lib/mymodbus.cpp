@@ -207,13 +207,7 @@ void MyModbus::modbusWrite_twoBytes(int serverAddress, QModbusDataUnit::Register
 
     for(uint i = 0; i < dataunit.valueCount(); i++)
     {
-        if(i%2==0){
-            dataunit.setValue( i,  data.at(i/2));
-        }
-        else{
-            dataunit.setValue( i,  0);
-        }
-
+        dataunit.setValue(i,data.at(i));
     }
 
     if(auto *reply = modbusDevice->sendWriteRequest(dataunit,  serverAddress))

@@ -4,7 +4,9 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
+#include <para_with_plc.h>
 #include "getplcval.h"
+//#include <synchapi.h>
 using namespace testing;
 
 class Test_getPLCval:public ::testing::Test{
@@ -38,7 +40,15 @@ TEST_F(Test_getPLCval,changt_to_float)
     ASSERT_TRUE(0.0f<res&&res<1.0f);
 //    ASSERT_EQ(res,0.000953496);
 }
+//浮点数 转 2个字
+TEST_F(Test_getPLCval,float_to_dword)
+{
+    float a=1.234;
+    vector<int16_t> res_dword=GetPlcVal::parseFloat2Int(a);
+    float res=GetPlcVal::parseInt2Float(res_dword[1],res_dword[0]);
+    ASSERT_EQ(int(a*100)/100,int(res*100)/100);
 
+}
 //把其它地方的采集信号放到getPlcval类中
 //处理其它信号
 TEST_F(Test_getPLCval,getSignalVals){
@@ -83,5 +93,26 @@ TEST_F(Test_getPLCval,getTempSignalVals){
     ASSERT_EQ(int(getPlcVal->getTempSignalVals()[0].toFloat()*10),retVal[0]);
 
 }
+
+//读写温度1高位报警参数_PLC
+TEST_F(Test_getPLCval,set_para_to_plc)
+{
+    //从指定位置设置数据，然后读取，做比对
+    //实例化参数--成组--设置到PLC--读取--取值与原组中参数对比
+    Para_with_plc paraTemp1("温度1高位报警",TreatmentMethod::x10,110);
+//    Para_with_plc paraTemp2("温度2高位报警",TreatmentMethod::x10,70);
+//    Para_with_plc paraLiquidFlow("流量",TreatmentMethod::to_float,33.5);
+    QList<Para_with_plc> paras;
+    paras<<paraTemp1;
+    //    paras<<paraTemp1<<paraTemp2<<paraLiquidFlow;
+    getPlcVal->setPara_to_plc(dowInit.plcMemoryAddress.para_to_plc,paras);
+    getPlcVal->askPara_from_plc(dowInit.plcMemoryAddress.para_to_plc,paras);
+//    _sleep(500);
+
+//    ASSERT_EQ(ret[5].toFloat(),5.0f);
+}
+
+
+
 
 #endif // TEST_GETPLCVAL_H

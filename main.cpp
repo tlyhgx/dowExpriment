@@ -1,9 +1,9 @@
-﻿#include "easytablemodel.h"
+﻿
 #include "mainbackend.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <sortfilterproxymodel.h>
+
 #include <QQmlContext>
 #include <mymodbus.h>
 #include <QtCore>

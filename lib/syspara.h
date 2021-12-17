@@ -16,7 +16,11 @@ public:
     void setRealTimeCurve_time_s_to_db(int realTimeCurve_time_s);
     int getAskPlc_cycle_ms_from_db();
     void setAskPlc_cycle_ms_to_db(int askPlc_cycle_ms);
+
+
 signals:
+
+private:
 
 };
 

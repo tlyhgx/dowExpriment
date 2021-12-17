@@ -72,3 +72,5 @@ void SysPara::setAskPlc_cycle_ms_to_db(int askPlc_cycle_ms)
     QSqlQuery query;
     query.exec(QString("update sys_para set askPlc_cycle_ms ='%1' ").arg(askPlc_cycle_ms));
 }
+
+
