@@ -227,61 +227,61 @@ Window {
 
 
     }
-//    Connections{
-//        target: realTimeCurveBackend
-//        function onSignalValChanged(signalVals){
-//            //创建时间数组，长度根据指定时长除以采集周期,去头加尾
-//            //数量=实时显示时长/采集周期;
-//            //通过个数属性传递
+    Connections{
+        target: realTimeCurveBackend
+        function onSignalValChanged(signalVals){
+            //创建时间数组，长度根据指定时长除以采集周期,去头加尾
+            //数量=实时显示时长/采集周期;
+            //通过个数属性传递
 
-//            var curd=toMsecsSinceEpoch(new Date())
-//            timeScope()
-//            if(locate>=realTimeCurveBackend.x_count){
-//                if(locate>realTimeCurveBackend.count){
-//                    airFlowSeries.slice(-realTimeCurveBackend.x_count,-1)
-//                    airPressSeries.slice(-realTimeCurveBackend.x_count,-1)
-//                    liquidFlowSeries.slice(-realTimeCurveBackend.x_count,-1)
-//                    rotateSpeedSeries.slice(-realTimeCurveBackend.x_count,-1)
-//                    tempSeries.slice(-realTimeCurveBackend.x_count,-1)
-//                    temp2Series.slice(-realTimeCurveBackend.x_count,-1)
-//                    temp3Series.slice(-realTimeCurveBackend.x_count,-1)
-//                    temp4Series.slice(-realTimeCurveBackend.x_count,-1)
-//                    temp5Series.slice(-realTimeCurveBackend.x_count,-1)
-//                    locate=realTimeCurveBackend.x_count
-//                }
-//                airFlowSeries.remove(0)
-//                airPressSeries.remove(0)
-//                liquidFlowSeries.remove(0)
-//                rotateSpeedSeries.remove(0)
-//                tempSeries.remove(0)
-//                temp2Series.remove(0)
-//                temp3Series.remove(0)
-//                temp4Series.remove(0)
-//                temp5Series.remove(0)
-//                airFlowSeries.append(curd,signalVals[0] )
-//                airPressSeries.append(curd,signalVals[1] )
-//                liquidFlowSeries.append(curd,signalVals[2] )
-//                rotateSpeedSeries.append(curd,signalVals[3] )
-//                tempSeries.append(curd,signalVals[4] )
-//                temp2Series.append(curd,signalVals[5] )
-//                temp3Series.append(curd,signalVals[6] )
-//                temp4Series.append(curd,signalVals[7] )
-//                temp5Series.append(curd,signalVals[8] )
-//            }else{
+            var curd=toMsecsSinceEpoch(new Date())
+            timeScope()
+            if(locate>=realTimeCurveBackend.x_count){
+                if(locate>realTimeCurveBackend.count){
+                    airFlowSeries.slice(-realTimeCurveBackend.x_count,-1)
+                    airPressSeries.slice(-realTimeCurveBackend.x_count,-1)
+                    liquidFlowSeries.slice(-realTimeCurveBackend.x_count,-1)
+                    rotateSpeedSeries.slice(-realTimeCurveBackend.x_count,-1)
+                    tempSeries.slice(-realTimeCurveBackend.x_count,-1)
+                    temp2Series.slice(-realTimeCurveBackend.x_count,-1)
+                    temp3Series.slice(-realTimeCurveBackend.x_count,-1)
+                    temp4Series.slice(-realTimeCurveBackend.x_count,-1)
+                    temp5Series.slice(-realTimeCurveBackend.x_count,-1)
+                    locate=realTimeCurveBackend.x_count
+                }
+                airFlowSeries.remove(0)
+                airPressSeries.remove(0)
+                liquidFlowSeries.remove(0)
+                rotateSpeedSeries.remove(0)
+                tempSeries.remove(0)
+                temp2Series.remove(0)
+                temp3Series.remove(0)
+                temp4Series.remove(0)
+                temp5Series.remove(0)
+                airFlowSeries.append(curd,signalVals[0] )
+                airPressSeries.append(curd,signalVals[1] )
+                liquidFlowSeries.append(curd,signalVals[2] )
+                rotateSpeedSeries.append(curd,signalVals[3] )
+                tempSeries.append(curd,signalVals[4] )
+                temp2Series.append(curd,signalVals[5] )
+                temp3Series.append(curd,signalVals[6] )
+                temp4Series.append(curd,signalVals[7] )
+                temp5Series.append(curd,signalVals[8] )
+            }else{
 
-//                airFlowSeries.append(curd,signalVals[0])
-//                airPressSeries.append(curd,signalVals[1])
-//                liquidFlowSeries.append(curd,signalVals[2])
-//                rotateSpeedSeries.append(curd,signalVals[3])
-//                tempSeries.append(curd,signalVals[4] )
-//                temp2Series.append(curd,signalVals[5] )
-//                temp3Series.append(curd,signalVals[6] )
-//                temp4Series.append(curd,signalVals[7] )
-//                temp5Series.append(curd,signalVals[8] )
+                airFlowSeries.append(curd,signalVals[0])
+                airPressSeries.append(curd,signalVals[1])
+                liquidFlowSeries.append(curd,signalVals[2])
+                rotateSpeedSeries.append(curd,signalVals[3])
+                tempSeries.append(curd,signalVals[4] )
+                temp2Series.append(curd,signalVals[5] )
+                temp3Series.append(curd,signalVals[6] )
+                temp4Series.append(curd,signalVals[7] )
+                temp5Series.append(curd,signalVals[8] )
 
-//                locate=locate+1;
-//            }
+                locate=locate+1;
+            }
 
-//        }
-//    }
+        }
+    }
 }

@@ -21,15 +21,7 @@ bool DowDataBase::openDB()
         db.setPassword("cjkj5215");     //设置密码
         db.open();
     }
-//    if(!db.isOpen())
-//    {
-//        db=QSqlDatabase::addDatabase("QSQLITE");
-//        db.setHostName("localhost");      //设置数据库主机名
-//        db.setDatabaseName("dow_experiment_data.db");  //设置数据库名称
-//        db.setUserName("cjkj");         //设置用户名
-//        db.setPassword("cjkj5215");     //设置密码
-//        db.open();
-//    }
+
     if(!db.isOpen()){
 
         return false;

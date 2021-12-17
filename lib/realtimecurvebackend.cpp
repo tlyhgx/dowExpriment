@@ -24,9 +24,21 @@ int RealTimeCurveBackend::x_count()
 
 void RealTimeCurveBackend::emit_val_to_view()
 {
-    QVariantList signalVals;
-    signalVals<<getPlcVal->getSignalVals();
-    signalVals<<getPlcVal->getTempSignalVals();
-    emit signalValChanged(signalVals);
+    otherSignalVals=getPlcVal->getSignalVals();
+    tempSignalVals=getPlcVal->getTempSignalVals();
+    signalVals.clear();
+    for(int i=0;i<otherSignalVals.size();i++)
+    {
+        signalVals<<otherSignalVals[i].toFloat();
+    }
+    for(int i=0;i<tempSignalVals.size();i++)
+    {
+        signalVals<<tempSignalVals[i].toFloat();
+    }
+
+    if(signalVals.size()>0){
+        emit signalValChanged(signalVals);
+    }
+
 
 }

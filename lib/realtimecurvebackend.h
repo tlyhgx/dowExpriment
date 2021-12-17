@@ -30,6 +30,9 @@ private:
     DowInit* dowInit;
     GetPlcVal *getPlcVal;
     QTimer *timer_realTimeCurve;
+    QVariantList signalVals;
+    QVariantList otherSignalVals;
+    QVariantList tempSignalVals;
 
 };
 

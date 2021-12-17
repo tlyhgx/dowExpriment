@@ -22,7 +22,7 @@ MainBackend::MainBackend(DowInit *dowInit, GetPlcVal *getPlcVal, QObject *parent
 
     timer=new QTimer;
     connect(timer,&QTimer::timeout,this,&MainBackend::recVal_to_db);
-    timer->start(dowInit->getRecord_cycle_s());
+    timer->start(dowInit->getRecord_cycle_s()*1000);
 
 }
 
@@ -69,13 +69,20 @@ void MainBackend::addInfoList(QString info)
 void MainBackend::recVal_to_db()
 {
 
-
+    //TODO1:
     if(m_willRec){
 
-        for(int i=0;i<signalVals.size();i++)
+        otherSignalVals=getPlcVal->getSignalVals();
+        tempSignalVals=getPlcVal->getTempSignalVals();
+        for(int i=0;i<otherSignalVals.size();i++)
         {
-            signal_vals.add_val_to_db(signalVals[i].toFloat(),QString::fromStdString(dowInit->signalVals[i]->getName()),id_experiment);
+            signal_vals.add_val_to_db(otherSignalVals[i].toFloat(),QString::fromStdString(dowInit->signalVals[i]->getName()),id_experiment);
         }
+        for(int i=0;i<tempSignalVals.size();i++)
+        {
+            signal_vals.add_val_to_db(tempSignalVals[i].toFloat(),QString::fromStdString(dowInit->tempSignalVals[i]->getName()),id_experiment);
+        }
+
     }
 
 

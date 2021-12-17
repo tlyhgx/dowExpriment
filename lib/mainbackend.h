@@ -48,9 +48,7 @@ public:
 public slots:
     void sendOtherSignalVals_to_view(QVariantList otherSignalVals);
     void sendTempSignalVals_to_view(QVariantList tempSignalVals);
-//    QVariantList getSignalVals(QModbusDataUnit dataUnit);
     void addInfoList(QString info);
-//    void recInfo_to_db(QString info);
     void recVal_to_db();
     void recordOperName_to_db(QString operName);
     void recordExprimentName_to_db(QString csExprimentName);
@@ -103,10 +101,11 @@ private:
     GetPlcVal *getPlcVal;
     DowInit* dowInit;
     QTimer *timer;
-    QVariantList signalVals;
+    QVariantList otherSignalVals;
+    QVariantList tempSignalVals;
     QString m_operName;
     QString m_exprimentName;
-    bool m_willRec;
+    bool m_willRec=false;
     Signal_vals signal_vals;
     Experiment experiment;
     int id_experiment;
