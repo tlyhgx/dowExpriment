@@ -78,19 +78,7 @@ Window {
             text: infoTime+":  "+infoContent
         }
     }
-    //    Rectangle{  //工作信息
-    //        width: grid21Width
-    //        height: totalHeight-firstLineHeight
-    //        x:30;y:workUI.height+20
-    //        Column{
-    //            Label{
-    //                text: "工作信息:"
-    //                font.pixelSize: 18
-    //            }
-    //            EventTableEasyTable{}
-    //        }
 
-    //    }
     Rectangle{   //启停等
         x:grid21Width+300;y:workUI.height+8
         width: 160
@@ -216,11 +204,13 @@ Window {
         function onOtherSignalValChanged(signalVals){
 
             console.log("数据传递成功！")
+            workUI.velocityOfAirVal=signalVals[0].toFixed(1)
+            workUI.airPressVal=signalVals[1].toFixed(1)
+            workUI.rotationSpeedVal=signalVals[2].toFixed(1)
+            workUI.velocityOfFlowVal=signalVals[3].toFixed(1)
 
-            workUI.velocityOfFlowVal=signalVals[0].toFixed(1)
-            workUI.velocityOfAirVal=signalVals[1].toFixed(1)
-            workUI.airPressVal=signalVals[2].toFixed(1)
-            workUI.rotationSpeedVal=signalVals[3].toFixed(1)
+
+
 
         }
         function onTempSignalValChanged(tempSignalVals){

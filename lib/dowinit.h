@@ -16,10 +16,12 @@ public:
 public:
     QSqlDatabase db;
     struct PlcMemoryAddress{
-        int base_address=4097;
-        int other_signal=base_address+0;   //信号地址,M地址，PLC集中在一起另外配置
-        int temp_signal=base_address+60;
-//        int signalNum=20;   //信号个数
+        int base_address=4096;
+        int other_signal=base_address+0;   //其它数字信号
+        int temp_signal=base_address+60;  //温度信号
+        int para_to_plc=base_address+408;  //参数起始地址
+
+
     };
 
      PlcMemoryAddress plcMemoryAddress;

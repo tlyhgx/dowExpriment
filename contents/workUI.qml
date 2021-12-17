@@ -293,7 +293,7 @@ Item {
             x:leftDeviceValPosx;y:240
             deviceName: "气体流速"
             value: velocityOfAirVal
-            unit:"L/min"
+            unit:"SLPM"
         }
 
         InfoLabel{

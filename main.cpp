@@ -43,8 +43,8 @@ int main(int argc, char *argv[])
     SetParaBackend setParaBackend;
 
 
-//TODO:初始化的参数，部分要从数据库读取
-//TODO:实时信息后期要添加到数据库
+
+
     engine.rootContext()->setContextProperty("mainBackend",&mainBackend);
     engine.rootContext()->setContextProperty("realTimeCurveBackend",&realTimeCurveBackend);
     engine.rootContext()->setContextProperty("setParaBackend",&setParaBackend);

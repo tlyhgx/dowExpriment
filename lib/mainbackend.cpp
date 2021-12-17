@@ -69,7 +69,7 @@ void MainBackend::addInfoList(QString info)
 void MainBackend::recVal_to_db()
 {
 
-    //TODO1:
+
     if(m_willRec){
 
         otherSignalVals=getPlcVal->getSignalVals();

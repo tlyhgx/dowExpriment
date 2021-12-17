@@ -52,6 +52,7 @@ set(PROJECT_SOURCES
         sortfilterproxymodel.h
         easytablemodel.h
         easytablemodel.cpp
+        todos.cpp
 
 
 
