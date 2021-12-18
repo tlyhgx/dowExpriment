@@ -132,7 +132,7 @@ void MyModbus::modbusReadData()
         dataUnit = reply->result();
         int res=dataUnit.value(0);
 
-        qDebug("Items in list: %d", res);
+//        qDebug("Items in list: %d", res);
 //        for (uint i = 0; i < dataUnit.valueCount(); i++) {//获取每个结果
 //                               int res=dataUnit.value(0);
 //                                }

@@ -36,5 +36,6 @@
         <file>learn/qmlChart.qml</file>
         <file>learn/qmlchart2.qml</file>
         <file>contents/infoList.qml</file>
+        <file>contents/ParaItem.qml</file>
     </qresource>
 </RCC>

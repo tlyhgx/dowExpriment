@@ -35,7 +35,29 @@ TEST_F(Test_setParaBackend,1){
     int ret=setParaBackend.recordRecycle_s();
     ASSERT_EQ(recordCycle_s,ret);
 }
-
+//添加界面设置和读取 曲线刷新周期的
+TEST_F(Test_setParaBackend,flash){
+    //属性--读、写--recordCycle_s
+    int realTimeCurve_flashcycle_s=5;
+    setParaBackend.setRealTimeCurve_flashcycle_s(realTimeCurve_flashcycle_s);
+    int ret=setParaBackend.realTimeCurve_flashcycle_s();
+    ASSERT_EQ(realTimeCurve_flashcycle_s,ret);
+}
+//TODO1:几个存到数据到参数是否有使用，除记录周期
+//曲线时长
+TEST_F(Test_setParaBackend,duration){
+    int realTimeCurve_time_s=300;
+    setParaBackend.setRealTimeCurve_time_s(realTimeCurve_time_s);
+    int ret=setParaBackend.realTimeCurve_time_s();
+    ASSERT_EQ(realTimeCurve_time_s,ret);
+}
+TEST_F(Test_setParaBackend,askPlc_cycle_ms)
+{
+    int askPlc_cycle_ms=1000;
+    setParaBackend.setAskPlc_cycle_ms(askPlc_cycle_ms);
+    int ret=setParaBackend.askPlc_cycle_ms();
+    ASSERT_EQ(askPlc_cycle_ms,ret);
+}
 //数据记录周期写入数据库
 TEST_F(Test_setParaBackend,2){
     //界面设置后，数据改变，触发写入数据库动作

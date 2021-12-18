@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-//    qmlRegisterType<EasyTableModel>("EasyModel", 1, 0, "EasyTableModel");
+
 
     //设置初始值
     DowInit *dowInit=new DowInit ();
