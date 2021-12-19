@@ -15,16 +15,16 @@ enum class TreatmentMethod
 class Para_with_plc
 {
 public:
-//    enum TreatmentMethod{
-//        x10,
-//        to_float
-//    };
+
     Para_with_plc(string name, TreatmentMethod treatmentMethod, float givenVal);
     //返回代表双字的数组
     vector<int16_t>  getResVal_DWORD();
 
+    float getGivenVal() const;
+    void setGivenVal(float givenVal);
+
 private:
-    float givenVal;
+    float m_givenVal;
     TreatmentMethod treatmentMethod;
 };
 

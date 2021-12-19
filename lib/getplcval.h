@@ -19,6 +19,8 @@ public:
     void setPara_to_plc(int startAddress,QList<Para_with_plc> paras);
 
     void askPara_from_plc(int startAddress,QList<Para_with_plc>paras);
+    QVariantList getParaVals() const;
+
 public slots:
     void recieveReply(QModbusDataUnit dataUnit);
     void askOtherSignalVals();

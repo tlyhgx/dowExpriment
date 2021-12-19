@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     //TODO1: 每次脱离test，都要操作一次，能否处理一下
     MainBackend mainBackend(dowInit,getPlcVal);
     RealTimeCurveBackend realTimeCurveBackend(dowInit,getPlcVal);
-    SetParaBackend setParaBackend;
+    SetParaBackend setParaBackend(dowInit,getPlcVal);
 
 
 

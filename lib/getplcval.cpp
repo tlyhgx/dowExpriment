@@ -20,6 +20,7 @@ GetPlcVal::GetPlcVal(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
 void GetPlcVal::recieveReply(QModbusDataUnit dataUnit)
 {
     //FIXME:此处可以考虑用switch
+    qDebug()<<dataUnit.startAddress();
     if (dataUnit.startAddress()==dowInit->plcMemoryAddress.other_signal){
         QVariantList signalVals;
         int x_high,x_low;
@@ -58,17 +59,22 @@ void GetPlcVal::recieveReply(QModbusDataUnit dataUnit)
                 if(i%2==0){
                     paraVals<<dataUnit.values()[i]*0.1;
                 }
-            }else if(i>3 && i<8){
+            }else if(i>3 && i<6){
                 if(i%2==0){
                     paraVals<<dataUnit.values()[i];
                 }
-            }else if(i>=8 &&i<=15)
+            }else if(i>=6 &&i<=13)
             {
                 if(i%2==0){
                     x_high=dataUnit.values()[i+1];
                     x_low=dataUnit.values()[i];
                     res_parse=parseInt2Float(x_high,x_low);
                     paraVals<<res_parse;
+                }
+            }else if(i>=14 && i<=15)
+            {
+                if(i%2==0){
+                    paraVals<<dataUnit.values()[i]*0.1;
                 }
             }
 
@@ -91,6 +97,11 @@ void GetPlcVal::askTempSignalVals()
 {
     myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
                          dowInit->plcMemoryAddress.temp_signal,dowInit->getTempSignalValsNum());
+}
+
+QVariantList GetPlcVal::getParaVals() const
+{
+    return m_paraVals;
 }
 
 QVariantList GetPlcVal::getSignalVals() const
@@ -119,7 +130,7 @@ void GetPlcVal::setPara_to_plc(int startAddress, QList<Para_with_plc> paras)
 void GetPlcVal::askPara_from_plc(int startAddress, QList<Para_with_plc> paras)
 {
     myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
-                         dowInit->plcMemoryAddress.para_to_plc,paras.size()*2);
+                         startAddress,paras.size()*2);
 
 }
 
