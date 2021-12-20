@@ -135,6 +135,15 @@ void DowInit::getPara()
     flashRealTimeCurve_s=getFlashRealTimeCurve_s();
 }
 
+//HwwAlarms* DowInit::getInitAlarms() const
+//{
+//    return m_initAlarms;
+//}
+
+
+
+
+
 DowInit::DowInit(QObject *parent) : QObject(parent)
 {
 
@@ -143,6 +152,9 @@ DowInit::DowInit(QObject *parent) : QObject(parent)
     getPara();
 
     addPara_with_plc();
+
+
+
 
     if(!db.isOpen())
     {

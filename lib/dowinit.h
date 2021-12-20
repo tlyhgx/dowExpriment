@@ -9,6 +9,8 @@
 
 
 
+
+
 class DowInit : public QObject
 {
     Q_OBJECT
@@ -20,9 +22,9 @@ public:
         int base_address=4096;
         int other_signal=base_address+0;   //其它数字信号
         int temp_signal=base_address+60;  //温度信号
-//        int para_to_plc=base_address+58;  //参数起始地址
-        int para_to_plc=base_address+408;  //参数起始地址
 
+        int para_to_plc=base_address+408;  //参数起始地址
+        int alarm=base_address+9;  //报警
 
     };
 
@@ -89,6 +91,10 @@ public:
     int getRecord_cycle_s() const;
     void setRecord_cycle_s(int value);
 
+
+
+
+
 signals:
 
 private:
@@ -114,6 +120,8 @@ private:
     void addPara_with_plc();
 
     void getPara();
+
+
 };
 
 #endif // DOWINIT_H

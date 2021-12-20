@@ -62,29 +62,30 @@ include_directories(../lib)
 add_executable(cs1 main.cpp
     # 以下临时注释，后期记得取消
     test_dowInit.cpp
+    #    test_alarm.cpp
 
+    #    test_sensor.cpp
 
-#    test_sensor.cpp
-
-#    test_realTimeCurve.cpp
+    #    test_realTimeCurve.cpp
 
     test_getplcval.cpp
+    test_hwwUtility.cpp
+
+    #    test_models.cpp
+
+    #    test_oper.cpp
+    #    test_setParaBackend.cpp
 
 
-    test_models.cpp
-
-#    test_oper.cpp
-    test_setParaBackend.cpp
+    #    test_infoListModel.cpp
 
 
-#    test_infoListModel.cpp
+    test_mainBackend.cpp
     test_myModbus.cpp
+    #        test_database.cpp
 
-#        test_mainBackend.cpp
-        test_myModbus.cpp
-#        test_database.cpp
+    #    test_para_with_plc.cpp
 
-    test_para_with_plc.cpp
 
 
     ${GTestFiles}  )
@@ -92,7 +93,7 @@ add_test(NAME cs1 COMMAND cs1)
 
 target_link_libraries(cs1 PRIVATE Threads::Threads  )
 target_link_libraries(cs1 PRIVATE  Qt${QT_VERSION_MAJOR}::Core 
-Qt${QT_VERSION_MAJOR}::SerialPort Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::Sql)
+    Qt${QT_VERSION_MAJOR}::SerialPort Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::Sql)
 target_link_libraries(cs1 PRIVATE lib)
 
 

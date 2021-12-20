@@ -3,6 +3,7 @@
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <hwwalarm.h>
 
 #include <QQmlContext>
 #include <mymodbus.h>
@@ -41,7 +42,7 @@ int main(int argc, char *argv[])
     MainBackend mainBackend(dowInit,getPlcVal);
     RealTimeCurveBackend realTimeCurveBackend(dowInit,getPlcVal);
     SetParaBackend setParaBackend(dowInit,getPlcVal);
-
+    HwwAlarms hwwAlarms(getPlcVal);
 
 
 
@@ -51,7 +52,9 @@ int main(int argc, char *argv[])
 
     InfoListModel infoListModel;
     mainBackend.setInfoListModel(infoListModel);
-
+    //把报警添加到mainBackend
+    HwwAlarms alarmsInfo(getPlcVal);
+    mainBackend.setAlarmsInfo(alarmsInfo);
 
     engine.rootContext()->setContextProperty("infoListModel",&infoListModel);
 

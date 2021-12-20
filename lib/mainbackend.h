@@ -9,6 +9,7 @@
 #include "experiment.h"
 #include "infolist.h"
 #include "getplcval.h"
+#include "hwwalarm.h"
 #pragma execution_character_set("utf-8")
 using namespace std;
 class MainBackend : public QObject
@@ -17,7 +18,7 @@ class MainBackend : public QObject
     Q_PROPERTY(QString operName READ operName WRITE setOperName NOTIFY operNameChanged)
     Q_PROPERTY(QString exprimentName READ exprimentName WRITE setExprimentName NOTIFY exprimentNameChanged)
     Q_PROPERTY(bool willRec READ willRec WRITE setWillRec NOTIFY willRecChanged)
-//    Q_PROPERTY(InfoListModel infoListModel READ infoListModel WRITE setInfoListModel NOTIFY infoListModelChanged)
+
 public:
     explicit MainBackend(QObject *parent = nullptr);
     MainBackend(DowInit *dowInit,GetPlcVal *getPlcVal,QObject *parent = nullptr);
@@ -27,7 +28,7 @@ public:
 //    Q_INVOKABLE QVariantList retSignalVals();
 
     void setInfoListModel(InfoListModel& infoListModel);
-
+    void setAlarmsInfo(HwwAlarms& alarmsInfo);
 
     QString operName() const
     {
@@ -110,6 +111,7 @@ private:
     Experiment experiment;
     int id_experiment;
     InfoListModel* m_infoListModel;
+    HwwAlarms* m_alarmsInfo;
 };
 
 #endif // MAINBACKEND_H

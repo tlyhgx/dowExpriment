@@ -6,7 +6,7 @@
 #include <gmock/gmock-matchers.h>
 #include <para_with_plc.h>
 #include "getplcval.h"
-//#include <synchapi.h>
+
 using namespace testing;
 
 class Test_getPLCval:public ::testing::Test{
@@ -29,6 +29,15 @@ TEST_F(Test_getPLCval,1)
 {
 
     getPlcVal->askOtherSignalVals();
+}
+//要求提供报警信息
+TEST_F(Test_getPLCval,alarms)
+{
+    getPlcVal->ask_alarm_from_plc();
+};
+//获取报警值
+TEST_F(Test_getPLCval,alarmVal){
+    getPlcVal->getAlarms();
 }
 
 //2个字 转浮点

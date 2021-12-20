@@ -20,6 +20,7 @@ MainBackend::MainBackend(DowInit *dowInit, GetPlcVal *getPlcVal, QObject *parent
     connect(this,&MainBackend::exprimentNameChanged,this,&MainBackend::recordExprimentName_to_db);
     connect(this,&MainBackend::makeInfo,this,&MainBackend::addInfoList);
 
+
     timer=new QTimer;
     connect(timer,&QTimer::timeout,this,&MainBackend::recVal_to_db);
     timer->start(dowInit->getRecord_cycle_s()*1000);
@@ -43,6 +44,12 @@ void MainBackend::setInfoListModel(InfoListModel &infoListModel)
     m_infoListModel=&infoListModel;
 }
 
+void MainBackend::setAlarmsInfo(HwwAlarms &alarmsInfo)
+{
+    m_alarmsInfo=&alarmsInfo;
+    connect(m_alarmsInfo,&HwwAlarms::makeAlarmInfo,this,&MainBackend::addInfoList);
+}
+
 void MainBackend::sendOtherSignalVals_to_view(QVariantList otherSignalVals)
 {
     emit otherSignalValChanged(otherSignalVals);
@@ -61,6 +68,7 @@ void MainBackend::addInfoList(QString info)
 
     m_infoListModel->addInfoList(infoList);
 }
+
 
 
 

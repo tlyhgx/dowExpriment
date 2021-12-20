@@ -61,6 +61,12 @@ add_library(lib
 
   para_with_plc.cpp
   para_with_plc.h
+
+  hwwalarm.cpp
+  hwwalarm.h
+
+  hwwutility.cpp
+  hwwutility.h
 )
 
 target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  Qt${QT_VERSION_MAJOR}::Sql )

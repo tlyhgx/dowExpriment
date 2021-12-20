@@ -19,7 +19,10 @@ public:
     void setPara_to_plc(int startAddress,QList<Para_with_plc> paras);
 
     void askPara_from_plc(int startAddress,QList<Para_with_plc>paras);
+    void ask_alarm_from_plc();
     QVariantList getParaVals() const;
+
+    int getAlarms() const;
 
 public slots:
     void recieveReply(QModbusDataUnit dataUnit);
@@ -29,6 +32,7 @@ signals:
    void otherSignalValChanged(QVariantList signalVals);
    void tempSignalValChanged(QVariantList tempSignalVals);
    void paraValsChanged(QVariantList paraVals);
+   void alarmsChanged(int previous_alarms,int just_alarms);
 private:
 
    DowInit* dowInit;
@@ -36,6 +40,7 @@ private:
    QVariantList m_signalVals;
    QVariantList m_tempSignalVals;
    QVariantList m_paraVals;
+   int m_alarms;
 };
 
 #endif // GETPLCVAL_H

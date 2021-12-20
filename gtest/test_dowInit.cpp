@@ -6,6 +6,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
 #include <QSqlQuery>
+#include <hwwalarm.h>
 #include <para_with_plc.h>
 using namespace testing;
 #include "dowinit.h"
@@ -129,4 +130,5 @@ TEST_F(TESTDowInit,para_with_plc)
     ASSERT_EQ(paras.size(),8);
 
 }
+
 #endif // TEST_DOWINIT_H

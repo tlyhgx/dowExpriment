@@ -14,6 +14,8 @@ GetPlcVal::GetPlcVal(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
     QTimer *timer500=new QTimer;
     connect(timer500,&QTimer::timeout,this,&GetPlcVal::askOtherSignalVals);
     connect(timer500,&QTimer::timeout,this,&GetPlcVal::askTempSignalVals);
+    connect(timer500,&QTimer::timeout,this,&GetPlcVal::ask_alarm_from_plc);
+
     timer500->start(dowInit->getAskPlc_cycle_ms());
 }
 
@@ -82,7 +84,14 @@ void GetPlcVal::recieveReply(QModbusDataUnit dataUnit)
         emit paraValsChanged(paraVals);
         m_paraVals=paraVals;
     }
+    else if(dataUnit.startAddress()==dowInit->plcMemoryAddress.alarm){
+        int just_alarm_from_plc=dataUnit.values()[0];
+        if(m_alarms!=just_alarm_from_plc){
+            emit alarmsChanged(m_alarms,just_alarm_from_plc);
+            m_alarms=just_alarm_from_plc;
+        }
 
+    }
 }
 
 
@@ -97,6 +106,11 @@ void GetPlcVal::askTempSignalVals()
 {
     myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
                          dowInit->plcMemoryAddress.temp_signal,dowInit->getTempSignalValsNum());
+}
+
+int GetPlcVal::getAlarms() const
+{
+    return m_alarms;
 }
 
 QVariantList GetPlcVal::getParaVals() const
@@ -132,6 +146,13 @@ void GetPlcVal::askPara_from_plc(int startAddress, QList<Para_with_plc> paras)
     myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
                          startAddress,paras.size()*2);
 
+}
+
+void GetPlcVal::ask_alarm_from_plc()
+{
+
+    myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
+                         dowInit->plcMemoryAddress.alarm,1);
 }
 
 

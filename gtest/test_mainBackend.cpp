@@ -14,6 +14,7 @@
 #include <experiment.h>
 #include <dowdatabase.h>
 #include <infolist.h>
+#include <hwwalarm.h>
 
 
 
@@ -150,7 +151,11 @@ TEST_F(TestBackend,10){
     mainBackend->setInfoListModel(infoListModel);
 }
 
-//
+//把报警添加到信息显示及数据库
+TEST_F(TestBackend,alarms){
+    HwwAlarms hwwAlarms(getPlcVal);
+    mainBackend->setAlarmsInfo(hwwAlarms);
+}
 
 #endif // TST_MAINBACKEND_H
 
