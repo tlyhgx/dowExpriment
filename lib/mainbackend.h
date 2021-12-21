@@ -25,6 +25,8 @@ public:
 
 public:
     Q_INVOKABLE void askSignalVals();
+    Q_INVOKABLE void startSys();
+    Q_INVOKABLE void stopSys();
 //    Q_INVOKABLE QVariantList retSignalVals();
 
     void setInfoListModel(InfoListModel& infoListModel);

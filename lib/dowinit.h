@@ -19,13 +19,15 @@ public:
 public:
     QSqlDatabase db;
     struct PlcMemoryAddress{
-        int base_address=4096;
-        int other_signal=base_address+0;   //其它数字信号
-        int temp_signal=base_address+60;  //温度信号
+        int base_holdingRegister_address=4096;
+        int other_signal=base_holdingRegister_address+0;   //其它数字信号
+        int temp_signal=base_holdingRegister_address+60;  //温度信号
 
-        int para_to_plc=base_address+408;  //参数起始地址
-        int alarm=base_address+9;  //报警
+        int para_to_plc=base_holdingRegister_address+408;  //参数起始地址
+        int alarm=base_holdingRegister_address+9;  //报警
 
+        int base_m_address=2048;   //M区首地址
+        int startCommand=base_m_address+11; //启动指令
     };
 
      PlcMemoryAddress plcMemoryAddress;

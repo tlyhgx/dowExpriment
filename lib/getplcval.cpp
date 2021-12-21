@@ -155,6 +155,22 @@ void GetPlcVal::ask_alarm_from_plc()
                          dowInit->plcMemoryAddress.alarm,1);
 }
 
+void GetPlcVal::startSys()
+{  //TODO1:
+    QVector<quint16> data;
+    data<<1;
+    myModbus->modbusWrite(1,QModbusDataUnit::Coils,dowInit->plcMemoryAddress.startCommand,
+                          1,data);
+}
+
+void GetPlcVal::stopSys()
+{
+    QVector<quint16> data;
+    data<<0;
+    myModbus->modbusWrite(1,QModbusDataUnit::Coils,dowInit->plcMemoryAddress.startCommand,
+                          1,data);
+}
+
 
 
 /**ModbusRTU格式的2个32位整数转浮点数，高位为x1,低位为x2

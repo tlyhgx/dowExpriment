@@ -157,5 +157,12 @@ TEST_F(TestBackend,alarms){
     mainBackend->setAlarmsInfo(hwwAlarms);
 }
 
+//TODO1:启停信号要使用--原先开始记录、停止记录要改
+TEST_F(TestBackend,start){
+    mainBackend->startSys();
+}
+TEST_F(TestBackend,stop){
+    mainBackend->stopSys();
+}
 #endif // TST_MAINBACKEND_H
 

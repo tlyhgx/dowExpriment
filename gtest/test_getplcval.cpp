@@ -40,6 +40,17 @@ TEST_F(Test_getPLCval,alarmVal){
     getPlcVal->getAlarms();
 }
 
+//TODO1:启动命令发出、停止命令发出
+TEST_F(Test_getPLCval,start)
+{
+    getPlcVal->startSys();
+}
+TEST_F(Test_getPLCval,stop)
+{
+    getPlcVal->stopSys();
+}
+
+
 //2个字 转浮点
 TEST_F(Test_getPLCval,changt_to_float)
 {

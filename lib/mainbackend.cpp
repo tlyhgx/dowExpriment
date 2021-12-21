@@ -33,6 +33,16 @@ void  MainBackend::askSignalVals()
     getPlcVal->askOtherSignalVals();
 }
 
+void MainBackend::startSys()
+{
+    getPlcVal->startSys();
+}
+
+void MainBackend::stopSys()
+{
+    getPlcVal->stopSys();
+}
+
 
 
 

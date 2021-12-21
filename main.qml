@@ -163,17 +163,17 @@ Window {
                         width: 60;height: 30
                         HwwButton{
                             id:start
-                            text: "开始记录"
+                            text: "开始"
                             onClicked: {
 
                                 //记录操作员--记录实验名称
-                                workState.text="记录中..."
+                                workState.text="工作中..."
                                 mainBackend.operName=operName_input.text
                                 mainBackend.exprimentName=experiment_input.text
-
+                                mainBackend.startSys()
                                 //设置mainBackend属性willRec为true,是否记录的判断条件
                                 mainBackend.willRec=true
-                                console.log(operName_input.text)
+//                                console.log(operName_input.text)
                             }
                         }
                     }
@@ -183,9 +183,10 @@ Window {
 
                             text: "停止记录"
                             onClicked: {
-                                workState.text="不在记录状态！"
+                                workState.text="不在工作状态！"
                                 //设置mainBackend属性willRec为false
                                 mainBackend.willRec=false
+                                mainBackend.stopSys()
                             }
 
                         }

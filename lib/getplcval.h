@@ -20,6 +20,9 @@ public:
 
     void askPara_from_plc(int startAddress,QList<Para_with_plc>paras);
     void ask_alarm_from_plc();
+    //启停系统
+    void startSys();
+    void stopSys();
     QVariantList getParaVals() const;
 
     int getAlarms() const;
