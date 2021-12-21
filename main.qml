@@ -107,7 +107,7 @@ Window {
                         }
                         Label{
                             id:workState
-                            text: "不在记录状态！"
+                            text: "未工作！"
                             //TODO:变化时，最好有颜色变化
                             font{
                                 pixelSize: 18
@@ -183,7 +183,7 @@ Window {
 
                             text: "停止记录"
                             onClicked: {
-                                workState.text="不在工作状态！"
+                                workState.text="未工作！"
                                 //设置mainBackend属性willRec为false
                                 mainBackend.willRec=false
                                 mainBackend.stopSys()
@@ -204,7 +204,7 @@ Window {
         target: mainBackend
         function onOtherSignalValChanged(signalVals){
 
-            console.log("数据传递成功！")
+//            console.log("数据传递成功！")
             workUI.velocityOfAirVal=signalVals[0].toFixed(1)
             workUI.airPressVal=signalVals[1].toFixed(1)
             workUI.rotationSpeedVal=signalVals[2].toFixed(1)

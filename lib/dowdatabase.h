@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QSqlDatabase>
-#pragma execution_character_set("utf-8")
+//#pragma execution_character_set("utf-8")
 class DowDataBase : public QObject
 {
     Q_OBJECT

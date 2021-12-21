@@ -6,7 +6,7 @@
 #include <math.h>
 #include "getplcval.h"
 #include "signal_vals.h"
-#pragma execution_character_set("utf-8")
+//#pragma execution_character_set("utf-8")
 
 MainBackend::MainBackend(DowInit *dowInit, GetPlcVal *getPlcVal, QObject *parent)
 {

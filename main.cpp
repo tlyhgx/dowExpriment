@@ -15,8 +15,7 @@
 
 #include "getplcval.h"
 #include <QtWidgets/QApplication>
-
-
+#pragma execution_character_set("utf-8")
 int main(int argc, char *argv[])
 {
 //#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -24,6 +23,11 @@ int main(int argc, char *argv[])
 //#endif
 
 //    QGuiApplication app(argc, argv);
+
+
+
+
+
     QApplication app(argc,argv);
 
     QQmlApplicationEngine engine;

@@ -1,6 +1,6 @@
 #include "getplcval.h"
 #include "para_with_plc.h"
-
+#pragma execution_character_set("utf-8")
 Para_with_plc::Para_with_plc(string name, TreatmentMethod treatmentMethod, float givenVal)
 {
     this->m_givenVal=givenVal;

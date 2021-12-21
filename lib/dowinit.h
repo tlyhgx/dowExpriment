@@ -25,9 +25,9 @@ public:
 
         int para_to_plc=base_holdingRegister_address+408;  //参数起始地址
         int alarm=base_holdingRegister_address+9;  //报警
-
+        int startCommand=base_holdingRegister_address+8; //启动指令
         int base_m_address=2048;   //M区首地址
-        int startCommand=base_m_address+11; //启动指令
+
     };
 
      PlcMemoryAddress plcMemoryAddress;

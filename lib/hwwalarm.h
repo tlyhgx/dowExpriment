@@ -1,9 +1,10 @@
 #ifndef HWWALARM_H
 #define HWWALARM_H
-
+#pragma execution_character_set("utf-8")
 #include "getplcval.h"
 
 #include <QObject>
+
 enum class AlarmState
 {
     generate,
@@ -27,6 +28,7 @@ private:
     QString m_content;
     AlarmState m_state;
 };
+//#pragma execution_character_set("utf-8")
 class HwwAlarms:public QObject
 {
     Q_OBJECT
@@ -47,5 +49,6 @@ private:
     GetPlcVal *getPlcVal;
     QList<QString> m_alarmsInfo;
     QList<HwwAlarm*>m_init_alarms;
+    QTextCodec *codec;
 };
 #endif // HWWALARM_H

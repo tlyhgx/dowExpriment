@@ -2,7 +2,7 @@
 
 #include <QModbusRtuSerialMaster>
 #include <QtMath>
-
+#pragma execution_character_set("utf-8")
 MyModbus::MyModbus()
 {
 

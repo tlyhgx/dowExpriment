@@ -1,12 +1,11 @@
 #include "hwwalarm.h"
 #include "hwwutility.h"
+#include <qtextcodec.h>
 
-
-#pragma execution_character_set("utf-8")
 HwwAlarm::HwwAlarm(QString content, AlarmState state, QObject *parent):
     m_content(content),m_state(state)
 {
-
+    Q_UNUSED(parent);
 }
 
 QString HwwAlarm::content() const
@@ -41,15 +40,23 @@ void HwwAlarms::getAlarm_form_plc_signal(int prevous_alarms, int just_alarms)
     vector<int> just_alarm_val=HwwUtility::int_vector_int_0_1(just_alarms);
     for(int i=0;i<m_init_alarms.size();i++){
         if(xors_positions[i]==1){
+
             QString alarmInfo;
             if(just_alarm_val[i]==0){
-                m_alarmsInfo<<m_init_alarms[i]->content()+"已解除!";
-                alarmInfo=m_init_alarms[i]->content()+"已解除!";
+                m_alarmsInfo<<m_init_alarms[i]->content()+codec->toUnicode("已解除!");
+
+                alarmInfo=m_init_alarms[i]->content()+codec->toUnicode("已解除!");
+
+
             }else if(just_alarm_val[i]==1)
             {
-                m_alarmsInfo<<m_init_alarms[i]->content()+"生成!";
-                alarmInfo=m_init_alarms[i]->content()+"生成!";
+                m_alarmsInfo<<m_init_alarms[i]->content()+codec->toUnicode("生成!");
+                alarmInfo=m_init_alarms[i]->content()+codec->toUnicode("生成!");
             }
+//            emit makeAlarmInfo("测试");
+//            emit makeAlarmInfo(QObject::tr(alarmInfo.toLatin1().data()) );
+//            emit makeAlarmInfo(u8"测试");
+
 
             emit makeAlarmInfo(alarmInfo);
         }
@@ -63,14 +70,15 @@ HwwAlarms::HwwAlarms(GetPlcVal *getPlcVal)
 {
     this->getPlcVal=getPlcVal;
     connect(getPlcVal,&GetPlcVal::alarmsChanged,this,&HwwAlarms::getAlarm_form_plc_signal);
-    HwwAlarm *hwwalarm1=new HwwAlarm("1#温度过高报警",AlarmState::none);
-    HwwAlarm *hwwalarm2=new HwwAlarm("2#温度过高报警",AlarmState::none);
-    HwwAlarm *hwwalarm3=new HwwAlarm("1#温度上升过快报警",AlarmState::none);
-    HwwAlarm *hwwalarm4=new HwwAlarm("气体流动过慢报警",AlarmState::none);
-    HwwAlarm *hwwalarm5=new HwwAlarm("液体流动过慢报警",AlarmState::none);
-    HwwAlarm *hwwalarm6=new HwwAlarm("搅拌过慢报警",AlarmState::none);
-    HwwAlarm *hwwalarm7=new HwwAlarm("气体压力过大报警",AlarmState::none);
-    HwwAlarm *hwwalarm8=new HwwAlarm("系统运行",AlarmState::none);
+    codec = QTextCodec::codecForName("GBK");
+    HwwAlarm *hwwalarm1=new HwwAlarm(codec->toUnicode("1#温度过高报警"),AlarmState::none);
+    HwwAlarm *hwwalarm2=new HwwAlarm(codec->toUnicode("2#温度过高报警"),AlarmState::none);
+    HwwAlarm *hwwalarm3=new HwwAlarm(codec->toUnicode("1#温度上升过快报警"),AlarmState::none);
+    HwwAlarm *hwwalarm4=new HwwAlarm(codec->toUnicode("气体流动过慢报警"),AlarmState::none);
+    HwwAlarm *hwwalarm5=new HwwAlarm(codec->toUnicode("液体流动过慢报警"),AlarmState::none);
+    HwwAlarm *hwwalarm6=new HwwAlarm(codec->toUnicode("搅拌过慢报警"),AlarmState::none);
+    HwwAlarm *hwwalarm7=new HwwAlarm(codec->toUnicode("气体压力过大报警"),AlarmState::none);
+    HwwAlarm *hwwalarm8=new HwwAlarm(codec->toUnicode("系统运行"),AlarmState::none);
     m_init_alarms.append(hwwalarm1);
     m_init_alarms.append(hwwalarm2);
     m_init_alarms.append(hwwalarm3);

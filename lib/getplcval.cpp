@@ -22,7 +22,7 @@ GetPlcVal::GetPlcVal(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
 void GetPlcVal::recieveReply(QModbusDataUnit dataUnit)
 {
     //FIXME:此处可以考虑用switch
-    qDebug()<<dataUnit.startAddress();
+//    qDebug()<<dataUnit.startAddress();
     if (dataUnit.startAddress()==dowInit->plcMemoryAddress.other_signal){
         QVariantList signalVals;
         int x_high,x_low;
@@ -159,7 +159,7 @@ void GetPlcVal::startSys()
 {  //TODO1:
     QVector<quint16> data;
     data<<1;
-    myModbus->modbusWrite(1,QModbusDataUnit::Coils,dowInit->plcMemoryAddress.startCommand,
+    myModbus->modbusWrite(1,QModbusDataUnit::HoldingRegisters,dowInit->plcMemoryAddress.startCommand,
                           1,data);
 }
 
@@ -167,7 +167,7 @@ void GetPlcVal::stopSys()
 {
     QVector<quint16> data;
     data<<0;
-    myModbus->modbusWrite(1,QModbusDataUnit::Coils,dowInit->plcMemoryAddress.startCommand,
+    myModbus->modbusWrite(1,QModbusDataUnit::HoldingRegisters,dowInit->plcMemoryAddress.startCommand,
                           1,data);
 }
 
