@@ -156,7 +156,7 @@ void GetPlcVal::ask_alarm_from_plc()
 }
 
 void GetPlcVal::startSys()
-{  //TODO1:
+{
     QVector<quint16> data;
     data<<1;
     myModbus->modbusWrite(1,QModbusDataUnit::HoldingRegisters,dowInit->plcMemoryAddress.startCommand,

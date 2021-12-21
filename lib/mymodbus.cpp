@@ -6,20 +6,20 @@
 MyModbus::MyModbus()
 {
 
-    modbusDevice=new QModbusRtuSerialMaster;
+//    modbusDevice=new QModbusRtuSerialMaster;
 
-    if(modbusDevice)
-    {
-        qDebug("create Modbus master success!");
-    }
-    else
-    {
-        qDebug("create Modbus Master failse!");
-    }
+//    if(modbusDevice)
+//    {
+//        qDebug("create Modbus master success!");
+//    }
+//    else
+//    {
+//        qDebug("create Modbus Master failse!");
+//    }
 
 
 
-    modbusConnect();
+//    modbusConnect();
 
 }
 
@@ -70,14 +70,74 @@ void MyModbus::modbusConnect()
         modbusDevice->setTimeout(m_settings.responseTime);
         modbusDevice->setNumberOfRetries(m_settings.numberOfRetries);
 
+        //如果连接不上，切换串口尝试，从COM1到COM12,其它不变
+        bool is_connect_success=false;
+        if(!modbusDevice->connectDevice()){
 
-        if(modbusDevice->connectDevice())
+            modbusDevice->setConnectionParameter(QModbusDevice::SerialPortNameParameter,"COM2");
+        }else{
+            is_connect_success=true;
+        }
+
+        if(!modbusDevice->connectDevice()){
+            modbusDevice->setConnectionParameter(QModbusDevice::SerialPortNameParameter,"COM3");
+        }else{
+            is_connect_success=true;
+        }
+        if(!modbusDevice->connectDevice()){
+            modbusDevice->setConnectionParameter(QModbusDevice::SerialPortNameParameter,"COM4");
+        }else{
+            is_connect_success=true;
+        }
+        if(!modbusDevice->connectDevice()){
+            modbusDevice->setConnectionParameter(QModbusDevice::SerialPortNameParameter,"COM5");
+        }else{
+            is_connect_success=true;
+        }
+        if(!modbusDevice->connectDevice()){
+            modbusDevice->setConnectionParameter(QModbusDevice::SerialPortNameParameter,"COM6");
+        }else{
+            is_connect_success=true;
+        }
+        if(!modbusDevice->connectDevice()){
+            modbusDevice->setConnectionParameter(QModbusDevice::SerialPortNameParameter,"COM7");
+        }else{
+            is_connect_success=true;
+        }
+        if(!modbusDevice->connectDevice()){
+            modbusDevice->setConnectionParameter(QModbusDevice::SerialPortNameParameter,"COM8");
+        }else{
+            is_connect_success=true;
+        }
+        if(!modbusDevice->connectDevice()){
+            modbusDevice->setConnectionParameter(QModbusDevice::SerialPortNameParameter,"COM9");
+        }else{
+            is_connect_success=true;
+        }
+        if(!modbusDevice->connectDevice()){
+            modbusDevice->setConnectionParameter(QModbusDevice::SerialPortNameParameter,"COM10");
+        }else{
+            is_connect_success=true;
+        }
+        if(!modbusDevice->connectDevice()){
+            modbusDevice->setConnectionParameter(QModbusDevice::SerialPortNameParameter,"COM11");
+        }else{
+            is_connect_success=true;
+        }
+        if(!modbusDevice->connectDevice()){
+            modbusDevice->setConnectionParameter(QModbusDevice::SerialPortNameParameter,"COM12");
+        }else{
+            is_connect_success=true;
+        }
+        if(is_connect_success)
         {
+
             qDebug("Modbus create success.");
         }else
         {
             qDebug("Modbus create failse.");
         }
+
 
     }
 }
