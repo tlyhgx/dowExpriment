@@ -86,7 +86,7 @@ add_executable(cs1 main.cpp
 
     #    test_para_with_plc.cpp
 
-
+    test_outPut_state.cpp
 
     ${GTestFiles}  )
 add_test(NAME cs1 COMMAND cs1)

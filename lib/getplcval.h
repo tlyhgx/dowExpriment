@@ -31,11 +31,13 @@ public slots:
     void recieveReply(QModbusDataUnit dataUnit);
     void askOtherSignalVals();
     void askTempSignalVals();
+    void askOutPutStateVals();
 signals:
    void otherSignalValChanged(QVariantList signalVals);
    void tempSignalValChanged(QVariantList tempSignalVals);
    void paraValsChanged(QVariantList paraVals);
    void alarmsChanged(int previous_alarms,int just_alarms);
+   void outPutStateValChanged(QVariantList outPutStateVals);
 private:
 
    DowInit* dowInit;
@@ -44,6 +46,7 @@ private:
    QVariantList m_tempSignalVals;
    QVariantList m_paraVals;
    int m_alarms;
+   int m_outPutStates;
 };
 
 #endif // GETPLCVAL_H

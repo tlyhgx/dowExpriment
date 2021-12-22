@@ -1,4 +1,5 @@
 ﻿#include "getplcval.h"
+#include "hwwutility.h"
 
 
 
@@ -14,6 +15,7 @@ GetPlcVal::GetPlcVal(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
     QTimer *timer500=new QTimer;
     connect(timer500,&QTimer::timeout,this,&GetPlcVal::askOtherSignalVals);
     connect(timer500,&QTimer::timeout,this,&GetPlcVal::askTempSignalVals);
+    connect(timer500,&QTimer::timeout,this,&GetPlcVal::askOutPutStateVals);
     connect(timer500,&QTimer::timeout,this,&GetPlcVal::ask_alarm_from_plc);
 
     timer500->start(dowInit->getAskPlc_cycle_ms());
@@ -90,7 +92,28 @@ void GetPlcVal::recieveReply(QModbusDataUnit dataUnit)
             emit alarmsChanged(m_alarms,just_alarm_from_plc);
             m_alarms=just_alarm_from_plc;
         }
+    }
+    else if(dataUnit.startAddress()==dowInit->plcMemoryAddress.outPutState){
+        int just_out_put_state=dataUnit.values()[0];
 
+//        vector<int> res= HwwUtility::int_vector_int_0_1(just_out_put_state);
+//        QVariantList vals;
+//        for(int i=0;i<res.size();i++)
+//        {
+//            vals<<res[i];
+//        }
+//        emit outPutStateValChanged(vals);
+
+        if(m_outPutStates!=just_out_put_state||just_out_put_state==0){
+            vector<int> res= HwwUtility::int_vector_int_0_1(just_out_put_state);
+            QVariantList vals;
+            for(int i=0;i<res.size();i++)
+            {
+                vals<<res[i];
+            }
+            emit outPutStateValChanged(vals);
+            just_out_put_state=m_outPutStates;
+        }
     }
 }
 
@@ -106,6 +129,12 @@ void GetPlcVal::askTempSignalVals()
 {
     myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
                          dowInit->plcMemoryAddress.temp_signal,dowInit->getTempSignalValsNum());
+}
+
+void GetPlcVal::askOutPutStateVals()
+{
+    myModbus->modbusRead(1,QModbusDataUnit::HoldingRegisters,
+                         dowInit->plcMemoryAddress.outPutState,1);
 }
 
 int GetPlcVal::getAlarms() const

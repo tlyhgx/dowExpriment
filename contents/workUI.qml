@@ -20,6 +20,11 @@ Item {
     property real  velocityOfFlowVal: 0
     property real  velocityOfAirVal: 0
 
+    property alias pump1State: pump1.value
+    property alias  pump2State: pump2.value
+    property alias heatState:heat.text
+    property alias heatColor: heat.color
+
     Canvas{  //线
         id:canvas
         x:0;y:0
@@ -120,9 +125,9 @@ Item {
 
         Text {
             id: heat
-            text: qsTr("加热")
+            text: qsTr("未加热")
             x:696;y:540
-            color: "blue"
+            color: "blue"      //TODO1:
             font.pixelSize: 26
         }
 
@@ -307,7 +312,7 @@ Item {
             id:pump2
             x:leftDeviceValPosx;y:400
             deviceName: "蠕动泵2"
-            value: "OFF"
+            value: "OFF"  //TODO1:
             unit:" "
         }
 

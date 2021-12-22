@@ -71,6 +71,7 @@ void MyModbus::modbusConnect()
         modbusDevice->setNumberOfRetries(m_settings.numberOfRetries);
 
         //如果连接不上，切换串口尝试，从COM1到COM12,其它不变
+        //FIXME:下面的判断语句看有没有好的处理方式
         bool is_connect_success=false;
         if(!modbusDevice->connectDevice()){
 

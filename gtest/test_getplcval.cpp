@@ -40,7 +40,7 @@ TEST_F(Test_getPLCval,alarmVal){
     getPlcVal->getAlarms();
 }
 
-//TODO1:启动命令发出、停止命令发出
+//启动命令发出、停止命令发出
 TEST_F(Test_getPLCval,start)
 {
     getPlcVal->startSys();
@@ -113,7 +113,11 @@ TEST_F(Test_getPLCval,getTempSignalVals){
     ASSERT_EQ(int(getPlcVal->getTempSignalVals()[0].toFloat()*10),retVal[0]);
 
 }
-
+//从PLC获取输出状态值
+TEST_F(Test_getPLCval,get_out_put_val)
+{
+    getPlcVal->askOutPutStateVals();
+}
 //读写温度1高位报警参数_PLC
 TEST_F(Test_getPLCval,set_para_to_plc)
 {
@@ -131,6 +135,7 @@ TEST_F(Test_getPLCval,set_para_to_plc)
 
 //    ASSERT_EQ(ret[5].toFloat(),5.0f);
 }
+
 
 
 

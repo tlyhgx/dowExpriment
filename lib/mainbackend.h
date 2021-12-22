@@ -24,10 +24,10 @@ public:
     MainBackend(DowInit *dowInit,GetPlcVal *getPlcVal,QObject *parent = nullptr);
 
 public:
-    Q_INVOKABLE void askSignalVals();
+//    Q_INVOKABLE void askSignalVals();
     Q_INVOKABLE void startSys();
     Q_INVOKABLE void stopSys();
-//    Q_INVOKABLE QVariantList retSignalVals();
+
 
     void setInfoListModel(InfoListModel& infoListModel);
     void setAlarmsInfo(HwwAlarms& alarmsInfo);
@@ -51,6 +51,7 @@ public:
 public slots:
     void sendOtherSignalVals_to_view(QVariantList otherSignalVals);
     void sendTempSignalVals_to_view(QVariantList tempSignalVals);
+    void send_OutPutState_to_view(QVariantList outPutStateVals );
     void addInfoList(QString info);
     void recVal_to_db();
     void recordOperName_to_db(QString operName);
@@ -92,7 +93,7 @@ signals:
 
     void tempSignalValChanged(QVariantList tempSignalVals);
     void otherSignalValChanged(QVariantList otherSignalVals);
-
+    void outPutStateChanged(QVariantList outPutStateVals);
     void operNameChanged(QString operName);
 
     void exprimentNameChanged(QString exprimentName);

@@ -105,6 +105,11 @@ void DowInit::setRecord_cycle_s(int value)
     record_cycle_s = value;
 }
 
+OutPutStates DowInit::getOutPutStates()
+{
+    return m_outPutStates;
+}
+
 
 
 
@@ -144,6 +149,20 @@ void DowInit::getPara()
 
 
 
+void DowInit::add_out_put_state()
+{
+    OutPutState outPutState("加热器工作",false);
+    OutPutState outPutState1("搅拌器工作",false);
+    OutPutState outPutState2("1#蠕动泵工作",false);
+    OutPutState outPutState3("2#蠕动泵工作",false);
+    OutPutState outPutState4("电磁阀",false);
+    m_outPutStates.add(outPutState);
+    m_outPutStates.add(outPutState1);
+    m_outPutStates.add(outPutState2);
+    m_outPutStates.add(outPutState3);
+    m_outPutStates.add(outPutState4);
+}
+
 DowInit::DowInit(QObject *parent) : QObject(parent)
 {
 
@@ -152,7 +171,8 @@ DowInit::DowInit(QObject *parent) : QObject(parent)
     getPara();
 
     addPara_with_plc();
-
+    //添加输出点状态组
+    add_out_put_state();
 
 
 

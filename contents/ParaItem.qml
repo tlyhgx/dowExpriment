@@ -29,7 +29,7 @@ Item {
                 bold: true
             }
             anchors.verticalCenter:  parent.verticalCenter
-
+            horizontalAlignment: Text.AlignRight
             Component.onCompleted: {
                 currentVal.text=currentVal_dis
             }

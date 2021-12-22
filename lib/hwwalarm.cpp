@@ -53,11 +53,6 @@ void HwwAlarms::getAlarm_form_plc_signal(int prevous_alarms, int just_alarms)
                 m_alarmsInfo<<m_init_alarms[i]->content()+codec->toUnicode("生成!");
                 alarmInfo=m_init_alarms[i]->content()+codec->toUnicode("生成!");
             }
-//            emit makeAlarmInfo("测试");
-//            emit makeAlarmInfo(QObject::tr(alarmInfo.toLatin1().data()) );
-//            emit makeAlarmInfo(u8"测试");
-
-
             emit makeAlarmInfo(alarmInfo);
         }
 

@@ -18,7 +18,7 @@ Window {
     height: totalHeight
     visible: true
     title: qsTr("陶氏实验数据监控系统v1.0")
-    //    visibility: Window.FullScreen
+//        visibility: Window.FullScreen
 
 
     WorkUI{   //元器件及指示
@@ -173,7 +173,7 @@ Window {
                                 mainBackend.startSys()
                                 //设置mainBackend属性willRec为true,是否记录的判断条件
                                 mainBackend.willRec=true
-//                                console.log(operName_input.text)
+                                //                                console.log(operName_input.text)
                             }
                         }
                     }
@@ -181,7 +181,7 @@ Window {
                         width: 60;height: 30
                         HwwButton{
 
-                            text: "停止记录"
+                            text: "停止"
                             onClicked: {
                                 workState.text="未工作！"
                                 //设置mainBackend属性willRec为false
@@ -204,7 +204,7 @@ Window {
         target: mainBackend
         function onOtherSignalValChanged(signalVals){
 
-//            console.log("数据传递成功！")
+            //            console.log("数据传递成功！")
             workUI.velocityOfAirVal=signalVals[0].toFixed(1)
             workUI.airPressVal=signalVals[1].toFixed(1)
             workUI.rotationSpeedVal=signalVals[2].toFixed(1)
@@ -220,6 +220,23 @@ Window {
             workUI.no3TempVal=tempSignalVals[2].toFixed(1)
             workUI.no4TempVal=tempSignalVals[3].toFixed(1)
             workUI.no5TempVal=tempSignalVals[4].toFixed(1)
+        }
+        function onOutPutStateChanged(outPutStateVals){ //把输出状态赋值
+           //TODO:搅拌转动效果
+            if(outPutStateVals[0]==0)
+            {workUI.heatState="未加热"
+                workUI.heatColor="blue"}
+            else if(outPutStateVals[0]==1)
+            {workUI.heatState="加热中..."
+                workUI.heatColor="red"}
+            if(outPutStateVals[2]==1)
+                workUI.pump1State="ON"
+            else if(outPutStateVals[2]==0)
+                workUI.pump1State="OFF"
+            if(outPutStateVals[3]==1)
+                workUI.pump2State="ON"
+            else if(outPutStateVals[3]==0)
+                workUI.pump2State="OFF"
         }
     }
 
@@ -308,10 +325,23 @@ Window {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        Qt.exit(0);
+                        mainBackend.stopSys()
+                        exitTimer.start()
                     }
                 }
             }
+
+            Timer{
+                id:exitTimer
+                interval: 1000
+                repeat: false
+                triggeredOnStart: false
+                onTriggered: {
+                    Qt.exit(0);
+                }
+            }
+
+
         }
     }
 

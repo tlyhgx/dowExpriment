@@ -157,12 +157,20 @@ TEST_F(TestBackend,alarms){
     mainBackend->setAlarmsInfo(hwwAlarms);
 }
 
-//TODO1:启停信号要使用--原先开始记录、停止记录要改
+//启停信号要使用
 TEST_F(TestBackend,start){
     mainBackend->startSys();
 }
 TEST_F(TestBackend,stop){
     mainBackend->stopSys();
+}
+
+//获取输出动作的状态
+TEST_F(TestBackend,output_state)
+{
+    QVariantList outPutStateVals;
+    outPutStateVals<<1<<0<<1<<0<<1;
+   mainBackend->send_OutPutState_to_view(outPutStateVals);
 }
 #endif // TST_MAINBACKEND_H
 

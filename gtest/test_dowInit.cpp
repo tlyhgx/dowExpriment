@@ -7,6 +7,7 @@
 #include <gmock/gmock-matchers.h>
 #include <QSqlQuery>
 #include <hwwalarm.h>
+#include <outputstate.h>
 #include <para_with_plc.h>
 using namespace testing;
 #include "dowinit.h"
@@ -129,6 +130,12 @@ TEST_F(TESTDowInit,para_with_plc)
     QList<Para_with_plc>paras=dowInit->getPara_with_plc();
     ASSERT_EQ(paras.size(),8);
 
+}
+//初始化 plc 输出状态 名称  状态  组
+TEST_F(TESTDowInit,outPutStates)
+{
+    OutPutStates outPutStates=dowInit->getOutPutStates();
+    ASSERT_EQ(outPutStates.member().size(),5);
 }
 
 #endif // TEST_DOWINIT_H

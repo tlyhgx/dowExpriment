@@ -4,7 +4,7 @@ import QtQuick.Controls 2.12
 Window {
     title: qsTr("参数设置")
     height: 450
-    width: 750
+    width: 1000
 
     Grid{
 
@@ -12,113 +12,113 @@ Window {
         width: parent.width
         height: parent.height-20
         columns:2
-        padding: 50
+        padding: 60
 
         rowSpacing: 30
-        columnSpacing: 40
+        columnSpacing: 60
 
         spacing: 5
         flow:Grid.LeftToRight
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:recordCycle
             paraName: "数据记录周期:"
             currentVal_dis: setParaBackend.recordRecycle_s
-            unit_dis: "s"
+            unit_dis: "s    范围[1,100]"
 
         }
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:curveFlashCycle
             paraName: "曲线刷新周期:"
             currentVal_dis: setParaBackend.realTimeCurve_flashcycle_s
-            unit_dis: "s"
+            unit_dis: "s    范围[1,600]"
         }
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:curveDisDuration
             paraName: "曲线显示时长:"
             currentVal_dis: setParaBackend.realTimeCurve_time_s
-            unit_dis: "s"
+            unit_dis: "s    范围[60,+∞)"
         }
 
 
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:askPLCCycle
             paraName: "数据读取周期:"
             currentVal_dis: setParaBackend.askPlc_cycle_ms
-            unit_dis: "ms"
+            unit_dis: "ms   范围[300,30000]"
         }
 
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:tem1HighAlarmVal
             paraName: "温度1高位值"
             currentVal_dis: 0
-            unit_dis: "℃"
+            unit_dis: "℃   范围[0,400]"
         }
 
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:tem2HighAlarmVal
             paraName: "温度2高位值"
 
-            unit_dis: "℃"
+            unit_dis: "℃   范围[0,400]"
         }
 
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:tem1IncreaseAlarmVal
             paraName: "温度1上升速率值"
 
-            unit_dis: "S/℃"
+            unit_dis: "S/℃ 范围[0,100]"
         }
 
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:temFallBackVal
             paraName: "温度回差值"
-            unit_dis: "℃"
+            unit_dis: "℃   范围[1,20]"
         }
 
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:airFlowLowVal
             paraName: "气体流量低位值"
-            unit_dis: "SLPM"
+            unit_dis: "SLPM 范围[0,+∞)"
         }
 
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:liquidFlowLowVal
             paraName: "液体流量低位值"
-            unit_dis: "l/min"
+            unit_dis: "L/min范围[0,+∞)"
         }
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:rotateLowVal
             paraName: "最低转速"
-            unit_dis: "r/min"
+            unit_dis: "r/min范围[0,+∞)"
         }
 
         ParaItem{
-            width: 300
+            width: 400
             height: 20
             id:airPressHighVal
             paraName: "气压最大值"
-            unit_dis: "kpa"
+            unit_dis: "kpa  范围[0,+∞)"
         }
         //显示 到plc的参数 --温度1高位报警值(℃）  --温度2高位报警值（℃）  --温度1上升速率报警值(s/℃)  --温度回差值（℃）  --气体流量最小值（SLPM)  --液体流量最小值(L/min)  --转速最小值(r/min)  --相对气压最大值(kpa)  并设置到PLC
 
@@ -128,14 +128,14 @@ Window {
     Connections{
         target: setParaBackend
         function onSendParaFromPlcToView(paras){
-            tem1HighAlarmVal.nowVal=paras[0]
-            tem2HighAlarmVal.nowVal=paras[1]
-            tem1IncreaseAlarmVal.nowVal=paras[2]
-            airFlowLowVal.nowVal=paras[3]
-            liquidFlowLowVal.nowVal=paras[4]
-            rotateLowVal.nowVal=paras[5]
-            airPressHighVal.nowVal=paras[6]
-            temFallBackVal.nowVal=paras[7]
+            tem1HighAlarmVal.nowVal=paras[0].toFixed(1)
+            tem2HighAlarmVal.nowVal=paras[1].toFixed(1)
+            tem1IncreaseAlarmVal.nowVal=paras[2].toFixed(1)
+            airFlowLowVal.nowVal=paras[3].toFixed(1)
+            liquidFlowLowVal.nowVal=paras[4].toFixed(1)
+            rotateLowVal.nowVal=paras[5].toFixed(1)
+            airPressHighVal.nowVal=paras[6].toFixed(1)
+            temFallBackVal.nowVal=paras[7].toFixed(1)
         }
     }
     Label{
@@ -143,7 +143,7 @@ Window {
         y:parent.height-35
         width: 300
         height: 30
-        text: "格式：参数名称--当前值--输入框（输入需要改变的给定值，不改无需填写）"
+        text: "格式：参数名称--当前值--输入框--单位--范围（输入需要改变的给定值，不改无需填写）"
         font.pixelSize: 16
         font.bold: true
     }
@@ -168,20 +168,21 @@ Window {
             onClicked: {
 
                 var recordCycle_s=parseFloat(recordCycle.inputVal)
-
-                if(recordCycle_s&&(recordCycle_s>1)&&(recordCycle_s<100)){
+                if(recordCycle_s&&(recordCycle_s>=1)&&(recordCycle_s<=100)){
                     setParaBackend.recordRecycle_s=recordCycle_s
                 }
+
                 var realTimeCurve_flashcycle_s=parseFloat(curveFlashCycle.inputVal)
-                if(realTimeCurve_flashcycle_s&&(realTimeCurve_flashcycle_s>=1))
+                if(realTimeCurve_flashcycle_s&&(realTimeCurve_flashcycle_s>=1)&&(realTimeCurve_flashcycle_s<=600))
                 {   setParaBackend.realTimeCurve_flashcycle_s=realTimeCurve_flashcycle_s
                 }
+
                 var realTimeCurve_time_s=parseFloat(curveDisDuration.inputVal)
                 if(realTimeCurve_time_s&&(realTimeCurve_time_s>=60))
                 { setParaBackend.realTimeCurve_time_s=realTimeCurve_time_s}
 
                 var askPlc_cycle_ms=parseFloat(askPLCCycle.inputVal)
-                if(askPlc_cycle_ms&&(askPlc_cycle_ms>=300)&&(askPlc_cycle_ms<=5000))
+                if(askPlc_cycle_ms&&(askPlc_cycle_ms>=300)&&(askPlc_cycle_ms<=30000))
                 {setParaBackend.askPlc_cycle_ms=askPlc_cycle_ms}
 
                 var valSetToPlcs=new Array;
@@ -196,18 +197,24 @@ Window {
 
 
 
-                if(tem1HighAlarmInputVal&&tem1HighAlarmInputVal<=400)
+                if(tem1HighAlarmInputVal&&tem1HighAlarmInputVal<=400&&tem1HighAlarmInputVal>=0)
                 {valSetToPlcs.push(tem1HighAlarmInputVal)}else{valSetToPlcs.push(tem1HighAlarmVal.nowVal)}
-                if(tem2HighAlarmInputVal&&tem2HighAlarmInputVal<=400)
+
+                if(tem2HighAlarmInputVal&&tem2HighAlarmInputVal<=400&&tem1HighAlarmInputVal>=0)
                 {valSetToPlcs.push(tem2HighAlarmInputVal)}else{valSetToPlcs.push(tem2HighAlarmVal.nowVal)}
-                if(tem1IncreaseAlarmInputVal&&tem1IncreaseAlarmInputVal<=10)
+
+                if(tem1IncreaseAlarmInputVal&&tem1IncreaseAlarmInputVal<=100&&tem1IncreaseAlarmInputVal>=0)
                 {valSetToPlcs.push(tem1IncreaseAlarmInputVal)}else{valSetToPlcs.push(tem1IncreaseAlarmVal.nowVal)}
+
                 if(airFlowLowInputVal&&airFlowLowInputVal>=0)
                 {valSetToPlcs.push(airFlowLowInputVal)}else{valSetToPlcs.push(airFlowLowVal.nowVal)}
+
                 if(liquidFlowLowInputVal&&liquidFlowLowInputVal>=0)
                 {valSetToPlcs.push(liquidFlowLowInputVal)}else{valSetToPlcs.push(liquidFlowLowVal.nowVal)}
+
                 if(rotateLowInputVal&&rotateLowInputVal>=0)
                 {valSetToPlcs.push(rotateLowInputVal)}else{valSetToPlcs.push(rotateLowVal.nowVal)}
+
                 if(airPressHighInputVal&&airPressHighInputVal>=0)
                 {valSetToPlcs.push(airPressHighInputVal)}else{valSetToPlcs.push(airPressHighVal.nowVal)}
                 if(temFallBackInputVal&&temFallBackInputVal>=1&&temFallBackInputVal<=20)

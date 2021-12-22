@@ -41,14 +41,14 @@ void DowDataBase::closeDB()
 
 }
 
-bool DowDataBase::createTable()
+bool DowDataBase::createTable()  //TODO1:改成测试用，另创建一个若找不到表单则创建表单的方法
 {
     QSqlQuery query;
     QString sql;
     bool res;
     sql=QString("select * from sqlite_master where name='%1'").arg("oper");
-
     res=query.exec(sql);
+
     if(res==true){
         query.exec("drop table oper");
         query.exec("drop table experiment");
@@ -56,8 +56,8 @@ bool DowDataBase::createTable()
         query.exec("drop table sys_para");
         query.exec("drop table process_info");
     }
-
-        query.exec("create table oper("
+        QSqlQuery query1;
+        query1.exec("create table oper("
     "id_oper integer primary key,"
     "name char(30) unique default '实验人员',"
     "password char(30) default '123456' ,"
@@ -89,9 +89,9 @@ bool DowDataBase::createTable()
 " id_experiment integer)");
 
 
-    res=query.exec(sql);
+  bool  res1=query.exec(sql);
 
-    return res;
+    return res1;
 
 }
 

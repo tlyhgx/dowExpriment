@@ -16,6 +16,8 @@ MainBackend::MainBackend(DowInit *dowInit, GetPlcVal *getPlcVal, QObject *parent
 
     connect(getPlcVal,&GetPlcVal::otherSignalValChanged,this,&MainBackend::sendOtherSignalVals_to_view);
     connect(getPlcVal,&GetPlcVal::tempSignalValChanged,this,&MainBackend::sendTempSignalVals_to_view);
+    //把状态输出链接
+    connect(getPlcVal,&GetPlcVal::outPutStateValChanged,this,&MainBackend::send_OutPutState_to_view);
     connect(this,&MainBackend::operNameChanged,this,&MainBackend::recordOperName_to_db);
     connect(this,&MainBackend::exprimentNameChanged,this,&MainBackend::recordExprimentName_to_db);
     connect(this,&MainBackend::makeInfo,this,&MainBackend::addInfoList);
@@ -27,11 +29,11 @@ MainBackend::MainBackend(DowInit *dowInit, GetPlcVal *getPlcVal, QObject *parent
 
 }
 
-void  MainBackend::askSignalVals()
-{
+//void  MainBackend::askSignalVals()
+//{
 
-    getPlcVal->askOtherSignalVals();
-}
+//    getPlcVal->askOtherSignalVals();
+//}
 
 void MainBackend::startSys()
 {
@@ -70,12 +72,16 @@ void MainBackend::sendTempSignalVals_to_view(QVariantList tempSignalVals)
     emit tempSignalValChanged(tempSignalVals);
 }
 
+void MainBackend::send_OutPutState_to_view(QVariantList outPutStateVals)
+{
+    emit outPutStateChanged(outPutStateVals);
+}
+
 void MainBackend::addInfoList(QString info)
 {
 
     QString curDateTime=QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     InfoList infoList(curDateTime,info);
-
     m_infoListModel->addInfoList(infoList);
 }
 

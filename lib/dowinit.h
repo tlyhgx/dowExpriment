@@ -6,6 +6,7 @@
 #include <QSerialPort>
 #include <QSqlDatabase>
 #include "Sensor.h"
+#include "outputstate.h"
 
 
 
@@ -21,7 +22,9 @@ public:
     struct PlcMemoryAddress{
         int base_holdingRegister_address=4096;
         int other_signal=base_holdingRegister_address+0;   //其它数字信号
+        int outPutState=base_holdingRegister_address+10;   //输出信号状态
         int temp_signal=base_holdingRegister_address+60;  //温度信号
+
 
         int para_to_plc=base_holdingRegister_address+408;  //参数起始地址
         int alarm=base_holdingRegister_address+9;  //报警
@@ -94,8 +97,10 @@ public:
     void setRecord_cycle_s(int value);
 
 
+    OutPutStates getOutPutStates();
 
 
+    void add_out_put_state();
 
 signals:
 
@@ -123,6 +128,7 @@ private:
 
     void getPara();
 
+    OutPutStates m_outPutStates;
 
 };
 
