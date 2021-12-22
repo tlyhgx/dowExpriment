@@ -103,7 +103,7 @@ Window {
             height: 20
             id:liquidFlowLowVal
             paraName: "液体流量低位值"
-            unit_dis: "L/min范围[0,+∞)"
+            unit_dis: "L/min范围[-1,+∞)"
         }
         ParaItem{
             width: 400
@@ -206,7 +206,7 @@ Window {
                 if(tem1IncreaseAlarmInputVal&&tem1IncreaseAlarmInputVal<=100&&tem1IncreaseAlarmInputVal>=0)
                 {valSetToPlcs.push(tem1IncreaseAlarmInputVal)}else{valSetToPlcs.push(tem1IncreaseAlarmVal.nowVal)}
 
-                if(airFlowLowInputVal&&airFlowLowInputVal>=0)
+                if(airFlowLowInputVal&&airFlowLowInputVal>=-1)
                 {valSetToPlcs.push(airFlowLowInputVal)}else{valSetToPlcs.push(airFlowLowVal.nowVal)}
 
                 if(liquidFlowLowInputVal&&liquidFlowLowInputVal>=0)

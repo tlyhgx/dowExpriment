@@ -312,7 +312,7 @@ Item {
             id:pump2
             x:leftDeviceValPosx;y:400
             deviceName: "蠕动泵2"
-            value: "OFF"  //TODO1:
+            value: "OFF"
             unit:" "
         }
 

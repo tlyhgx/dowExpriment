@@ -45,8 +45,8 @@ public:
         int dataBits = QSerialPort::Data8;
         int stopBits = QSerialPort::OneStop;
 
-        int responseTime = 1000;
-        int numberOfRetries = 3;
+        int responseTime = 500;
+        int numberOfRetries = 1;
 
     };
 

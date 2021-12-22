@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
         <file>contents/WorkUI.qml</file>
         <file>imgs/mixer.png</file>
         <file>contents/EventList.qml</file>
@@ -37,5 +36,7 @@
         <file>learn/qmlchart2.qml</file>
         <file>contents/infoList.qml</file>
         <file>contents/ParaItem.qml</file>
+        <file>main.qml</file>
+        <file>contents/MainWindow.qml</file>
     </qresource>
 </RCC>
