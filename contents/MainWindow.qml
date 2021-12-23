@@ -17,7 +17,7 @@ Window {
     width: totalWidth
     height: totalHeight
     flags: Qt.FramelessWindowHint
-//    visible: true
+//    visible: false
     title: qsTr("陶氏实验数据监控系统v1.0")
 //        visibility: Window.FullScreen
 
@@ -267,6 +267,7 @@ Window {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
+                        mainWindow.visible=false
                         realTimeCurveWindow.show()
                     }
                 }
@@ -282,6 +283,7 @@ Window {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
+
                         historyDataWindow.show()
                     }
                 }
@@ -326,21 +328,13 @@ Window {
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        mainBackend.stopSys()
-                        exitTimer.start()
+                        mainBackend.eixtSys()
+
                     }
                 }
             }
 
-            Timer{
-                id:exitTimer
-                interval: 2000
-                repeat: false
-                triggeredOnStart: false
-                onTriggered: {
-                    Qt.exit(0);
-                }
-            }
+
 
 
         }

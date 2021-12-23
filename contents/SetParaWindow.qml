@@ -5,7 +5,7 @@ Window {
     title: qsTr("参数设置")
     height: 450
     width: 1000
-
+    flags: Qt.FramelessWindowHint
     Grid{
 
 
@@ -52,7 +52,7 @@ Window {
             id:askPLCCycle
             paraName: "数据读取周期:"
             currentVal_dis: setParaBackend.askPlc_cycle_ms
-            unit_dis: "ms   范围[300,30000]"
+            unit_dis: "ms   范围[1000,30000]"
         }
 
         ParaItem{
@@ -182,7 +182,7 @@ Window {
                 { setParaBackend.realTimeCurve_time_s=realTimeCurve_time_s}
 
                 var askPlc_cycle_ms=parseFloat(askPLCCycle.inputVal)
-                if(askPlc_cycle_ms&&(askPlc_cycle_ms>=300)&&(askPlc_cycle_ms<=30000))
+                if(askPlc_cycle_ms&&(askPlc_cycle_ms>=1000)&&(askPlc_cycle_ms<=30000))
                 {setParaBackend.askPlc_cycle_ms=askPlc_cycle_ms}
 
                 var valSetToPlcs=new Array;
@@ -228,7 +228,7 @@ Window {
             text: "退出"
             anchors.margins: 5
             onClicked: {
-                setParaWindow.close()
+                setParaWindow.hide()
             }
 
         }

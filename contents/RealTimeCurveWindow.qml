@@ -16,13 +16,18 @@ Window {
 //    visibility: Window.FullScreen
     width: totalWidth
     height: totalHeight
+    flags: Qt.FramelessWindowHint
     title: qsTr("实时曲线")
     HwwButton{
         x:parent.width-100
         y:20
+        z:1
         text: "退出"
         onClicked: {
-            realTimeCurveWindow.close()
+
+            mainWindow.visible=true
+
+            realTimeCurveWindow.hide()
         }
     }
 
@@ -260,8 +265,10 @@ Window {
                 temp5Series.remove(0)
                 airFlowSeries.append(curd,signalVals[0] )
                 airPressSeries.append(curd,signalVals[1] )
-                liquidFlowSeries.append(curd,signalVals[2] )
-                rotateSpeedSeries.append(curd,signalVals[3] )
+                rotateSpeedSeries.append(curd,signalVals[2] )
+                liquidFlowSeries.append(curd,signalVals[3] )
+
+//                console.log(signalVals[3])
                 tempSeries.append(curd,signalVals[4] )
                 temp2Series.append(curd,signalVals[5] )
                 temp3Series.append(curd,signalVals[6] )
@@ -271,8 +278,9 @@ Window {
 
                 airFlowSeries.append(curd,signalVals[0])
                 airPressSeries.append(curd,signalVals[1])
-                liquidFlowSeries.append(curd,signalVals[2])
-                rotateSpeedSeries.append(curd,signalVals[3])
+                rotateSpeedSeries.append(curd,signalVals[2])
+                liquidFlowSeries.append(curd,signalVals[3])
+
                 tempSeries.append(curd,signalVals[4] )
                 temp2Series.append(curd,signalVals[5] )
                 temp3Series.append(curd,signalVals[6] )

@@ -172,5 +172,11 @@ TEST_F(TestBackend,output_state)
     outPutStateVals<<1<<0<<1<<0<<1;
    mainBackend->send_OutPutState_to_view(outPutStateVals);
 }
+//TODO1:退出系统
+TEST_F(TestBackend,exit_sys)
+{
+
+   mainBackend->eixtSys();
+}
 #endif // TST_MAINBACKEND_H
 

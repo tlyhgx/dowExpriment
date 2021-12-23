@@ -56,6 +56,7 @@ public slots:
     void recVal_to_db();
     void recordOperName_to_db(QString operName);
     void recordExprimentName_to_db(QString csExprimentName);
+    void eixtSys();
     void setOperName(QString operName)
     {
         if (m_operName == operName)

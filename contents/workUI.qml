@@ -127,7 +127,7 @@ Item {
             id: heat
             text: qsTr("未加热")
             x:696;y:540
-            color: "blue"      //TODO1:
+            color: "blue"
             font.pixelSize: 26
         }
 

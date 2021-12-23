@@ -96,13 +96,6 @@ void GetPlcVal::recieveReply(QModbusDataUnit dataUnit)
     else if(dataUnit.startAddress()==dowInit->plcMemoryAddress.outPutState){
         int just_out_put_state=dataUnit.values()[0];
 
-//        vector<int> res= HwwUtility::int_vector_int_0_1(just_out_put_state);
-//        QVariantList vals;
-//        for(int i=0;i<res.size();i++)
-//        {
-//            vals<<res[i];
-//        }
-//        emit outPutStateValChanged(vals);
 
         if(m_outPutStates!=just_out_put_state||just_out_put_state==0){
             vector<int> res= HwwUtility::int_vector_int_0_1(just_out_put_state);
@@ -198,6 +191,8 @@ void GetPlcVal::stopSys()
     data<<0;
     myModbus->modbusWrite(1,QModbusDataUnit::HoldingRegisters,dowInit->plcMemoryAddress.startCommand,
                           1,data);
+
+
 }
 
 

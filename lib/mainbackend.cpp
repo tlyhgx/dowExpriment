@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <math.h>
 #include "getplcval.h"
+#include "hwwutility.h"
 #include "signal_vals.h"
 //#pragma execution_character_set("utf-8")
 
@@ -126,5 +127,44 @@ void MainBackend::recordExprimentName_to_db(QString csExprimentName)
     Oper oper;
     int id_oper=oper.findLastOper_id_by_name_from_db(m_operName);
     expriment.addExpriment_to_db(csExprimentName,id_oper);
+
+}
+#include <time.h>       /* 调用时务必加上该头文件 */
+// 自定义的一个延时函数delay()
+void delay(int seconds) //  参数必须为整型，表示延时多少秒
+{
+    clock_t start = clock();
+    clock_t lay = (clock_t)seconds * CLOCKS_PER_SEC;
+    while ((clock()-start) < lay);
+}
+
+//TODO1:输出停止系统指令--读取系统运行状态--停--退出；--未停--输出系统停止
+void MainBackend::eixtSys()
+{
+
+
+    int res=getPlcVal->getAlarms();
+    vector<int>states= HwwUtility::int_vector_int_0_1(res);
+
+    if(states[7]==0)
+    {
+        exit(0);
+    }
+
+    getPlcVal->ask_alarm_from_plc();
+
+    delay(2);
+    res=getPlcVal->getAlarms();
+    states= HwwUtility::int_vector_int_0_1(res);
+    if(states[7]==0)
+    {
+        exit(0);
+    }else{
+        getPlcVal->stopSys();
+    }
+
+
+
+
 
 }

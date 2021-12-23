@@ -71,6 +71,7 @@ Window {
                         onClicked: {
                             logoWin.close()
                             mainWindow.show()
+//                            mainWindow.visibility=Window.FullScreen
                         }
                     }
                 }
