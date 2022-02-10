@@ -15,6 +15,7 @@
 
 #include "getplcval.h"
 #include <QtWidgets/QApplication>
+#include "recordvaltablemodel.h"
 #pragma execution_character_set("utf-8")
 int main(int argc, char *argv[])
 {
@@ -50,6 +51,8 @@ int main(int argc, char *argv[])
 
 
 
+
+
     engine.rootContext()->setContextProperty("mainBackend",&mainBackend);
     engine.rootContext()->setContextProperty("realTimeCurveBackend",&realTimeCurveBackend);
     engine.rootContext()->setContextProperty("setParaBackend",&setParaBackend);
@@ -62,6 +65,7 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("infoListModel",&infoListModel);
 
+    qmlRegisterType<RecordValTableModel>("recordValTableModel",1,0,"RecordValTableModel");
 
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

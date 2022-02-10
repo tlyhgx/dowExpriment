@@ -21,7 +21,8 @@ add_library(lib
   mainbackend.cpp
   mainbackend.h
 
-
+  recordvaltablemodel.h
+  recordvaltablemodel.cpp
 
 
   DowInit.cpp

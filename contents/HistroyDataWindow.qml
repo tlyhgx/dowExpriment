@@ -5,10 +5,20 @@ Window {
     height: 450
     width: 750
     flags: Qt.FramelessWindowHint
+
+
+
+
     Rectangle{
 
         anchors.fill: parent
         color: "lightblue"
+
+        RecordVal_tableview{
+        height: 400
+        width: 700
+
+        }
         HwwButton{
             x:parent.width-100
             y:20

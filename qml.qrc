@@ -38,5 +38,6 @@
         <file>contents/ParaItem.qml</file>
         <file>main.qml</file>
         <file>contents/MainWindow.qml</file>
+        <file>contents/RecordVal_tableview.qml</file>
     </qresource>
 </RCC>

@@ -138,7 +138,8 @@ void delay(int seconds) //  参数必须为整型，表示延时多少秒
     while ((clock()-start) < lay);
 }
 
-//TODO1:输出停止系统指令--读取系统运行状态--停--退出；--未停--输出系统停止
+//输出停止系统指令--读取系统运行状态--停--退出；--未停--输出系统停止
+//TODO:若未手动停止，会造成需要二次点击
 void MainBackend::eixtSys()
 {
 
