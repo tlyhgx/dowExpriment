@@ -9,10 +9,53 @@ Item {
     property int verHeaderHeight: 30
     property int verHeaderWidth: 30
     property int horHeaderHeight: 30
-    property variant columnWidthArr: [200,100,100]   //定义列宽数值
+    property var columnWidthArr: [200,100,100]   //定义列宽数值
+    property var experiment_name: []
+
+
+    RecordValTableModel{id:table_model;m_tableName:tableName
+
+    }
+//    ColumnLayout{
+//        id:selectItem
+//        x:parent.width-200
+//        y:20
+//        height: 200
+//        width: 120
+
+
+//        HwwButton{
+//            text: "查询"
+//        }
+//    }
+
+
+    ComboBox{
+            editable: false
+            x: 10
+            y:10
+
+            Component.objectName:
+            {
+                var items=table_model.search_expriment_name()
+
+                for(var i in items)
+                {
+                    experiment_name.push(items[i])
+                }
+//                console.log(experiment_name)
+//                console.log(table_model.search_expriment_name())
+            }
+            model: experiment_name
+
+    }
+
 
     TableView{
         id:tableView
+
+        x: 10
+        y:40
         columnSpacing: 1
         columnWidthProvider: function(column){
             return root.columnWidthArr[column]
@@ -28,7 +71,7 @@ Item {
             topMargin: root.horHeaderHeight
         }
 
-        model: RecordValTableModel{id:table_model;m_tableName:tableName}
+        model: table_model
         clip: true
         delegate: Rectangle{
             width: tableView.columnWidthProvider(table_model.row)
@@ -124,7 +167,7 @@ Item {
     }
 
     onTableNameChanged: {
-//        console.log("tableName changed")
+        //        console.log("tableName changed")
         tableView.forceLayout()
     }
 }

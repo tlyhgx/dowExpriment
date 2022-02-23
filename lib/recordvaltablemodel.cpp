@@ -4,6 +4,7 @@
 #include <QSqlRecord>
 #include <qtextcodec.h>
 
+#pragma execution_character_set("utf-8")
 RecordValTableModel::RecordValTableModel(QSqlQueryModel *parent)
     :QSqlQueryModel(parent),m_tableName(""),m_query(new QSqlQuery (QSqlDatabase(QSqlDatabase::database())))
 {
@@ -40,17 +41,14 @@ RecordValTableModel::RecordValTableModel(QSqlQueryModel *parent)
 
         this->setQuery(*m_query);
 
-//        int columns=this->columnCount();
+
 
         m_tableTitle.clear();
-//        for(int i=0;i<columns;i++)
-//        {
-//            m_tableTitle.append(m_query->record().fieldName(i));
-//        }
-        QTextCodec *codec = QTextCodec::codecForName("GBK");
-        m_tableTitle.append(codec->toUnicode("时间"));
-        m_tableTitle.append(codec->toUnicode("内容"));
-        m_tableTitle.append(codec->toUnicode("值"));
+
+
+        m_tableTitle.append("时间");
+        m_tableTitle.append("内容");
+        m_tableTitle.append("值");
     });
 
 }
@@ -71,13 +69,31 @@ QVariant RecordValTableModel::headerData(int section, Qt::Orientation orientatio
     return QVariant();
 }
 
+void RecordValTableModel::search(QString keyVal)
+{
+    QString queryser;//TODO1:
+    //    queryser=QString("select create_time,name,value from %1").arg(m_tableName);
+}
+
+QVariantList RecordValTableModel::search_expriment_name()
+{
+    QVariantList name_list;
+
+    QSqlQuery query("select name from experiment order by id_experiment desc");
+    while (query.next()) {
+        name_list<<query.value(0).toString();
+    }
+    return name_list ;
+
+//    name_model.setStringList(name_list);
+//    return name_model;
+
+}
+
 int RecordValTableModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
 
-
-
-//    return m_query->size();
     return m_rows;
 }
 

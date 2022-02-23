@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QSqlQueryModel>
 #include <QSqlQuery>
-
+#include <QStringListModel>
 class RecordValTableModel : public QSqlQueryModel
 {
     Q_OBJECT
@@ -21,6 +21,8 @@ signals:
     // QAbstractItemModel interface
 public:
     Q_INVOKABLE QVariant headerData(int section,Qt::Orientation orientation,int role=Qt::DisplayRole)const override;
+    Q_INVOKABLE void search(QString keyVal);
+    Q_INVOKABLE QVariantList search_expriment_name();
     int rowCount(const QModelIndex & =QModelIndex()) const override;
     int columnCount(const QModelIndex & =QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const override;

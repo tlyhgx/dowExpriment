@@ -63,6 +63,8 @@ int main(int argc, char *argv[])
     HwwAlarms alarmsInfo(getPlcVal);
     mainBackend.setAlarmsInfo(alarmsInfo);
 
+
+
     engine.rootContext()->setContextProperty("infoListModel",&infoListModel);
 
     qmlRegisterType<RecordValTableModel>("recordValTableModel",1,0,"RecordValTableModel");
