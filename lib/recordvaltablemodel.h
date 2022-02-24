@@ -23,6 +23,7 @@ public:
     Q_INVOKABLE QVariant headerData(int section,Qt::Orientation orientation,int role=Qt::DisplayRole)const override;
     Q_INVOKABLE void search(QString keyVal);
     Q_INVOKABLE QVariantList search_expriment_name();
+    Q_INVOKABLE void display_cur_info();
     int rowCount(const QModelIndex & =QModelIndex()) const override;
     int columnCount(const QModelIndex & =QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role=Qt::DisplayRole) const override;
@@ -30,6 +31,8 @@ public:
 
     QString tableName() const;
     void setTableName(const QString _tableName);
+
+    void display_last_info();
 
 signals:
     void tableNameChanged();
@@ -40,6 +43,7 @@ private:
     int m_rows;
     QHash<int,QByteArray>m_roleNames;
 
+    QVector<QVector<QString>> table;
 
 };
 

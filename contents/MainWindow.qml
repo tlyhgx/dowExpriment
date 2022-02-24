@@ -42,8 +42,9 @@ Window {
         width:grid21Width;height: totalHeight-firstLineHeight-10
         x:30;y:workUI.height+20
         model: infoListModel;
+        clip: true
         //TODO:后添加的要显示在最上面
-        //        verticalLayoutDirection:ItemView.BottomToTop
+//                verticalLayoutDirection:ItemView.BottomToTop
         header:Rectangle{
             width: infoListView.width
             height: 20

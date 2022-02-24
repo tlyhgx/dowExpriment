@@ -5,29 +5,19 @@
 #include <qtextcodec.h>
 
 #pragma execution_character_set("utf-8")
-RecordValTableModel::RecordValTableModel(QSqlQueryModel *parent)
-    :QSqlQueryModel(parent),m_tableName(""),m_query(new QSqlQuery (QSqlDatabase(QSqlDatabase::database())))
+void RecordValTableModel::display_last_info()
 {
+    QString id_experiment;
+    QString query_str_id=QString("select id_experiment from experiment order by id_experiment desc limit 1 ");
 
-    m_roleNames[Qt::UserRole]="create_time";
-    m_roleNames[Qt::UserRole+1]="name";
-    m_roleNames[Qt::UserRole+2]="value";
-//    qDebug()<<QSqlDatabase::database().connectionNames();
+    if(!m_query->exec(query_str_id))
+    {
+        qDebug()<<m_query->lastError();
+    }else{
+        m_query->next();
+        id_experiment=m_query->value(0).toString();
 
-    connect(this,&RecordValTableModel::tableNameChanged,
-            [&]{
-        /*qDebug()<<"tableChanged";*/
-        QString queryser;
-        if(m_tableName=="signal_vals")
-        {
-
-            queryser=QString("select create_time,name,value from %1").arg(m_tableName);
-
-//            qDebug()<< queryser;
-        }
-        else{
-            queryser=QString("select * from %1").arg(m_tableName);
-        }
+        QString queryser=QString("select create_time,name,value from signal_vals where id_experiment=%1").arg(id_experiment);
 
         if(!m_query->exec(queryser))
         {
@@ -38,6 +28,35 @@ RecordValTableModel::RecordValTableModel(QSqlQueryModel *parent)
                 m_rows=m_rows+1;
             }
         }
+
+    }
+}
+
+RecordValTableModel::RecordValTableModel(QSqlQueryModel *parent)
+    :QSqlQueryModel(parent),m_tableName(""),m_query(new QSqlQuery (QSqlDatabase(QSqlDatabase::database())))
+{
+
+    m_roleNames[Qt::UserRole]="create_time";
+    m_roleNames[Qt::UserRole+1]="name";
+    m_roleNames[Qt::UserRole+2]="value";
+    //    qDebug()<<QSqlDatabase::database().connectionNames();
+
+    connect(this,&RecordValTableModel::tableNameChanged,
+            [&]{
+        /*qDebug()<<"tableChanged";*/
+        QString queryser;
+        if(m_tableName=="signal_vals")
+        {
+
+            display_last_info();
+
+
+        }
+        else{
+            queryser=QString("select * from %1").arg(m_tableName);
+        }
+
+
 
         this->setQuery(*m_query);
 
@@ -71,8 +90,37 @@ QVariant RecordValTableModel::headerData(int section, Qt::Orientation orientatio
 
 void RecordValTableModel::search(QString keyVal)
 {
-    QString queryser;//TODO1:
-    //    queryser=QString("select create_time,name,value from %1").arg(m_tableName);
+
+    QString id_experiment;
+    QString query_str_id=QString("select id_experiment from experiment  where name='%1'").arg(keyVal);
+
+    if(!m_query->exec(query_str_id))
+    {
+        qDebug()<<m_query->lastError();
+    }else{
+        m_query->next();
+        id_experiment=m_query->value(0).toString();
+
+        QString queryser=QString("select create_time,name,value from signal_vals where id_experiment=%1").arg(id_experiment);
+
+        if(!m_query->exec(queryser))
+        {
+            qDebug()<<m_query->lastError();
+        }else{
+            m_rows=0;
+            while (m_query->next()) {
+                m_rows=m_rows+1;
+            }
+
+            emit layoutChanged();
+
+        }
+
+    }
+
+
+
+
 }
 
 QVariantList RecordValTableModel::search_expriment_name()
@@ -85,9 +133,15 @@ QVariantList RecordValTableModel::search_expriment_name()
     }
     return name_list ;
 
-//    name_model.setStringList(name_list);
-//    return name_model;
+    //    name_model.setStringList(name_list);
+    //    return name_model;
 
+}
+
+void RecordValTableModel::display_cur_info()
+{
+    display_last_info();
+    emit layoutChanged();
 }
 
 int RecordValTableModel::rowCount(const QModelIndex &parent) const

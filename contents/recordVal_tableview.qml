@@ -7,46 +7,43 @@ Item {
     id:root
     property string tableName: "signal_vals"
     property int verHeaderHeight: 30
-    property int verHeaderWidth: 30
+    property int verHeaderWidth: 60
     property int horHeaderHeight: 30
     property var columnWidthArr: [200,100,100]   //定义列宽数值
     property var experiment_name: []
 
-
-    RecordValTableModel{id:table_model;m_tableName:tableName
-
-    }
-//    ColumnLayout{
-//        id:selectItem
-//        x:parent.width-200
-//        y:20
-//        height: 200
-//        width: 120
+    RecordValTableModel{id:table_model;m_tableName:tableName}
 
 
-//        HwwButton{
-//            text: "查询"
-//        }
-//    }
 
 
     ComboBox{
-            editable: false
-            x: 10
-            y:10
+        editable: false
 
-            Component.objectName:
+        x: parent.width
+        y:50
+        width: 200
+        id:comboBoxCustom
+        background: Rectangle {
+            color:"azure"
+        }
+        Component.objectName:
+        {
+            var items=table_model.search_expriment_name()
+
+            for(var i in items)
             {
-                var items=table_model.search_expriment_name()
-
-                for(var i in items)
-                {
-                    experiment_name.push(items[i])
-                }
-//                console.log(experiment_name)
-//                console.log(table_model.search_expriment_name())
+                experiment_name.push(items[i])
             }
-            model: experiment_name
+
+        }
+
+        model: experiment_name
+
+        onActivated: {
+//            console.log("点击的索引："+index+" 内容为:"+textAt(index))
+            table_model.search(textAt(index))
+        }
 
     }
 
@@ -88,6 +85,21 @@ Item {
             }
 
 
+        }
+        ScrollBar.vertical:  ScrollBar {
+            id: vertical2
+            anchors.bottom:  tableView.bottom
+            width: 16
+            active: true
+            //                visible:tableView.moving?true:false
+
+            contentItem: Rectangle {
+                id:contentItem_rect2
+                width:50
+                implicitHeight:4
+                radius: implicitHeight/2
+                color: "steelblue"
+            }
         }
     }
 
@@ -169,5 +181,13 @@ Item {
     onTableNameChanged: {
         //        console.log("tableName changed")
         tableView.forceLayout()
+    }
+    HwwButton{
+        x:parent.width
+        y:10
+    text: "显示最后一次实验数据"
+    onClicked: {
+        table_model.display_cur_info();
+    }
     }
 }
