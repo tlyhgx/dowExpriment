@@ -7,8 +7,6 @@ Window {
     width: 1000
     flags: Qt.FramelessWindowHint
     Grid{
-
-
         width: parent.width
         height: parent.height-20
         columns:2
@@ -161,6 +159,7 @@ Window {
                 //TODO:考虑把数据库读取的也更新一下
             }
         }
+        //保存
         HwwButton{
             width: 70
             text: "保存"
@@ -206,10 +205,10 @@ Window {
                 if(tem1IncreaseAlarmInputVal&&tem1IncreaseAlarmInputVal<=100&&tem1IncreaseAlarmInputVal>=0)
                 {valSetToPlcs.push(tem1IncreaseAlarmInputVal)}else{valSetToPlcs.push(tem1IncreaseAlarmVal.nowVal)}
 
-                if(airFlowLowInputVal&&airFlowLowInputVal>=-1)
+                if(airFlowLowInputVal&&airFlowLowInputVal>=0)
                 {valSetToPlcs.push(airFlowLowInputVal)}else{valSetToPlcs.push(airFlowLowVal.nowVal)}
 
-                if(liquidFlowLowInputVal&&liquidFlowLowInputVal>=0)
+                if(liquidFlowLowInputVal&&liquidFlowLowInputVal>=-1)
                 {valSetToPlcs.push(liquidFlowLowInputVal)}else{valSetToPlcs.push(liquidFlowLowVal.nowVal)}
 
                 if(rotateLowInputVal&&rotateLowInputVal>=0)
@@ -223,6 +222,7 @@ Window {
                 setParaBackend.setPlcPara(valSetToPlcs);
             }
         }
+        //退出
         HwwButton{
             width: 70
             text: "退出"
