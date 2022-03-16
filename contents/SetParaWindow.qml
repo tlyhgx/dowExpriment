@@ -206,10 +206,10 @@ Window {
                 if(tem1IncreaseAlarmInputVal&&tem1IncreaseAlarmInputVal<=100&&tem1IncreaseAlarmInputVal>=0)
                 {valSetToPlcs.push(tem1IncreaseAlarmInputVal)}else{valSetToPlcs.push(tem1IncreaseAlarmVal.nowVal)}
 
-                if(airFlowLowInputVal&&airFlowLowInputVal>=-1)
+                if(airFlowLowInputVal&&airFlowLowInputVal>=0)
                 {valSetToPlcs.push(airFlowLowInputVal)}else{valSetToPlcs.push(airFlowLowVal.nowVal)}
 
-                if(liquidFlowLowInputVal&&liquidFlowLowInputVal>=0)
+                if(liquidFlowLowInputVal&&liquidFlowLowInputVal>=-1)
                 {valSetToPlcs.push(liquidFlowLowInputVal)}else{valSetToPlcs.push(liquidFlowLowVal.nowVal)}
 
                 if(rotateLowInputVal&&rotateLowInputVal>=0)
