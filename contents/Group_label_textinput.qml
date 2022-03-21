@@ -24,6 +24,7 @@ Item {
             selectByMouse: true
             horizontalAlignment: "AlignRight"
             verticalAlignment: "AlignBottom"
+                    validator: RegExpValidator{regExp:/^(\-)?\d+(\.\d{1,2})$/}
         }
     }
 }

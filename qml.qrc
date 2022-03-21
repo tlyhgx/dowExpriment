@@ -39,7 +39,7 @@
         <file>main.qml</file>
         <file>contents/MainWindow.qml</file>
         <file>contents/RecordVal_tableview.qml</file>
-        <file>contents/window_adjust_anolog_value_para_set.qml</file>
+        <file>contents/Window_adjust_anolog_value_para_set.qml</file>
         <file>contents/Group_label_textinput.qml</file>
     </qresource>
 </RCC>

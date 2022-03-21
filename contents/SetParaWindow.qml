@@ -6,6 +6,20 @@ Window {
     height: 450
     width: 1000
     flags: Qt.FramelessWindowHint
+    HwwButton{
+        x:parent.width-100
+        y:20
+        text: "温度值校正"
+        Window_adjust_anolog_value_para_set{
+            id:window_adjust_anolog_value
+        }
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                window_adjust_anolog_value.show()
+            }
+        }
+    }
     Grid{
 
 
