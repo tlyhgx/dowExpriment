@@ -4,6 +4,7 @@
 #include <QObject>
 #include "dowinit.h"
 #include "mymodbus.h"
+#include "db_adjust_analog.h"
 #include <QtCore>
 
 class GetPlcVal : public QObject
@@ -27,6 +28,8 @@ public:
 
     int getAlarms() const;
 
+    void get_adjust_analog_vals();
+
 public slots:
     void recieveReply(QModbusDataUnit dataUnit);
     void askOtherSignalVals();
@@ -42,6 +45,11 @@ private:
 
    DowInit* dowInit;
    MyModbus* myModbus;
+
+   //温度修正值组
+   QVariantList adjust_analog_vals;
+
+
    QVariantList m_signalVals;
    QVariantList m_tempSignalVals;
    QVariantList m_paraVals;

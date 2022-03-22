@@ -72,6 +72,11 @@ add_library(lib
   outputstate.cpp
   outputstate.h
 
+  backend_adjust_analog_set.cpp
+  backend_adjust_analog_set.h
+
+  db_adjust_analog.cpp
+  db_adjust_analog.h
 
 )
 

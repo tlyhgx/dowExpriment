@@ -8,10 +8,12 @@ Window {
     width: 480
     height: 500
     visible: true
+    color: "#00000000"
     flags: Qt.SplashScreen
     //    flags: Qt.FramelessWindowHint
     Rectangle{
         anchors.fill: parent
+        radius:8
         gradient: Gradient {
             GradientStop { position: 0.0; color: "azure" }
             GradientStop { position: 1.0; color: "white" }
