@@ -20,7 +20,7 @@ QVector<float> DB_Adjust_Analog::getAdjustVals()
 
         adjust_vals.append(query.value(i).toFloat());
     }
-//    qDebug()<<adjust_vals.count();
+    //    qDebug()<<adjust_vals.count();
     return adjust_vals;
 
 }
@@ -34,7 +34,6 @@ void DB_Adjust_Analog::setAdjustVals(QVector<float> adjusted_vals)
     query.bindValue(":val3",adjusted_vals[2]);
     query.bindValue(":val4",adjusted_vals[3]);
     query.bindValue(":val5",adjusted_vals[4]);
-query.exec();
-
+    query.exec();
 
 }
