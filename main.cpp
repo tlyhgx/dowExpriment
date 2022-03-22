@@ -12,6 +12,7 @@
 #include <dowdatabase.h>
 #include <setparabackend.h>
 #include <infolist.h>
+#include <backend_adjust_analog_set.h>
 
 #include "getplcval.h"
 #include <QtWidgets/QApplication>
@@ -53,6 +54,9 @@ int main(int argc, char *argv[])
 
 
 
+
+
+
     engine.rootContext()->setContextProperty("mainBackend",&mainBackend);
     engine.rootContext()->setContextProperty("realTimeCurveBackend",&realTimeCurveBackend);
     engine.rootContext()->setContextProperty("setParaBackend",&setParaBackend);
@@ -66,6 +70,9 @@ int main(int argc, char *argv[])
 
 
     engine.rootContext()->setContextProperty("infoListModel",&infoListModel);
+
+    //模拟量输入值校正backend
+    qmlRegisterType<Backend_adjust_analog_set>("backend_adjust_analog_set",1,0,"Backend_adjust_analog_set");
 
     qmlRegisterType<RecordValTableModel>("recordValTableModel",1,0,"RecordValTableModel");
 

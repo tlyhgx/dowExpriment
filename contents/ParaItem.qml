@@ -35,7 +35,7 @@ Item {
             }
         }
 
-           TextField {
+        TextField {
 
             width:70
             height: 28
@@ -45,7 +45,7 @@ Item {
                 pixelSize: 18
                 bold: true
             }
-//            text: changedVal
+            //            text: changedVal
             selectByMouse: true
             horizontalAlignment: "AlignRight"
             verticalAlignment: "AlignBottom"

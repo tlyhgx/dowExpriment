@@ -3,6 +3,17 @@
 
 
 
+void GetPlcVal::get_adjust_analog_vals()
+{
+    DB_Adjust_Analog db_adjust_analog;
+    QVector<float> float_of_adjust_analog_vals;
+    float_of_adjust_analog_vals=db_adjust_analog.getAdjustVals();
+    for(float item : float_of_adjust_analog_vals)
+    {
+        adjust_analog_vals.append(item);
+    }
+}
+
 GetPlcVal::GetPlcVal(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
 {
     Q_UNUSED(parent);
@@ -19,6 +30,11 @@ GetPlcVal::GetPlcVal(DowInit *dowInit, MyModbus *mymodbus, QObject *parent)
     connect(timer500,&QTimer::timeout,this,&GetPlcVal::ask_alarm_from_plc);
 
     timer500->start(dowInit->getAskPlc_cycle_ms());
+
+    //获取温度修正值组
+    get_adjust_analog_vals();
+
+
 }
 
 void GetPlcVal::recieveReply(QModbusDataUnit dataUnit)
@@ -47,7 +63,12 @@ void GetPlcVal::recieveReply(QModbusDataUnit dataUnit)
         QVariantList tempSignalVals;
         for(uint i=0;i<(dataUnit.valueCount());i++)
         {
-            tempSignalVals<< dataUnit.values()[i]*0.1;
+            if(i<=adjust_analog_vals.count()){
+               tempSignalVals<< (dataUnit.values()[i]*0.1+adjust_analog_vals[i].toFloat());
+            }else{
+               tempSignalVals<< dataUnit.values()[i]*0.1;
+            }
+
         }
         emit tempSignalValChanged(tempSignalVals);
         m_tempSignalVals=tempSignalVals;
@@ -147,6 +168,7 @@ QVariantList GetPlcVal::getSignalVals() const
 
 QVariantList GetPlcVal::getTempSignalVals() const
 {
+
     return m_tempSignalVals;
 }
 

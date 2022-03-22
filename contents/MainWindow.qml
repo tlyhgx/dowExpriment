@@ -242,7 +242,8 @@ Window {
         }
     }
 
-    Rectangle{     //其它窗口按钮组
+    //其它窗口按钮组
+    Rectangle{
         width: 120
         height: totalHeight-firstLineHeight
         x:totalWidth-width;y:workUI.height+8
