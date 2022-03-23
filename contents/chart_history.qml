@@ -1,9 +1,13 @@
 ﻿import QtQuick 2.0
 import QtCharts 2.15
 import QtQuick.Controls 2.15
+import backend_history_chart 1.0
 Item {
     id:top_level
     width:1680;height: 800
+    Backend_history_chart{
+        id:backend_history_chart
+    }
     ChartView{
         id:charView
         width: top_level.width
@@ -55,11 +59,13 @@ Item {
             }
             ComboBox{
                 //实验人员
-                model: ListModel{
-                    ListElement{text:"Banana"}
-                    ListElement{text:"apple"}
-                    ListElement{text:"Banana"}
+                model: backend_history_chart.operNames
+
+                onActivated: {
+                    backend_history_chart.operName=currentText
+//                    console.log(currentText)
                 }
+
             }
         }
 
