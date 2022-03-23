@@ -13,7 +13,7 @@ Window {
     //后面循环时使用，定位
     property int  locate: 0
     property var timeArray: []
-//    visibility: Window.FullScreen
+    //    visibility: Window.FullScreen
     width: totalWidth
     height: totalHeight
     flags: Qt.FramelessWindowHint
@@ -268,7 +268,7 @@ Window {
                 rotateSpeedSeries.append(curd,signalVals[2] )
                 liquidFlowSeries.append(curd,signalVals[3] )
 
-//                console.log(signalVals[3])
+                //                console.log(signalVals[3])
                 tempSeries.append(curd,signalVals[4] )
                 temp2Series.append(curd,signalVals[5] )
                 temp3Series.append(curd,signalVals[6] )
