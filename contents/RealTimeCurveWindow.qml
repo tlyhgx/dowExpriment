@@ -225,13 +225,8 @@ Window {
         x_axis.min=new Date(nowTime.setSeconds(nowTime.getSeconds()-realTimeCurveBackend.x_count))
         x_axis_air.min=new Date(nowTime.setSeconds(nowTime.getSeconds()-realTimeCurveBackend.x_count))
         x_axis_other.min=new Date(nowTime.setSeconds(nowTime.getSeconds()-realTimeCurveBackend.x_count))
-
-
-
-
-
-
     }
+
     Connections{
         target: realTimeCurveBackend
         function onSignalValChanged(signalVals){

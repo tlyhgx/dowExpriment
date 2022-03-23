@@ -78,6 +78,17 @@ add_library(lib
   db_adjust_analog.cpp
   db_adjust_analog.h
 
+  backend_history_chart.cpp
+  backend_history_chart.h
+
+  db_oper.cpp
+  db_oper.h
+
+  db_experiment.cpp
+  db_experiment.h
+
+  db_signal_vals.cpp
+  db_signal_vals.h
 )
 
 target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  Qt${QT_VERSION_MAJOR}::Sql )

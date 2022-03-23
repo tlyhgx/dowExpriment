@@ -2,6 +2,7 @@
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
+
 Window {
     title: qsTr("历史记录")
     height: 1000
@@ -18,10 +19,9 @@ Window {
     //            id:recordVal_tableview
     //            height: parent.height
     //            width: 500
-
-
-
     //        }
+
+
     Chart_history{
         id:chart_history
         height: parent.height-50

@@ -1,39 +1,87 @@
 ﻿import QtQuick 2.0
 import QtCharts 2.15
 import QtQuick.Controls 2.15
+import backend_history_chart 1.0
 Item {
     id:top_level
     width:1680;height: 800
+    Backend_history_chart{
+        id:backend_history_chart
+        onOperNameChanged: {
+            comboBox_experimentNames.model=backend_history_chart.experimentNames
+        }
+
+        //根据提交内容设定最值（两端放大10%）
+        onDisplayValueScopeChanged:{
+            if(backend_history_chart.displayValueScope.length===2){
+                valueTemAxisY.min=backend_history_chart.displayValueScope[0]
+                valueTemAxisY.max=backend_history_chart.displayValueScope[1]
+                console.log(valueTemAxisY.min)
+                console.log(valueTemAxisY.max)
+            }
+
+        }
+        //根据提交内容设定时间段
+        onTime_start_endChanged:{
+            if(backend_history_chart.time_start_end.length===2)
+            {
+                x_axis.min=backend_history_chart.time_start_end[0]
+                x_axis.max=backend_history_chart.time_start_end[1]
+//                console.log(x_axis.min)
+//                console.log(x_axis.max)
+            }
+//            console.log("时间范围")
+        }
+        //显示全部内容
+        onRecieveTimeAndValChanged: {
+            analogValSeries.clear()
+            for(var i=0;i<(backend_history_chart.recieveTimeAndVal.length);i=i+2)
+            {
+                //                console.log(backend_history_chart.recieveTimeAndVal[i])
+                //                console.log(backend_history_chart.recieveTimeAndVal[i+1])
+                analogValSeries.append(backend_history_chart.recieveTimeAndVal[i]
+                                       ,backend_history_chart.recieveTimeAndVal[i+1])
+            }
+
+
+        }
+    }
+
     ChartView{
         id:charView
         width: top_level.width
         height: top_level.height-100
-        title: "历史曲线"
+        title: "历 史 曲 线"
+        titleFont.pointSize:  22
+        titleColor: "steelblue"
+
 
         //是否反锯齿化
         antialiasing: true
 
-        Component.onCompleted: {
+        //        Component.onCompleted: {
 
-        }
+        //        }
 
         ValueAxis{
             id: valueTemAxisY
             min: 0
-            max: 200
-
+            max: 5000
         }
 
         DateTimeAxis {
             id:x_axis
             format: "hh:mm:ss"
-            tickCount: 10
+            tickCount: 20
         }
 
         SplineSeries{
-            id:tempSeries
+            id:analogValSeries
             axisX: x_axis
             axisY:valueTemAxisY
+            pointsVisible: true
+
+
 
         }
 
@@ -45,8 +93,8 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         y:charView.height+20
         spacing: 20
+        //操作人员组
         Row{
-
             spacing: 5
             Label{
                 text: "实验人员"
@@ -55,14 +103,16 @@ Item {
             }
             ComboBox{
                 //实验人员
-                model: ListModel{
-                    ListElement{text:"Banana"}
-                    ListElement{text:"apple"}
-                    ListElement{text:"Banana"}
+                model: backend_history_chart.operNames
+
+                onActivated: {
+                    backend_history_chart.operName=currentText
+                    //                    console.log(currentText)
                 }
+
             }
         }
-
+        //实验名称组
         Row{
             spacing: 5
             Label{
@@ -71,16 +121,11 @@ Item {
                 anchors.verticalCenter:  parent.verticalCenter
             }
             ComboBox{
-                //实验名称
-                model: ListModel{
-                    ListElement{text:"Banana"}
-                    ListElement{text:"apple"}
-                    ListElement{text:"Banana"}
-                }
+                id:comboBox_experimentNames
             }
         }
 
-        //选择要显示的模拟量
+        //显示的模拟量选择组
         Row{
             spacing: 5
             Label{
@@ -89,17 +134,54 @@ Item {
                 anchors.verticalCenter:  parent.verticalCenter
             }
             ComboBox{
-
+                id:selectItem_analog
                 model: ListModel{
-                    ListElement{text:"Banana"}
-                    ListElement{text:"apple"}
-                    ListElement{text:"Banana"}
+                    ListElement{text:"1#温度"}
+                    ListElement{text:"2#温度"}
+                    ListElement{text:"3#温度"}
+                    ListElement{text:"4#温度"}
+                    ListElement{text:"5#温度"}
+                    ListElement{text:"气体流量"}
+                    ListElement{text:"气体压力"}
+                    ListElement{text:"液体流量"}
+                    ListElement{text:"搅拌转速"}
                 }
             }
         }
 
         HwwButton{
             text: "确定"
+            onClicked: {
+                var current_sirialsName=selectItem_analog.currentText
+                //曲线单位改为对应单位
+                if((current_sirialsName==="1#温度")||(current_sirialsName==="2#温度")
+                        ||(current_sirialsName==="3#温度")||(current_sirialsName==="4#温度")
+                        ||(current_sirialsName==="5#温度"))
+                {current_sirialsName=current_sirialsName+"(℃)"}
+                else if(current_sirialsName==="气体流量")
+                {current_sirialsName=current_sirialsName+"(SLPM)"}
+                else if(current_sirialsName==="气体压力")
+                {current_sirialsName=current_sirialsName+"(kPa)"}
+                else if(current_sirialsName==="液体流量")
+                {current_sirialsName=current_sirialsName+"(L/min)"}
+                else if(current_sirialsName==="搅拌转速")
+                {current_sirialsName=current_sirialsName+"(r/min)"}
+                //                console.log(current_sirialsName)
+                //曲线名称改为所选项
+                analogValSeries.name=current_sirialsName
+
+                if(comboBox_experimentNames.currentText!=='')
+                {
+
+                    //把comboBox的值传递到backend
+                    backend_history_chart.analogName=selectItem_analog.currentText
+                    backend_history_chart.experimentName=comboBox_experimentNames.currentText
+                    //                    console.log("读取数据")
+                    //查询数据
+                    backend_history_chart.ask_datas_from_db()
+                }
+
+            }
         }
 
 
