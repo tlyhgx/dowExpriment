@@ -16,8 +16,8 @@ Item {
             if(backend_history_chart.displayValueScope.length===2){
                 valueTemAxisY.min=backend_history_chart.displayValueScope[0]
                 valueTemAxisY.max=backend_history_chart.displayValueScope[1]
-                console.log(valueTemAxisY.min)
-                console.log(valueTemAxisY.max)
+//                console.log(valueTemAxisY.min)
+//                console.log(valueTemAxisY.max)
             }
 
         }
@@ -83,6 +83,26 @@ Item {
 
 
 
+        }
+        //滚轮转动，左右移动
+        MouseArea {
+            anchors.fill: charView
+
+            onWheel: {
+
+                //滚轮转动，起止时间缩放
+                if (wheel.angleDelta.y > 0) {
+                    //x_axis,日期间隔加大
+                    x_axis.min=new Date(x_axis.min.valueOf()-60*1000)
+                    x_axis.max=new Date(x_axis.max.valueOf()+60*1000)
+
+                }
+                else {
+                    x_axis.min=new Date(x_axis.min.valueOf()+60*1000)
+                    x_axis.max=new Date(x_axis.max.valueOf()-60*1000)
+                    //x_axis,日期间隔减少
+                }
+            }
         }
 
     }
