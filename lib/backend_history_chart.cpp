@@ -45,7 +45,7 @@ void Backend_history_chart::ask_datas_from_db()
         group_val_min_max.clear();
         group_val_min_max<<int(val_min);
         group_val_min_max<<int(val_max);
-        qDebug()<<group_val_min_max<<"最值";
+//        qDebug()<<group_val_min_max<<"最值";
         emit displayValueScopeChanged();
     }
 

@@ -5,6 +5,11 @@ import backend_history_chart 1.0
 Item {
     id:top_level
     width:1680;height: 800
+
+    //鼠标按下并保持标记
+    property var  isPressed: false
+    property var x_position: 0
+
     Backend_history_chart{
         id:backend_history_chart
         onOperNameChanged: {
@@ -56,12 +61,13 @@ Item {
         titleColor: "steelblue"
 
 
+
         //是否反锯齿化
         antialiasing: true
 
-        //        Component.onCompleted: {
+                Component.onCompleted: {
 
-        //        }
+                }
 
         ValueAxis{
             id: valueTemAxisY
@@ -102,7 +108,35 @@ Item {
                     x_axis.max=new Date(x_axis.max.valueOf()-60*1000)
                     //x_axis,日期间隔减少
                 }
+
+
             }
+
+            //鼠标左键按下时，左右移动，移动X轴坐标(时间)
+            onPressAndHold: {
+                x_axis.min=new Date(x_axis.min.valueOf()-60*1000)
+                isPressed=true
+            }
+
+            onReleased: {
+                isPressed=false
+            }
+
+            onMouseXChanged: {
+
+                if(isPressed===true && x_position-mouseX<0)
+                {
+                    x_axis.min=new Date(x_axis.min.valueOf()-60*1000)
+                    x_axis.max=new Date(x_axis.max.valueOf()-60*1000)
+                }else if(isPressed===true && x_position-mouseX>0){
+                    x_axis.min=new Date(x_axis.min.valueOf()+60*1000)
+                    x_axis.max=new Date(x_axis.max.valueOf()+60*1000)
+                }
+                x_position=mouseX
+
+            }
+
+//            on
         }
 
     }

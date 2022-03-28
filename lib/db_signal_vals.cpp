@@ -29,7 +29,7 @@ QVariantList DB_signal_vals::getTimeAndAnalogValByIDAndAnalogName(int id_experim
     }
 
 
-    qDebug()<<com_time_val;
+//    qDebug()<<com_time_val;
 
 
     return com_time_val;
