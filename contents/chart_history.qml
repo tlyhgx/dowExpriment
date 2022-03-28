@@ -21,8 +21,8 @@ Item {
             if(backend_history_chart.displayValueScope.length===2){
                 valueTemAxisY.min=backend_history_chart.displayValueScope[0]
                 valueTemAxisY.max=backend_history_chart.displayValueScope[1]
-//                console.log(valueTemAxisY.min)
-//                console.log(valueTemAxisY.max)
+                //                console.log(valueTemAxisY.min)
+                //                console.log(valueTemAxisY.max)
             }
 
         }
@@ -32,10 +32,10 @@ Item {
             {
                 x_axis.min=backend_history_chart.time_start_end[0]
                 x_axis.max=backend_history_chart.time_start_end[1]
-//                console.log(x_axis.min)
-//                console.log(x_axis.max)
+                //                console.log(x_axis.min)
+                //                console.log(x_axis.max)
             }
-//            console.log("时间范围")
+            //            console.log("时间范围")
         }
         //显示全部内容
         onRecieveTimeAndValChanged: {
@@ -65,9 +65,6 @@ Item {
         //是否反锯齿化
         antialiasing: true
 
-                Component.onCompleted: {
-
-                }
 
         ValueAxis{
             id: valueTemAxisY
@@ -79,6 +76,12 @@ Item {
             id:x_axis
             format: "hh:mm:ss"
             tickCount: 20
+//            labelsAngle: 45
+//            titleFont.pixelSize: 8
+//            titleFont.bold: true
+
+
+
         }
 
         SplineSeries{
@@ -86,6 +89,21 @@ Item {
             axisX: x_axis
             axisY:valueTemAxisY
             pointsVisible: true
+            pointLabelsVisible: false
+            useOpenGL: true
+
+            // 显示提示框，根据x_坐标显示y值
+            onHovered:  {
+                //                console.log("显示")
+                var p = charView.mapToPosition(point)
+                var text = qsTr("%1").arg(point.y)
+                id_tooltip.x = p.x
+                id_tooltip.y = p.y - id_tooltip.height
+                id_tooltip.text = text
+                id_tooltip.visible = true
+                //                console.log(p.x)
+                //                console.log(p.y)
+            }
 
 
 
@@ -136,14 +154,27 @@ Item {
 
             }
 
-//            on
+
+
+        }
+        //y值显示提示框
+        ToolTip {
+            id: id_tooltip
+            contentItem: Text{
+                color: "#21be2b"
+                text: id_tooltip.text
+            }
+            background: Rectangle {
+                border.color: "#21be2b"
+            }
         }
 
     }
 
 
-    //添加操作人员实验名称、模拟量通道 combobox
+    //操作人员实验名称、模拟量通道 combobox
     Row{
+        id:selectItems
         anchors.horizontalCenter: parent.horizontalCenter
         y:charView.height+20
         spacing: 20
@@ -176,6 +207,7 @@ Item {
             }
             ComboBox{
                 id:comboBox_experimentNames
+                width: 260
             }
         }
 
@@ -243,7 +275,32 @@ Item {
 
 
 
-    //时间范围combobox   分钟、小时 ，如果滚轮可用另外考虑
+    //提示
+    Column{
+        x:30
+        y:top_level.height-20
+        Label{
+            text: "时间范围缩放：转动鼠标滚轮"
+            font{
+                pixelSize: 14
+            }
+            color: "aqua"
+        }
+        Label{
+            text: "时间左右移动:鼠标左键按下，并保持1秒，然后左右移动"
+            font{
+                pixelSize: 14
+            }
+            color: "aqua"
+        }
+        Label{
+            text:"显示某个时间点的值:移动鼠标到该点"
+            font{
+                pixelSize: 14
+            }
+            color: "aqua"
+        }
+    }
 
 
 
