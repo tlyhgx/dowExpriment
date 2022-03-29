@@ -1,21 +1,47 @@
 ﻿import QtQuick 2.0
 import backend_oper_manage 1.0
-Item {
+import QtQuick.Window 2.15
+Window {
     id:id_top_level
     width: 660;height: 400
+    Backend_oper_manage{
+        id:backend_oper_manage
+    }
 
+    //名字列表
     ListView{
+        id:list_name
         x:100
         y:50
         width: 200
         height: id_top_level.height-100
-        model: Backend_oper_manage{}
-        delegate:Text {
-            text: "cs"
+        focus: true
+        highlight: Rectangle{color:"lightsteelblue";radius:5}
+        highlightFollowsCurrentItem: true
+        model: backend_oper_manage.list_operName
+        delegate: names_delegate
+        header: Component{Text {
+                id: name
+                text: qsTr("实验人员姓名")
+            }
         }
-
-
     }
+
+
+    //名字列表显示样式
+    Component{
+        id:names_delegate
+        Rectangle{
+            width: 60;height: 30
+            //            border.color: "lightblue"
+            Text {
+
+                //                text:data[index]
+                text:'<b> '+backend_oper_manage.list_operName[index]+' </b>'
+            }
+        }
+    }
+
 
     Column{
         x:id_top_level.width-100
@@ -39,8 +65,9 @@ Item {
         y:id_top_level.height-50
         text: "退 出"
         onClicked: {
-//            window_adjust_value.hide()
+            window_opr_manage.close()
         }
 
     }
 }
+

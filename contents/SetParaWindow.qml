@@ -242,7 +242,7 @@ Window {
             text: "退出"
             anchors.margins: 5
             onClicked: {
-                setParaWindow.hide()
+                setParaWindow.close()
             }
 
         }

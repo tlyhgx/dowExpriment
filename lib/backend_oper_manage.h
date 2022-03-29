@@ -7,7 +7,7 @@ class Backend_oper_manage : public QObject
 {
     Q_OBJECT
     //读取实验人员名称组
-    Q_PROPERTY(QVariantList list_operName READ list_operName )
+    Q_PROPERTY(QVariantList list_operName READ list_operName NOTIFY list_operNameChanged)
     //增加或改变实验人员名称
 public:
     explicit Backend_oper_manage(QObject *parent = nullptr);
@@ -17,6 +17,7 @@ public:
 
 
 signals:
+    void list_operNameChanged();
 
 };
 

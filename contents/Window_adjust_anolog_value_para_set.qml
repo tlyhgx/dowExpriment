@@ -131,7 +131,7 @@ Window {
         HwwButton{
             text: "退 出"
             onClicked: {
-                window_adjust_value.hide()
+                window_adjust_value.close()
             }
 
         }

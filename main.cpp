@@ -20,6 +20,20 @@
 #include "recordvaltablemodel.h"
 
 #pragma execution_character_set("utf-8")
+
+//注入qml
+void qmlResister_()
+{
+    //模拟量输入值校正backend
+    qmlRegisterType<Backend_adjust_analog_set>("backend_adjust_analog_set",1,0,"Backend_adjust_analog_set");
+    //历史数据曲线backend
+    qmlRegisterType<Backend_history_chart>("backend_history_chart",1,0,"Backend_history_chart");
+
+    qmlRegisterType<RecordValTableModel>("recordValTableModel",1,0,"RecordValTableModel");
+    //实验人员管理backend
+    qmlRegisterType<Backend_oper_manage>("backend_oper_manage",1,0,"Backend_oper_manage");
+}
+
 int main(int argc, char *argv[])
 {
 //#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -29,9 +43,10 @@ int main(int argc, char *argv[])
 //    QGuiApplication app(argc, argv);
 
     QApplication app(argc,argv);
+    app.setQuitOnLastWindowClosed(false);
+
+
     QQmlApplicationEngine engine;
-
-
 
     //设置初始值
     DowInit *dowInit=new DowInit ();
@@ -59,14 +74,8 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("infoListModel",&infoListModel);
 
-    //模拟量输入值校正backend
-    qmlRegisterType<Backend_adjust_analog_set>("backend_adjust_analog_set",1,0,"Backend_adjust_analog_set");
-    //历史数据曲线backend
-    qmlRegisterType<Backend_history_chart>("backend_history_chart",1,0,"Backend_history_chart");
-
-    qmlRegisterType<RecordValTableModel>("recordValTableModel",1,0,"RecordValTableModel");
-    //实验人员管理backend
-    qmlRegisterType<Backend_oper_manage>("backend_oper_manage",1,0,"Backend_oper_manage");
+    //注入qml
+    qmlResister_();
 
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -76,6 +85,8 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
+
+
 
     return app.exec();
 }

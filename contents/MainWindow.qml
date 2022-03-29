@@ -309,14 +309,15 @@ Window {
             HwwButton{
                 width: 100;
                 height: 30;
-                text: "过程记录"
-                ProcessRecordWindow{
-                    id:processRecordWindow
+                text: "用户管理"
+
+                Window_opr_manage{
+                    id:window_opr_manage
                 }
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        processRecordWindow.show()
+                        window_opr_manage.show()
                     }
                 }
             }

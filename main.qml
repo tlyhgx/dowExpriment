@@ -47,6 +47,9 @@ Window {
                 pixelSize: 15
             }
         }
+
+
+        //确认、退出按钮
         Row{
             id:buttons
             width: parent.width
@@ -69,6 +72,7 @@ Window {
                     onClicked: {
                         logoWin.close()
                         mainWindow.show()
+//                        mainWindow.raise()
 
                     }
                 }

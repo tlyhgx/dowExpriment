@@ -27,7 +27,7 @@ Window {
 
             mainWindow.visible=true
 
-            realTimeCurveWindow.hide()
+            realTimeCurveWindow.close()
         }
     }
 

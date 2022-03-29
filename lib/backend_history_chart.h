@@ -7,7 +7,7 @@ class Backend_history_chart : public QObject
 {
     Q_OBJECT
     //操作人员姓名组
-    Q_PROPERTY(QVariantList operNames READ operNames )
+    Q_PROPERTY(QVariantList operNames READ operNames NOTIFY operNamesChanged)
     //选择的操作人员
     Q_PROPERTY(QString operName  WRITE setOperName NOTIFY operNameChanged)
     //实验名称组
@@ -50,6 +50,7 @@ public:
     QVariantList time_start_end();
 signals:
     void operNameChanged();
+    void operNamesChanged();
     void experimentNamesChanged();
     void recieveTimeAndValChanged();
     void time_start_endChanged();
