@@ -14,9 +14,11 @@
 #include <infolist.h>
 #include <backend_adjust_analog_set.h>
 #include "backend_history_chart.h"
+#include "backend_oper_manage.h"
 #include "getplcval.h"
 #include <QtWidgets/QApplication>
 #include "recordvaltablemodel.h"
+
 #pragma execution_character_set("utf-8")
 int main(int argc, char *argv[])
 {
@@ -63,6 +65,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<Backend_history_chart>("backend_history_chart",1,0,"Backend_history_chart");
 
     qmlRegisterType<RecordValTableModel>("recordValTableModel",1,0,"RecordValTableModel");
+    //实验人员管理backend
+    qmlRegisterType<Backend_oper_manage>("backend_oper_manage",1,0,"Backend_oper_manage");
 
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

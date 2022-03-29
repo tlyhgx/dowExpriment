@@ -89,6 +89,9 @@ add_library(lib
 
   db_signal_vals.cpp
   db_signal_vals.h
+
+  backend_oper_manage.h
+  backend_oper_manage.cpp
 )
 
 target_link_libraries(lib PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::SerialBus Qt${QT_VERSION_MAJOR}::SerialPort  Qt${QT_VERSION_MAJOR}::Sql )
