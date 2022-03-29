@@ -13,7 +13,7 @@
 #include <setparabackend.h>
 #include <infolist.h>
 #include <backend_adjust_analog_set.h>
-
+#include "backend_history_chart.h"
 #include "getplcval.h"
 #include <QtWidgets/QApplication>
 #include "recordvaltablemodel.h"
@@ -26,12 +26,7 @@ int main(int argc, char *argv[])
 
 //    QGuiApplication app(argc, argv);
 
-
-
-
-
     QApplication app(argc,argv);
-
     QQmlApplicationEngine engine;
 
 
@@ -50,13 +45,6 @@ int main(int argc, char *argv[])
     SetParaBackend setParaBackend(dowInit,getPlcVal);
     HwwAlarms hwwAlarms(getPlcVal);
 
-
-
-
-
-
-
-
     engine.rootContext()->setContextProperty("mainBackend",&mainBackend);
     engine.rootContext()->setContextProperty("realTimeCurveBackend",&realTimeCurveBackend);
     engine.rootContext()->setContextProperty("setParaBackend",&setParaBackend);
@@ -67,12 +55,12 @@ int main(int argc, char *argv[])
     HwwAlarms alarmsInfo(getPlcVal);
     mainBackend.setAlarmsInfo(alarmsInfo);
 
-
-
     engine.rootContext()->setContextProperty("infoListModel",&infoListModel);
 
     //模拟量输入值校正backend
     qmlRegisterType<Backend_adjust_analog_set>("backend_adjust_analog_set",1,0,"Backend_adjust_analog_set");
+    //历史数据曲线backend
+    qmlRegisterType<Backend_history_chart>("backend_history_chart",1,0,"Backend_history_chart");
 
     qmlRegisterType<RecordValTableModel>("recordValTableModel",1,0,"RecordValTableModel");
 

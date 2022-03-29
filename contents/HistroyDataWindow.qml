@@ -2,32 +2,38 @@
 import QtQuick.Window 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
+
 Window {
     title: qsTr("历史记录")
     height: 1000
-    width: 750
+    width: 1680
     flags: Qt.FramelessWindowHint
+    //TODO:窗口居中要设置
 
 
 
 
-    Rectangle{
-        anchors.fill: parent
+
+
+    //        RecordVal_tableview{
+    //            id:recordVal_tableview
+    //            height: parent.height
+    //            width: 500
+    //        }
+
+
+    Chart_history{
+        id:chart_history
+        height: parent.height-50
+        width: parent.width
         anchors.margins: 10
-        color: "lightblue"
-        RecordVal_tableview{
-            id:recordVal_tableview
-            height: parent.height
-            width: 500
-
-
-
-        }
-
-
-
 
     }
+
+
+
+
+
     HwwButton{
         x:parent.width-100
         y:parent.height-80

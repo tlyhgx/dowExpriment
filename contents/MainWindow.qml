@@ -22,7 +22,8 @@ Window {
 //        visibility: Window.FullScreen
 
 
-    WorkUI{   //元器件及指示
+    //元器件及指示
+    WorkUI{
         id:workUI
         x:0;y:10
         height: firstLineHeight
