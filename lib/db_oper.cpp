@@ -29,4 +29,14 @@ int DB_oper::getOperIdbyName(QString operName)
     return query.value(0).toInt();
 }
 
+void DB_oper::addOperName(QString operName)
+{
+    //TODO:如果有相同的，则不保存
+    QSqlQuery query;
+    query.prepare("insert into oper (name) values (:operName)");
+    query.bindValue(":operName",operName);
+    query.exec();
+
+}
+
 

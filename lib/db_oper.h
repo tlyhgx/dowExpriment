@@ -10,6 +10,7 @@ public:
     explicit DB_oper(QObject *parent = nullptr);
     QVariantList getOperNames();
     int getOperIdbyName(QString operName);
+    void addOperName(QString operName);
 
 signals:
 
