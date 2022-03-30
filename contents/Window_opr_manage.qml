@@ -2,6 +2,7 @@
 import backend_oper_manage 1.0
 import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
+import QtQuick.Controls 2.15
 Window {
     id:id_top_level
     width: 660;height: 400
@@ -9,11 +10,10 @@ Window {
     Backend_oper_manage{
         id:backend_oper_manage
     }
-    Rectangle{
+    Frame{
         x:100
         y:50
-        border.width: 1
-        radius: 4
+
         width: 360
         height:id_top_level.height-100
         Row{
@@ -112,34 +112,54 @@ Window {
                         verticalAlignment: Qt.AlignVCenter
                         horizontalAlignment: Qt.AlignHCenter
                     }
-
-//                    anchors.horizontalCenter: parent.horizontalCenter
                 }
 
 
                 HwwButton{
                     text: "添加"
                     anchors.right:  parent.right
-                    MouseArea{
-                    onClicked: backend_oper_manage.addOper(selItem_addItem.text)
-                    }
+
+                        onClicked:
+                        {
+                            backend_oper_manage.add_oper(selItem_addItem.text)
+//                            console.log("添加用户")
+                        }
+
                 }
                 HwwButton{
                     text: "删除"
                     anchors.right:  parent.right
+                    onClicked: {
+                        dlg_del_oper_confirm.open()
+
+
+                    }
                 }
                 HwwButton{
                     text: "修改"
                     anchors.right:  parent.right
+                    onClicked: {
+                    backend_oper_manage.update_oper(selItem_addItem.text,backend_oper_manage.list_operName[list_name.currentIndex])
+                    }
                 }
             }
-
-
         }
 
 
     }
 
+    //询问是否删除用户对话框
+    Dialog {
+        id: dlg_del_oper_confirm
+        title: "确定删除此用户！"
+        standardButtons: Dialog.Ok | Dialog.Cancel
+
+        onAccepted: {
+            //提示窗口“确定删除！”
+            backend_oper_manage.del_oper(selItem_addItem.text)
+        }
+        onRejected: dlg_del_oper_confirm.close()
+    }
 
     //退出按钮
     HwwButton{

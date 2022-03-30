@@ -11,6 +11,8 @@ public:
     QVariantList getOperNames();
     int getOperIdbyName(QString operName);
     void addOperName(QString operName);
+    void delOperName(QString operName);
+    void update_oper(QString operName,QString last_name);
 
 signals:
 
