@@ -10,12 +10,14 @@
 #include "infolist.h"
 #include "getplcval.h"
 #include "hwwalarm.h"
+#include "db_oper.h"
 #pragma execution_character_set("utf-8")
 using namespace std;
 class MainBackend : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString operName READ operName WRITE setOperName NOTIFY operNameChanged)
+    Q_PROPERTY(QVariantList list_operName READ list_operName  NOTIFY list_operNameChanged)
     Q_PROPERTY(QString exprimentName READ exprimentName WRITE setExprimentName NOTIFY exprimentNameChanged)
     Q_PROPERTY(bool willRec READ willRec WRITE setWillRec NOTIFY willRecChanged)
 
@@ -35,6 +37,14 @@ public:
     QString operName() const
     {
         return m_operName;
+    }
+
+    QVariantList list_operName()
+    {
+        QVariantList operNames;
+        DB_oper db_oper;
+        operNames=db_oper.getOperNames();
+        return operNames;
     }
 
     QString exprimentName() const
@@ -96,6 +106,7 @@ signals:
     void otherSignalValChanged(QVariantList otherSignalVals);
     void outPutStateChanged(QVariantList outPutStateVals);
     void operNameChanged(QString operName);
+    void list_operNameChanged();
 
     void exprimentNameChanged(QString exprimentName);
 

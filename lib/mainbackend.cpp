@@ -28,6 +28,9 @@ MainBackend::MainBackend(DowInit *dowInit, GetPlcVal *getPlcVal, QObject *parent
     connect(timer,&QTimer::timeout,this,&MainBackend::recVal_to_db);
     timer->start(dowInit->getRecord_cycle_s()*1000);
 
+    //用户名称组
+
+    list_operName();
 }
 
 //void  MainBackend::askSignalVals()

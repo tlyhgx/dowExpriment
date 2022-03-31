@@ -17,9 +17,9 @@ Window {
     width: totalWidth
     height: totalHeight
     flags: Qt.FramelessWindowHint
-//    visible: false
+
     title: qsTr("陶氏实验数据监控系统v1.0")
-//        visibility: Window.FullScreen
+
 
 
     //元器件及指示
@@ -30,6 +30,7 @@ Window {
         width: totalWidth
         anchors.horizontalCenter: parent.horizontalCenter
     }
+
     HwwCanvas{  //
         x:0;y:0
         width: totalWidth
@@ -89,7 +90,7 @@ Window {
 
             Column{
                 spacing: 5
-
+                //工作状态、输入实验名称及实验人员
                 Rectangle{
                     width: 250;height: 120
                     GridLayout {
@@ -142,25 +143,35 @@ Window {
                                 bold: true
                             }
                         }
-                        TextField {
-                            id:operName_input
-                            width:200
-                            placeholderText: "请输入实验人员名字！"
+//                        TextField {
+//                            id:operName_input
+//                            width:200
+//                            placeholderText: "请输入实验人员名字！"
+//                            font{
+//                                pixelSize: 18
+//                                bold: true
+//                            }
+//                        }
+
+
+                        //用户名comboBox
+                        ComboBox{
+                            id:combo_operName
+                            width: 200
                             font{
                                 pixelSize: 18
                                 bold: true
                             }
-                        }
 
+
+                        }
                     }
                 }
-
+                //开始、停止按钮
                 Row{
                     spacing: 100
                     width: 300;height: 30
                     leftPadding: 30
-
-
                     Rectangle{
                         anchors.leftMargin: 50
                         width: 60;height: 30
@@ -171,7 +182,7 @@ Window {
 
                                 //记录操作员--记录实验名称
                                 workState.text="工作中..."
-                                mainBackend.operName=operName_input.text
+                                mainBackend.operName=combo_operName.currentText
                                 mainBackend.exprimentName=experiment_input.text
                                 mainBackend.startSys()
                                 //设置mainBackend属性willRec为true,是否记录的判断条件
@@ -198,9 +209,6 @@ Window {
                 }
             }
         }
-
-
-
     }
 
     Connections{
@@ -241,8 +249,15 @@ Window {
             else if(outPutStateVals[3]==0)
                 workUI.pump2State="OFF"
         }
-    }
+        function onList_operNameChanged(){
+            combo_operName.model=mainBackend.list_operName
 
+    }
+    }
+    Component.onCompleted:  {
+        combo_operName.model=mainBackend.list_operName
+
+    }
     //其它窗口按钮组
     Rectangle{
         width: 120

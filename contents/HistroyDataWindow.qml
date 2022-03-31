@@ -15,11 +15,6 @@ Window {
 
 
 
-    //        RecordVal_tableview{
-    //            id:recordVal_tableview
-    //            height: parent.height
-    //            width: 500
-    //        }
 
 
     Chart_history{
