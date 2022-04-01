@@ -194,6 +194,9 @@ Item {
                     backend_history_chart.operName=currentText
                     //                    console.log(currentText)
                 }
+                onHighlighted: {
+                model=backend_history_chart.operNames
+                }
 
             }
         }
@@ -208,7 +211,11 @@ Item {
             ComboBox{
                 id:comboBox_experimentNames
                 width: 260
+//                onHighlighted: {
+////                model=backend_history_chart.experimentNames
+//                }
             }
+
         }
 
         //显示的模拟量选择组
@@ -282,23 +289,23 @@ Item {
         Label{
             text: "时间范围缩放：转动鼠标滚轮"
             font{
-                pixelSize: 14
+                pixelSize: 16
             }
-            color: "aqua"
+            color: "cadetblue"
         }
         Label{
             text: "时间左右移动:鼠标左键按下，并保持1秒，然后左右移动"
             font{
-                pixelSize: 14
+                pixelSize: 16
             }
-            color: "aqua"
+            color: "cadetblue"
         }
         Label{
             text:"显示某个时间点的值:移动鼠标到该点"
             font{
-                pixelSize: 14
+                pixelSize: 16
             }
-            color: "aqua"
+            color: "cadetblue"
         }
     }
 

@@ -38,7 +38,7 @@ void Backend_oper_manage::update_oper(QString operName,QString last_name)
 
 Backend_oper_manage::Backend_oper_manage(QObject *parent) : QObject(parent)
 {
-
+//    connect(this,Backend_oper_manage::list_operNameChanged,)
 }
 
 QVariantList Backend_oper_manage::list_operName()

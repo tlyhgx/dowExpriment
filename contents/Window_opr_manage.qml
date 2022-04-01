@@ -7,6 +7,8 @@ Window {
     id:id_top_level
     width: 660;height: 400
     flags: Qt.FramelessWindowHint
+    color: "gainsboro"
+    modality: Qt.WindowModal
     Backend_oper_manage{
         id:backend_oper_manage
     }
@@ -144,8 +146,6 @@ Window {
                 }
             }
         }
-
-
     }
 
     //询问是否删除用户对话框

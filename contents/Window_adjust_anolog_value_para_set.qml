@@ -7,6 +7,8 @@ Window {
     flags: Qt.FramelessWindowHint
     id:window_adjust_value
     height: 500;width: 680
+    color: "gainsboro"
+    modality: Qt.WindowModal
 
 
     Label{

@@ -46,7 +46,7 @@ Window {
         model: infoListModel;
         clip: true
         //TODO:后添加的要显示在最上面
-//                verticalLayoutDirection:ItemView.BottomToTop
+        //                verticalLayoutDirection:ItemView.BottomToTop
         header:Rectangle{
             width: infoListView.width
             height: 20
@@ -143,15 +143,7 @@ Window {
                                 bold: true
                             }
                         }
-//                        TextField {
-//                            id:operName_input
-//                            width:200
-//                            placeholderText: "请输入实验人员名字！"
-//                            font{
-//                                pixelSize: 18
-//                                bold: true
-//                            }
-//                        }
+
 
 
                         //用户名comboBox
@@ -162,8 +154,9 @@ Window {
                                 pixelSize: 18
                                 bold: true
                             }
-
-
+                            onHighlighted: {
+                                combo_operName.model=mainBackend.list_operName
+                            }
                         }
                     }
                 }
@@ -233,7 +226,7 @@ Window {
             workUI.no5TempVal=tempSignalVals[4].toFixed(1)
         }
         function onOutPutStateChanged(outPutStateVals){ //把输出状态赋值
-           //TODO:搅拌转动效果
+            //TODO:搅拌转动效果
             if(outPutStateVals[0]==0)
             {workUI.heatState="未加热"
                 workUI.heatColor="blue"}
@@ -251,12 +244,10 @@ Window {
         }
         function onList_operNameChanged(){
             combo_operName.model=mainBackend.list_operName
-
-    }
+        }
     }
     Component.onCompleted:  {
         combo_operName.model=mainBackend.list_operName
-
     }
     //其它窗口按钮组
     Rectangle{

@@ -10,7 +10,7 @@ Window {
     visible: true
     color: "#00000000"
     flags: Qt.SplashScreen
-    //    flags: Qt.FramelessWindowHint
+//        flags: Qt.FramelessWindowHint
     Rectangle{
         anchors.fill: parent
         radius:8

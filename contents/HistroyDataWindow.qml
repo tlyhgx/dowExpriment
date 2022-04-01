@@ -35,7 +35,7 @@ Window {
         z:1
         text: "退出"
         onClicked: {
-            historyDataWindow.hide()
+            historyDataWindow.close()
         }
     }
 }

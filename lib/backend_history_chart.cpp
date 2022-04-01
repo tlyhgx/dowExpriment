@@ -43,6 +43,7 @@ void Backend_history_chart::ask_datas_from_db()
         val_max=val_max+delta_val;
         val_min=val_min-delta_val;
         group_val_min_max.clear();
+
         group_val_min_max<<int(val_min);
         group_val_min_max<<int(val_max);
 //        qDebug()<<group_val_min_max<<"×îÖµ";

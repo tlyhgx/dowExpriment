@@ -5,7 +5,10 @@ Window {
     title: qsTr("参数设置")
     height: 450
     width: 1000
+    color: "gainsboro"
     flags: Qt.FramelessWindowHint
+    modality: Qt.WindowModal
+    //温度校正按钮
     HwwButton{
         x:parent.width-100
         y:20
